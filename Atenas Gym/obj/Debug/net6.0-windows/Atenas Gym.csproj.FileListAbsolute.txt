@@ -1,0 +1,23 @@
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\Atenas Gym.exe
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\Atenas Gym.deps.json
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\Atenas Gym.runtimeconfig.json
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\Atenas Gym.dll
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\Atenas Gym.pdb
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\Atenas Gym.csproj.AssemblyReference.cache
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\MainWindow.g.cs
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\LoginView.g.cs
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\App.g.cs
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\Atenas Gym_MarkupCompile.cache
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\Atenas Gym_MarkupCompile.lref
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\MainWindow.baml
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\LoginView.baml
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\Atenas Gym.g.resources
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\Atenas Gym.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\Atenas Gym.AssemblyInfoInputs.cache
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\Atenas Gym.AssemblyInfo.cs
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\Atenas Gym.csproj.CoreCompileInputs.cache
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\Atenas Gym.dll
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\refint\Atenas Gym.dll
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\Atenas Gym.pdb
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\Atenas Gym.genruntimeconfig.cache
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\ref\Atenas Gym.dll
