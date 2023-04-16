@@ -40,5 +40,35 @@ namespace Atenas_Gym.View
         {
             Application.Current.Shutdown();
         }
+
+        private void Cedula_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (Cedula.Text == "Ingrese su cédula")
+            {
+                Cedula.Text = "";
+                Cedula.Foreground = Brushes.LightGray;
+            }
+        }
+
+        private void Cedula_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (Cedula.Text == "")
+            {
+                Cedula.Text = "Ingrese su cédula";
+                Cedula.Foreground = Brushes.Gray;
+            }
+        }
+
+        private void Pass_change(object sender, RoutedEventArgs e)
+        {
+            if(Pass.Password.Length > 0)
+            {
+                Watermark.Text = "";
+            }
+            else
+            {
+                Watermark.Text = "Ingrese su contraseña";
+            }
+        }
     }
 }

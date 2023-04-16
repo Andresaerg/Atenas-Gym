@@ -15,8 +15,10 @@
 
     <Border CornerRadius="50">
         <Border.Background>
-            <ImageBrush ImageSource="/Images/Spartan-bg.jpg" 
-                        Stretch="Fill"/>
+            <ImageBrush ImageSource="/Images/Spartan-bg-edit2.jpg" 
+                        Stretch="UniformToFill"
+                        AlignmentX="Center"
+                        />
         </Border.Background>
         <Border CornerRadius="50"
                 BorderThickness="5"
@@ -51,13 +53,12 @@
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="Log In"
                                Foreground="DarkRed"
-                               FontSize="20"
+                               FontSize="15"
                                FontFamily="Montserrat"
                                Grid.Column="0"
                                VerticalAlignment="Center"
                                Margin="35,0,0,0"/>
                     <Button x:Name="Minimize"
-                            Background="#28231D"
                             BorderThickness="0"
                             Grid.Column="1"
                             Content="-"
@@ -65,6 +66,14 @@
                             FontFamily="Montserrat"
                             Cursor="Hand"
                             Click="Minimize_click">
+
+                        <Button.Template>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border CornerRadius="0,10,0,0">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
 
                     </Button>
                     <Button x:Name="Close"
@@ -78,15 +87,158 @@
                                 
                         <Button.Template>
                             <ControlTemplate TargetType="{x:Type Button}">
-                                <Border CornerRadius="0,10,0,0"
-                                        Background="#28231D">
+                                <Border CornerRadius="0,10,0,0">
                                     <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
                             </ControlTemplate>
                         </Button.Template>
                                 
                     </Button>
-                </Grid> 
+                </Grid>
+
+                <StackPanel Width="250"
+                            Grid.Row="2"
+                            Orientation="Vertical"
+                            Margin="0,30,0,0">
+
+                    <Image Source="/Images/Logo.png" 
+                           Width="200" 
+                           Height="200"/>
+
+                    <Label Content="Usuario" 
+                           HorizontalAlignment="Left" 
+                           Height="25" 
+                           Margin="0, 25, 0, 0" 
+                           Foreground="#EAEAEA" 
+                           FontFamily="Montserrat" 
+                           FontSize="12" 
+                           FontWeight="Medium"/>
+
+                    <TextBox x:Name="Cedula" 
+                             HorizontalAlignment="Stretch" 
+                             BorderBrush="DarkGray" 
+                             BorderThickness="0,0,0,2" 
+                             CaretBrush="LightGray" 
+                             FontWeight="Medium" 
+                             FontFamily="Montserrat" 
+                             Margin="0,5,0,0" 
+                             Padding="25,0,0,0"
+                             Text="Ingrese su cédula" 
+                             GotFocus="Cedula_GotFocus" 
+                             LostFocus="Cedula_LostFocus" 
+                             Foreground="Gray" 
+                             Height="20">
+                       
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="TextBox">
+                                            <Border BorderThickness="{TemplateBinding Border.BorderThickness}"
+                                                    BorderBrush="{TemplateBinding Border.BorderBrush}"
+                                                    Background="{TemplateBinding Panel.Background}"
+                                                    Name="border"
+                                                    SnapsToDevicePixels="True">
+                                                <ScrollViewer HorizontalScrollBarVisibility="Hidden"
+                                                              VerticalScrollBarVisibility="Hidden"
+                                                              Name="PART_ContentHost"
+                                                              Focusable="False" />
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="UIElement.IsMouseOver" Value="True">
+                                                    <Setter Property="Border.BorderBrush" TargetName="border" 
+                                                            Value="Red"/>
+                                                </Trigger>
+                                                <Trigger Property="UIElement.IsFocused" Value="True">
+                                                    <Setter Property="Border.BorderBrush" TargetName="border" 
+                                                            Value="Red"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </TextBox.Style>
+
+                        <TextBox.Background>
+                            <ImageBrush ImageSource="/Images/user-icon.png" 
+                                        Stretch="none"
+                                        AlignmentX="Left"/>
+                        </TextBox.Background>
+
+                    </TextBox>
+
+                    <Label Content="Contraseña" 
+                           HorizontalAlignment="Left" 
+                           Height="25" 
+                           Margin="0, 25, 0, 0" 
+                           Foreground="#EAEAEA" 
+                           FontFamily="Montserrat" 
+                           FontSize="12" 
+                           FontWeight="Medium"/>
+
+                    <PasswordBox x:Name="Pass" 
+                             HorizontalAlignment="Stretch" 
+                             BorderBrush="DarkGray" 
+                             BorderThickness="0,0,0,2" 
+                             CaretBrush="LightGray" 
+                             FontWeight="Medium" 
+                             Foreground="Gray"
+                             Margin="0,5,0,0"
+                             Padding="30,0,0,0"
+                             Height="20"
+                             PasswordChanged="Pass_change">
+
+                        <PasswordBox.Style>
+                            <Style TargetType="PasswordBox">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="PasswordBox">
+                                            <Border BorderThickness="{TemplateBinding Border.BorderThickness}"
+                                                    BorderBrush="{TemplateBinding Border.BorderBrush}"
+                                                    Background="{TemplateBinding Panel.Background}"
+                                                    Name="border"
+                                                    SnapsToDevicePixels="True">
+                                                <ScrollViewer HorizontalScrollBarVisibility="Hidden"
+                                                              VerticalScrollBarVisibility="Hidden"
+                                                              Name="PART_ContentHost"
+                                                              Focusable="False" />
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="UIElement.IsMouseOver" Value="True">
+                                                    <Setter Property="Border.BorderBrush" TargetName="border" 
+                                                            Value="Red"/>
+                                                </Trigger>
+                                                <Trigger Property="UIElement.IsFocused" Value="True">
+                                                    <Setter Property="Border.BorderBrush" TargetName="border" 
+                                                            Value="Red"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </PasswordBox.Style>
+
+                        <PasswordBox.Background>
+                            <ImageBrush ImageSource="/Images/key-icon.png" 
+                                        Stretch="none"
+                                        AlignmentX="Left"/>
+                        </PasswordBox.Background>
+                    </PasswordBox>
+
+                    <TextBlock x:Name="Watermark"
+                               Text="Ingrese su contraseña"
+                               Margin="30,-20,0,0"
+                               Foreground="Gray"
+                               FontWeight="Medium" 
+                               FontFamily="Montserrat"
+                               Panel.ZIndex="-1">
+
+                    </TextBlock>
+
+                </StackPanel>
+                
             </Grid>
         </Border>
     </Border>

@@ -10,7 +10,10 @@
 
   <ItemGroup>
     <None Remove="1679441910917.jpg" />
-    <None Remove="Images\Spartan-bg.jpg" />
+    <None Remove="Images\key-icon.png" />
+    <None Remove="Images\Logo.png" />
+    <None Remove="Images\Spartan-bg-edit2.jpg" />
+    <None Remove="Images\user-icon.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,7 +22,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Images\Spartan-bg.jpg" />
+    <Resource Include="Images\key-icon.png" />
+    <Resource Include="Images\Logo.png" />
+    <Resource Include="Images\Spartan-bg-edit2.jpg" />
+    <Resource Include="Images\user-icon.png" />
   </ItemGroup>
 
 </Project>
