@@ -3,7 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Atenas_Gym.View"
+        xmlns:viewModel="clr-namespace:Atenas_Gym.ViewModel"
+        xmlns:customcontrols="clr-namespace:Atenas_Gym.CustomControls"
         mc:Ignorable="d"
         Title="Atenas Gym | Login" Height="550" Width="800"
         Icon="/Images/App-Logo.png"
@@ -14,6 +15,18 @@
         Background="Transparent"
         AllowsTransparency="True">
 
+    <Window.DataContext>
+        <viewModel:LoginViewModel/>
+    </Window.DataContext>
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
+    </Window.Resources>
+
+    <Window.Visibility>
+        <Binding Path="IsViewVisible" Mode="TwoWay" Converter="{StaticResource BooleanToVisibility}"/>
+    </Window.Visibility>
+
     <Border CornerRadius="15">
         <Border.Background>
             <ImageBrush ImageSource="/Images/Spartan-bg-edit2.jpg" 
@@ -23,7 +36,7 @@
         </Border.Background>
         <Border CornerRadius="10"
                 BorderThickness="5"
-                Opacity=".9"
+                Opacity=".95"
                 >
             <Border.BorderBrush>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -92,9 +105,9 @@
                     </Button>
                     <Button x:Name="Close"
                             BorderThickness="0"
-                            Grid.Column="2"
                             FontSize="20"
                             Content="x"
+                            Grid.Column="2"
                             Foreground="White"
                             FontFamily="Montserrat"
                             Cursor="Hand"
@@ -150,13 +163,12 @@
                              FontFamily="Montserrat" 
                              Margin="0,5,0,0" 
                              Padding="30,0,0,0"
-                             Text="Ingrese su cédula" 
-                             GotFocus="Cedula_GotFocus" 
-                             LostFocus="Cedula_LostFocus" 
+                             Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" 
                              Foreground="Gray" 
-                             Height="20">
-                       
+                             Height="20" 
+                             TextChanged="Cedula_change">
                         <TextBox.Style>
+
                             <Style TargetType="TextBox">
                                 <Setter Property="Template">
                                     <Setter.Value>
@@ -194,6 +206,15 @@
                         </TextBox.Background>
 
                     </TextBox>
+                    <TextBlock x:Name="WatermarkCI"
+                               Text="Ingrese su cédula"
+                               Margin="35,-20,0,0"
+                               Foreground="Gray"
+                               FontWeight="Medium" 
+                               FontFamily="Montserrat"
+                               Panel.ZIndex="-1">
+
+                    </TextBlock>
 
                     <Label Content="Contraseña" 
                            HorizontalAlignment="Left" 
@@ -204,73 +225,31 @@
                            FontSize="12" 
                            FontWeight="Medium"/>
 
-                    <PasswordBox x:Name="Pass" 
-                             HorizontalAlignment="Stretch" 
-                             BorderBrush="DarkGray" 
-                             BorderThickness="0,0,0,2" 
-                             CaretBrush="LightGray" 
-                             FontWeight="Medium" 
-                             Foreground="Gray"
-                             Margin="0,5,0,0"
-                             Padding="30,0,0,0"
-                             Height="20"
-                             PasswordChanged="Pass_change">
+                    <customcontrols:BindablePasswordBox x:Name="Pass"
+                                                        Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                        Margin="0,5,0,0"
+                                                        Height="20">
+                    </customcontrols:BindablePasswordBox>
 
-                        <PasswordBox.Style>
-                            <Style TargetType="PasswordBox">
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="PasswordBox">
-                                            <Border BorderThickness="{TemplateBinding Border.BorderThickness}"
-                                                    BorderBrush="{TemplateBinding Border.BorderBrush}"
-                                                    Background="{TemplateBinding Panel.Background}"
-                                                    Name="border"
-                                                    SnapsToDevicePixels="True">
-                                                <ScrollViewer HorizontalScrollBarVisibility="Hidden"
-                                                              VerticalScrollBarVisibility="Hidden"
-                                                              Name="PART_ContentHost"
-                                                              Focusable="False" />
-                                            </Border>
-                                            <ControlTemplate.Triggers>
-                                                <Trigger Property="UIElement.IsMouseOver" Value="True">
-                                                    <Setter Property="Border.BorderBrush" TargetName="border" 
-                                                            Value="Red"/>
-                                                </Trigger>
-                                                <Trigger Property="UIElement.IsFocused" Value="True">
-                                                    <Setter Property="Border.BorderBrush" TargetName="border" 
-                                                            Value="Red"/>
-                                                </Trigger>
-                                            </ControlTemplate.Triggers>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </Style>
-                        </PasswordBox.Style>
-
-                        <PasswordBox.Background>
-                            <ImageBrush ImageSource="/Images/key-icon.png" 
-                                        Stretch="none"
-                                        AlignmentX="Left"/>
-                        </PasswordBox.Background>
-                    </PasswordBox>
-
-                    <TextBlock x:Name="Watermark"
-                               Text="Ingrese su contraseña"
-                               Margin="35,-20,0,0"
+                    <TextBlock x:Name="ErrorMessage"
+                               Text="{Binding ErrorMessage}"
+                               Margin="0,5,0,0"
                                Foreground="Gray"
                                FontWeight="Medium" 
                                FontFamily="Montserrat"
-                               Panel.ZIndex="-1">
-
+                               Panel.ZIndex="-1"
+                               TextWrapping="Wrap">
                     </TextBlock>
 
                     <Button x:Name="Login"
+                            Command="{Binding LoginCommand}"
                             BorderThickness="0"
                             FontSize="15"
+                            Height="25"
                             Content="Iniciar Sesión"
                             FontFamily="Montserrat"
                             Cursor="Hand"
-                            Margin="20">
+                            Margin="20 10">
 
                         <Button.Style>
                             <Style TargetType="Button">

@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 D:\Website\Documents\Atenas-Gym\Atenas Gym\App.xaml
-2376403462
+2-45413512
 
-61004264117
+12-1389390639
 194-1951243044
-MainWindow.xaml;View\LoginView.xaml;
+CustomControls\BindablePasswordBox.xaml;View\LoginView.xaml;
 
 False
 

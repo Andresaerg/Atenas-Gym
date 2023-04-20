@@ -24,7 +24,7 @@ namespace Atenas_Gym.View
         {
             InitializeComponent();
         }
-        
+
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
@@ -41,34 +41,15 @@ namespace Atenas_Gym.View
             Application.Current.Shutdown();
         }
 
-        private void Cedula_GotFocus(object sender, RoutedEventArgs e)
+        private void Cedula_change(object sender, RoutedEventArgs e)
         {
-            if (Cedula.Text == "Ingrese su cédula")
+            if (Cedula.Text.Length > 0)
             {
-                Cedula.Text = "";
-                Cedula.Foreground = Brushes.LightGray;
-            }
-        }
-
-        private void Cedula_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (Cedula.Text == "")
-            {
-                Cedula.Text = "Ingrese su cédula";
-                Cedula.Foreground = Brushes.Gray;
-            }
-        }
-
-        private void Pass_change(object sender, RoutedEventArgs e)
-        {
-            if(Pass.Password.Length > 0)
-            {
-                Watermark.Text = "";
-                Pass.Foreground = Brushes.LightGray;
+                WatermarkCI.Text = "";
             }
             else
             {
-                Watermark.Text = "Ingrese su contraseña";
+                WatermarkCI.Text = "Ingrese su cédula";
             }
         }
     }
