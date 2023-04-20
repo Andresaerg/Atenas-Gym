@@ -1,20 +1,20 @@
 ﻿Atenas Gym
-1.0.0.0
+
 
 winexe
 C#
 .cs
-D:\Website\Documents\Atenas-Gym\Atenas Gym\obj\Debug\net6.0-windows\
+D:\Website\Documents\Atenas-Gym\Atenas Gym\obj\Release\net6.0-windows\
 Atenas_Gym
 none
 false
-TRACE;DEBUG;NET;NET6_0;NETCOREAPP
+TRACE;RELEASE;NET;NET6_0;NETCOREAPP
 D:\Website\Documents\Atenas-Gym\Atenas Gym\App.xaml
 2376403462
 
-61004264117
+42104924793
 194-1951243044
 MainWindow.xaml;View\LoginView.xaml;
 
-False
+True
 

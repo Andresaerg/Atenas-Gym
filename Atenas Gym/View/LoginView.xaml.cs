@@ -64,6 +64,7 @@ namespace Atenas_Gym.View
             if(Pass.Password.Length > 0)
             {
                 Watermark.Text = "";
+                Pass.Foreground = Brushes.LightGray;
             }
             else
             {
