@@ -41,21 +41,15 @@ namespace Atenas_Gym.View
             Application.Current.Shutdown();
         }
 
-        private void Cedula_GotFocus(object sender, RoutedEventArgs e)
+        private void Cedula_change(object sender, RoutedEventArgs e)
         {
-            if (Cedula.Text == "Ingrese su cédula")
+            if (Cedula.Text.Length > 0)
             {
-                Cedula.Text = "";
-                Cedula.Foreground = Brushes.LightGray;
+                WatermarkCI.Text = "";
             }
-        }
-
-        private void Cedula_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (Cedula.Text == "")
+            else
             {
-                Cedula.Text = "Ingrese su cédula";
-                Cedula.Foreground = Brushes.Gray;
+                WatermarkCI.Text = "Ingrese su cédula";
             }
         }
 

@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\App.xaml
-2376403462
+31361631829
 
-42104924793
+81426656727
 194101785492
-MainWindow.xaml;View\LoginView.xaml;
+CustomControls\BindablePasswordBox.xaml;MainWindow.xaml;View\LoginView.xaml;
 
 False
 
