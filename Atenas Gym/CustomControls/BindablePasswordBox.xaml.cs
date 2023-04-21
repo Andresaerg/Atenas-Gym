@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Atenas_Gym.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security;

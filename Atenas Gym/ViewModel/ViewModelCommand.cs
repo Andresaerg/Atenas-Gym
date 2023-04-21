@@ -35,14 +35,14 @@ namespace Atenas_Gym.ViewModel
         //Methods
         public bool CanExecute(object? parameter)
         {
-            return _canExecuteAction == null ? true : _canExecuteAction(parameter ?? throw new ArgumentNullException(nameof(parameter)));
+            return _canExecuteAction == null ? true : _canExecuteAction(parameter);
         }
 
         public void Execute(object? parameter)
         {
             if( _executeAction != null )
             {
-                _executeAction(parameter ?? throw new ArgumentNullException(nameof(parameter)));
+                _executeAction(parameter);
             }
         }
     }

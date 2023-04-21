@@ -1,8 +1,13 @@
-﻿using System;
+﻿using Atenas_Gym.Model;
+using Atenas_Gym.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Security;
+using System.Security.Principal;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -15,6 +20,8 @@ namespace Atenas_Gym.ViewModel
         private SecureString? _password;
         private string? _errorMessage;
         private bool _isViewVisible = true;
+
+        private IUserRepository userRepository;
 
         //Properties
         public string? Username { 
@@ -57,6 +64,7 @@ namespace Atenas_Gym.ViewModel
 
         public LoginViewModel()
         {
+            userRepository = new UserRepository();
             LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
             RecoverPasswordCommand = new ViewModelCommand(ExecuteRecoverPassword);
         }
@@ -64,7 +72,17 @@ namespace Atenas_Gym.ViewModel
 
         private void ExecuteLoginCommand(object obj)
         {
-            
+            var isValidUser = userRepository.AuthenticateUser(new NetworkCredential(Username, Password));
+
+            if (isValidUser)
+            {
+                Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(Username), null);
+                IsViewVisible = false;
+            }
+            else
+            {
+                ErrorMessage = "Cédula o contraseña inválidas";
+            }
         }
 
         private bool CanExecuteLoginCommand(object obj)

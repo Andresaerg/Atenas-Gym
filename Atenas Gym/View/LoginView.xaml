@@ -155,6 +155,7 @@
                            FontWeight="Medium"/>
 
                     <TextBox x:Name="Cedula" 
+                             MaxLength="10"
                              HorizontalAlignment="Stretch" 
                              BorderBrush="DarkGray" 
                              BorderThickness="0,0,0,2" 
@@ -166,7 +167,8 @@
                              Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" 
                              Foreground="Gray" 
                              Height="20" 
-                             TextChanged="Cedula_change">
+                             TextChanged="Cedula_change"
+                             PreviewTextInput="NumberValidationTextBox">
                         <TextBox.Style>
 
                             <Style TargetType="TextBox">
@@ -234,7 +236,7 @@
                     <TextBlock x:Name="ErrorMessage"
                                Text="{Binding ErrorMessage}"
                                Margin="0,5,0,0"
-                               Foreground="Gray"
+                               Foreground="Red"
                                FontWeight="Medium" 
                                FontFamily="Montserrat"
                                Panel.ZIndex="-1"
@@ -249,7 +251,8 @@
                             Content="Iniciar Sesión"
                             FontFamily="Montserrat"
                             Cursor="Hand"
-                            Margin="20 10">
+                            Margin="20 10"
+                            IsDefault="True">
 
                         <Button.Style>
                             <Style TargetType="Button">
