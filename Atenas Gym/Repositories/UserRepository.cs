@@ -26,8 +26,8 @@ namespace Atenas_Gym.Repositories
                 command.Connection = GetConnection;
                 command.CommandText = "SELECT * FROM usuarios WHERE Cedula = @username AND Password = @password";
 
-                bool result1 = int.TryParse(credential.UserName, out _);
-                if (result1 && !string.IsNullOrEmpty(credential.Password))
+                bool result = int.TryParse(credential.UserName, out _);
+                if (result && !string.IsNullOrEmpty(credential.Password))
                 {
                     command.Parameters.Add("@username", MySqlDbType.Int64).Value = credential.UserName;
                     command.Parameters.Add("@password", MySqlDbType.String).Value = credential.Password;
