@@ -1,0 +1,29 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--Border Colors-->
+    <Color x:Key="borderColor1">#2D2D2D</Color>
+    <Color x:Key="borderColor2">#9D0011</Color>
+    <Color x:Key="borderColor3">#9D0000</Color>
+
+    <!--Background Colors-->
+    <Color x:Key="primaryBackColor1">#2D2D2D</Color>
+    <Color x:Key="primaryBackColor2">#0E0C0A</Color>
+    <Color x:Key="secondaryBackColor1">#343434</Color>
+    <Color x:Key="secondaryBackColor2">#28282B</Color>
+
+    <!--Foregrounds-->
+    <SolidColorBrush x:Key="principalForeground">Gray</SolidColorBrush>
+    <SolidColorBrush x:Key="secondaryForeground">#ECE7E7</SolidColorBrush>
+
+    <!--Without Hover-->
+    <SolidColorBrush x:Key="plainTextColor3">#CB1313</SolidColorBrush>
+    
+    <!--With Hover-->
+    <SolidColorBrush x:Key="panelOverColor">#2D2D2D</SolidColorBrush>
+    <SolidColorBrush x:Key="hoverTextColor3">#9D0000</SolidColorBrush>
+    <SolidColorBrush x:Key="hoverClose">DarkRed</SolidColorBrush>
+
+    <!--Btn Active-->
+    <SolidColorBrush x:Key="panelActiveColor">#28282B</SolidColorBrush>
+    
+</ResourceDictionary>
