@@ -63,5 +63,28 @@ namespace Atenas_Gym.View
         {
             Application.Current.Shutdown();
         }
+
+        private void Contract(object sender, RoutedEventArgs e)
+        {
+            var chevronIcon = ContractIcon.Icon == FontAwesome.Sharp.IconChar.ChevronLeft;
+            if (chevronIcon)
+            {
+                sideBar.Width = new GridLength(0);
+                openBtnIcon.IsEnabled = true;
+                openBtnIcon.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void Open(object sender, RoutedEventArgs e)
+        {
+            var chevronIcon = OpenIcon.Icon == FontAwesome.Sharp.IconChar.ChevronRight;
+            if (chevronIcon)
+            {
+                sideBar.Width = new GridLength(250);
+                openBtnIcon.IsEnabled = false;
+                openBtnIcon.Visibility = Visibility.Hidden;
+            }
+
+        }
     }
 }

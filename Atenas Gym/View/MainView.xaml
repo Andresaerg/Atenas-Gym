@@ -7,7 +7,7 @@
         xmlns:viewModel="clr-namespace:Atenas_Gym.ViewModel"
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         mc:Ignorable="d"
-        Title="Atenas Gym | Dashboard" Height="550" Width="800"
+        Title="Atenas Gym | Dashboard" Height="750" Width="1250"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         Background="Transparent"
@@ -16,6 +16,36 @@
     <Window.DataContext>
         <viewModel:MainViewModel/>
     </Window.DataContext>
+
+    <Window.Resources>
+
+        <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
+            <local:HomeView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:ClientsViewModel}">
+            <local:ClientsView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:PlanesViewModel}">
+            <local:PlanesView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:CortesViewModel}">
+            <local:CortesView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:ConfigViewModel}">
+            <local:ConfigView/>
+        </DataTemplate>
+
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
+
+    </Window.Resources>
+
+    <Window.Visibility>
+        <Binding Path="IsVisible" Mode="TwoWay" Converter="{StaticResource BooleanToVisibility}"/>
+    </Window.Visibility>
 
     <Border CornerRadius="10"
             BorderThickness="5">
@@ -31,7 +61,7 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <!--Navigation Menu-->
-                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="250" x:Name="sideBar"/>
                 <!--Content section-->
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
@@ -58,11 +88,21 @@
                                    FontWeight="Medium"
                                    VerticalAlignment="Center"
                                    Margin="10,0,0,0"/>
+                        <Button Width="30"
+                                Margin="40,0,0,0"
+                                Click="Contract"
+                                Style="{StaticResource controlButton}">
+                            <fa:IconImage Icon="ChevronLeft" Foreground="{StaticResource secondaryForeground}"
+                                          x:Name="ContractIcon"
+                                          Height="20"/>
+                        </Button>
 
                     </StackPanel>
                     <!--Menu Btns-->
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource secondaryForeground}">
+                                 Tag="{StaticResource secondaryForeground}"
+                                 Command="{Binding ShowHomeViewCommand}"
+                                 IsChecked="True">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Home" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Dashboard" Style="{StaticResource menuButtonText}"/>
@@ -70,7 +110,8 @@
                     </RadioButton>
 
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource secondaryForeground}">
+                                 Tag="{StaticResource secondaryForeground}"
+                                 Command="{Binding ShowClientsViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="PeopleGroup" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Clientes" Style="{StaticResource menuButtonText}"/>
@@ -78,7 +119,8 @@
                     </RadioButton>
 
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource secondaryForeground}">
+                                 Tag="{StaticResource secondaryForeground}"
+                                 Command="{Binding ShowPlanesViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="List" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Planes" Style="{StaticResource menuButtonText}"/>
@@ -86,7 +128,8 @@
                     </RadioButton>
 
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource secondaryForeground}">
+                                 Tag="{StaticResource secondaryForeground}"
+                                 Command="{Binding ShowCortesViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Dollar" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Cortes" Style="{StaticResource menuButtonText}"/>
@@ -94,7 +137,8 @@
                     </RadioButton>
 
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource secondaryForeground}">
+                                 Tag="{StaticResource secondaryForeground}"
+                                 Command="{Binding ShowConfigViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Gears" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Configuración" Style="{StaticResource menuButtonText}"/>
@@ -102,7 +146,8 @@
                     </RadioButton>
 
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource secondaryForeground}">
+                                 Tag="{StaticResource secondaryForeground}"
+                                 Command="{Binding Logout}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="SignOut" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Log out" Style="{StaticResource menuButtonText}"/>
@@ -131,7 +176,8 @@
                         <!--Content-->
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-
+                    
+                    <!--Controls - Top de pagina, minimizar, maximizar y cerrar-->
                     <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
@@ -151,35 +197,26 @@
                         </StackPanel>
 
                         <Button x:Name="Minimize"
-                            BorderThickness="0"
                             Grid.Column="1"
                             Style="{StaticResource controlButton}"
                             Tag="{StaticResource secondaryForeground}"
-                            FontFamily="Montserrat"
-                            Cursor="Hand"
                             Click="Minimize_click">
                             <fa:IconImage Icon="WindowMinimize" Width="11" Style="{StaticResource controlButtonIcon}"/>
 
                         </Button>
 
                         <Button x:Name="Maximize"
-                            BorderThickness="0"
                             Grid.Column="2"
                             Style="{StaticResource controlButton}"
                             Tag="{StaticResource secondaryForeground}"
-                            FontFamily="Montserrat"
-                            Cursor="Hand"
                             Click="Maximize_click">
                             <fa:IconImage x:Name="MaximizeStatus" Icon="Square" Style="{StaticResource controlButtonIcon}"/>
                         </Button>
 
                         <Button x:Name="Close"
-                            BorderThickness="0"
                             Style="{StaticResource controlCloseButton}"
                             Grid.Column="3"
                             Tag="{StaticResource secondaryForeground}"
-                            FontFamily="Montserrat"
-                            Cursor="Hand"
                             Click="Close_click">
                             <fa:IconImage Icon="Xmark" Style="{StaticResource controlCloseButtonIcon}"/>
                         </Button>
@@ -198,13 +235,24 @@
                         <StackPanel Orientation="Horizontal"
                                     Grid.Column="0"
                                     VerticalAlignment="Center">
-                            <fa:IconImage Icon="Home"
+                            <Button Width="30"
+                                    Margin="0,0,0,0"
+                                    Click="Open"
+                                    IsEnabled="False"
+                                    Visibility="Hidden"
+                                    x:Name="openBtnIcon"
+                                    Style="{StaticResource controlButton}">
+                                <fa:IconImage Icon="ChevronRight" Foreground="{StaticResource secondaryForeground}"
+                                          x:Name="OpenIcon"
+                                          Height="20"/>
+                            </Button>
+                            <fa:IconImage Icon="{Binding Icon}"
                                           Height="20"
                                           Width="20"
                                           Foreground="{StaticResource secondaryForeground}"
                                           Margin="35,0,10,0"/>
                             
-                            <TextBlock Text="Dashboard"
+                            <TextBlock Text="{Binding Breadcrumb}"
                                        Foreground="{StaticResource secondaryForeground}"
                                        FontFamily="Montserrat"
                                        FontSize="16"
@@ -222,7 +270,10 @@
 
                             <Button Style="{StaticResource userDataButton}"
                                     Tag="{StaticResource secondaryForeground}">
-                                <fa:IconImage Icon="AngleDown" Style="{StaticResource userDataButtonIcon}"/>
+                                <fa:IconImage Icon="AngleDown" 
+                                              Width="12"
+                                              Height="12"
+                                              Style="{StaticResource userDataButtonIcon}"/>
                             </Button>
 
                             <TextBlock Text="{Binding CurrentUserAccount.DisplayName}"
@@ -248,6 +299,11 @@
                         
                     </Grid>
                     
+                    <!--Control Section, Child views-->
+                    <ContentControl Content="{Binding CurrentChildView}"
+                                    Grid.Row="2"
+                                    Margin="25"/>
+
                 </Grid>
 
             </Border>

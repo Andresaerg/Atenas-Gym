@@ -86,3 +86,19 @@ C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\Sty
 C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\App.baml
 C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\FontAwesome.Sharp.dll
 C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\Styles\ButtonStyles.baml
+D:\Website\Documents\Atenas-Gym\Atenas Gym\bin\Debug\net6.0-windows\FontAwesome.Sharp.dll
+D:\Website\Documents\Atenas-Gym\Atenas Gym\obj\Debug\net6.0-windows\Styles\ButtonStyles.baml
+D:\Website\Documents\Atenas-Gym\Atenas Gym\obj\Debug\net6.0-windows\Styles\UIColors.baml
+D:\Website\Documents\Atenas-Gym\Atenas Gym\obj\Debug\net6.0-windows\App.baml
+D:\Website\Documents\Atenas-Gym\Atenas Gym\obj\Debug\net6.0-windows\View\ClientsView.g.cs
+D:\Website\Documents\Atenas-Gym\Atenas Gym\obj\Debug\net6.0-windows\View\HomeView.g.cs
+D:\Website\Documents\Atenas-Gym\Atenas Gym\obj\Debug\net6.0-windows\View\ClientsView.baml
+D:\Website\Documents\Atenas-Gym\Atenas Gym\obj\Debug\net6.0-windows\View\HomeView.baml
+D:\Website\Documents\Atenas-Gym\Atenas Gym\obj\Debug\net6.0-windows\View\ConfigView.g.cs
+D:\Website\Documents\Atenas-Gym\Atenas Gym\obj\Debug\net6.0-windows\View\CortesView.g.cs
+D:\Website\Documents\Atenas-Gym\Atenas Gym\obj\Debug\net6.0-windows\View\PlanesView.g.cs
+D:\Website\Documents\Atenas-Gym\Atenas Gym\obj\Debug\net6.0-windows\View\ConfigView.baml
+D:\Website\Documents\Atenas-Gym\Atenas Gym\obj\Debug\net6.0-windows\View\CortesView.baml
+D:\Website\Documents\Atenas-Gym\Atenas Gym\obj\Debug\net6.0-windows\View\PlanesView.baml
+D:\Website\Documents\Atenas-Gym\Atenas Gym\obj\Debug\net6.0-windows\View\CreateAccountView.g.cs
+D:\Website\Documents\Atenas-Gym\Atenas Gym\obj\Debug\net6.0-windows\View\CreateAccountView.baml
