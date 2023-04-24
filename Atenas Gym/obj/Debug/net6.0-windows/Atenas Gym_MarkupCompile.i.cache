@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\Website\Documents\Atenas-Gym\Atenas Gym\obj\Debug\net6.0-windows\
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\
 Atenas_Gym
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-D:\Website\Documents\Atenas-Gym\Atenas Gym\App.xaml
-3302884281
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\App.xaml
+5637086233
 
 161641757511
-201-1122929682
-CustomControls\BindablePasswordBox.xaml;View\LoginView.xaml;View\MainView.xaml;
+2111536583220
+CustomControls\BindablePasswordBox.xaml;Styles\ButtonStyles.xaml;Styles\UIColors.xaml;View\LoginView.xaml;View\MainView.xaml;
 
-False
+True
 

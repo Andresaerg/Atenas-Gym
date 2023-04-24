@@ -14,7 +14,7 @@ namespace Atenas_Gym.ViewModel
     {
         //Fields
         private UserAccountModel _currentUserAccount;
-        private IUserRepository _userRepository;
+        private IUserRepository userRepository;
 
         public UserAccountModel CurrentUserAccount
         {
@@ -32,26 +32,24 @@ namespace Atenas_Gym.ViewModel
 
         public MainViewModel()
         {
+            userRepository = new UserRepository();
             CurrentUserAccount = new UserAccountModel();
-            _userRepository = new UserRepository();
             LoadCurrentUserData();
         }
 
         private void LoadCurrentUserData()
         {
-            var user = _userRepository.GetByUserName(Thread.CurrentPrincipal.Identity.Name);
-            if(user != null)
+            var user = Thread.CurrentPrincipal?.Identity?.Name != null ? userRepository.GetByUserName(Thread.CurrentPrincipal.Identity.Name) : null;
+            if (user != null)
             {
-                {
-                    CurrentUserAccount.Cedula = user.Username;
-                    CurrentUserAccount.DisplayName = $"Welcome {user.Name}";
-                    CurrentUserAccount.Cargo = user.Status;
-                };
+                CurrentUserAccount.Cedula = user.Username;
+                CurrentUserAccount.DisplayName = $"{user.Name}";
+                CurrentUserAccount.Cargo = user.Status;
             }
-            else 
+            else
             {
-                CurrentUserAccount.DisplayName = "Ivalid user, not logged in.";
-                Application.Current.Shutdown();
+                CurrentUserAccount.DisplayName = "Ivalid user, not logged in";
+                //HideChildView
             }
         }
     }
