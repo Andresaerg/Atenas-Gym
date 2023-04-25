@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Runtime.InteropServices;
 using System.Windows.Interop;
+using GalaSoft.MvvmLight.Messaging;
+using Atenas_Gym.Messages;
 
 namespace Atenas_Gym.View
 {
@@ -24,6 +26,7 @@ namespace Atenas_Gym.View
         public MainView()
         {
             InitializeComponent();
+            Messenger.Default.Register<OpenLoginWindowMessage>(this, OpenLoginWindow);
         }
 
         [DllImport("user32.dll")]
@@ -85,6 +88,12 @@ namespace Atenas_Gym.View
                 openBtnIcon.Visibility = Visibility.Hidden;
             }
 
+        }
+
+        private void OpenLoginWindow(OpenLoginWindowMessage message)
+        {
+            var loginView = new LoginView();
+            loginView.Show();
         }
     }
 }

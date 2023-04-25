@@ -102,3 +102,7 @@ D:\Website\Documents\Atenas-Gym\Atenas Gym\obj\Debug\net6.0-windows\View\CortesV
 D:\Website\Documents\Atenas-Gym\Atenas Gym\obj\Debug\net6.0-windows\View\PlanesView.baml
 D:\Website\Documents\Atenas-Gym\Atenas Gym\obj\Debug\net6.0-windows\View\CreateAccountView.g.cs
 D:\Website\Documents\Atenas-Gym\Atenas Gym\obj\Debug\net6.0-windows\View\CreateAccountView.baml
+D:\Website\Documents\Atenas-Gym\Atenas Gym\bin\Debug\net6.0-windows\GalaSoft.MvvmLight.Extras.dll
+D:\Website\Documents\Atenas-Gym\Atenas Gym\bin\Debug\net6.0-windows\GalaSoft.MvvmLight.Platform.dll
+D:\Website\Documents\Atenas-Gym\Atenas Gym\bin\Debug\net6.0-windows\GalaSoft.MvvmLight.dll
+D:\Website\Documents\Atenas-Gym\Atenas Gym\bin\Debug\net6.0-windows\System.Windows.Interactivity.dll

@@ -6,7 +6,6 @@
         xmlns:local="clr-namespace:Atenas_Gym.View"
         xmlns:viewModel="clr-namespace:Atenas_Gym.ViewModel"
         xmlns:customcontrols="clr-namespace:Atenas_Gym.CustomControls"
-        xmlns:local1="clr-namespace:System.Windows.Controls;assembly=PresentationFramework"
         mc:Ignorable="d"
         Title="Atenas Gym | Login" Height="550" Width="800"
         Icon="/Images/App-Logo.png"
@@ -22,13 +21,9 @@
     </Window.DataContext>
 
     <Window.Resources>
-        
+
         <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
 
-        <DataTemplate x:Name="CreateAccounts" DataType="{x:Type viewModel:CreateAccountModel}">
-            <local:CreateAccountView DataContext="{Binding}"/>
-        </DataTemplate>
-        
     </Window.Resources>
 
     <Window.Visibility>
@@ -149,8 +144,6 @@
                             Grid.Row="2"
                             Orientation="Vertical"
                             Margin="0,10,0,0">
-
-                    <ContentControl Content="{Binding}"/>
 
                     <Image Source="/Images/Logo.png" 
                            Width="200" 

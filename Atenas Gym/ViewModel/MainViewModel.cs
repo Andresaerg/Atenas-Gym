@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Threading;
 using System.Windows;
 using System.Windows.Input;
+using Atenas_Gym.Messages;
 using Atenas_Gym.Model;
 using Atenas_Gym.Repositories;
 using FontAwesome.Sharp;
+using GalaSoft.MvvmLight.Messaging;
+using Org.BouncyCastle.Asn1.Ocsp;
 
 namespace Atenas_Gym.ViewModel
 {
@@ -20,7 +18,7 @@ namespace Atenas_Gym.ViewModel
         private string _breadcrumb;
         private IconChar _icon;
         private IUserRepository userRepository;
-        private bool _isVisible = true;
+        private bool _isVisible;
 
         //Properties
         public UserAccountModel CurrentUserAccount
@@ -94,7 +92,7 @@ namespace Atenas_Gym.ViewModel
         public ICommand ShowPlanesViewCommand { get; }
         public ICommand ShowCortesViewCommand { get; }
         public ICommand ShowConfigViewCommand { get; }
-        public ICommand Logout { get; }
+        public ICommand Logout { get; set; }
 
         public MainViewModel()
         {
@@ -120,8 +118,14 @@ namespace Atenas_Gym.ViewModel
         private void ExecuteLogout(object obj)
         {
             IsVisible = false;
-            System.Windows.Forms.Application.Restart();
-            Application.Current.Shutdown();
+            Messenger.Default.Send(new OpenLoginWindowMessage());
+            
+            
+            //var mainWindow = Application.Current.MainWindow;
+            //mainWindow.Close();
+
+            //System.Windows.Forms.Application.Restart();
+            //Application.Current.Shutdown();
         }
 
         private void ExecuteShowConfigViewCommand(object obj)

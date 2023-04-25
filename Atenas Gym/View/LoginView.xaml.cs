@@ -23,9 +23,11 @@ namespace Atenas_Gym.View
     /// </summary>
     public partial class LoginView : Window
     {
+        public object originalContent;
         public LoginView()
         {
             InitializeComponent();
+            originalContent = Content;
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -64,7 +66,10 @@ namespace Atenas_Gym.View
 
         private void Create_user_Click(object sender, RoutedEventArgs e)
         {
-            DataContext = new CreateAccountView();
+            CreateAccountView createAccount = new();
+            this.Content = createAccount;
+            //this.Visibility = Visibility.Hidden;
+            //createAccount.Show();
         }
     }
 }

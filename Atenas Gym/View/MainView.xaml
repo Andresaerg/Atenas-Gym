@@ -43,9 +43,9 @@
 
     </Window.Resources>
 
-    <Window.Visibility>
+    <!--<Window.Visibility>
         <Binding Path="IsVisible" Mode="TwoWay" Converter="{StaticResource BooleanToVisibility}"/>
-    </Window.Visibility>
+    </Window.Visibility>-->
 
     <Border CornerRadius="10"
             BorderThickness="5">

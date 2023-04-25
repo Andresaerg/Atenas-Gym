@@ -55,12 +55,21 @@ namespace Atenas_Gym.View
             e.Handled = regex.IsMatch(e.Text);
         }
 
+        private void Minimize_click(object sender, RoutedEventArgs e)
+        {
+            Window window =Window.GetWindow(this);
+            window.WindowState = WindowState.Minimized;
+        }
+
+        private void Close_click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
         private void BackToLogin_Click(object sender, RoutedEventArgs e)
         {
-            if (testing.NavigationService.CanGoBack)
-            {
-                testing.NavigationService.GoBack();
-            }
+            LoginView login = (LoginView)Window.GetWindow(this);
+            Content = login.originalContent;
         }
     }
 }

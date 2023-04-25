@@ -72,7 +72,6 @@ namespace Atenas_Gym.ViewModel
 
         public ICommand LoginCommand { get; }
         public ICommand RecoverPasswordCommand { get; }
-        public ICommand? CreateAccountCommand { get; }
         public ICommand? ShowPasswordCommand{ get; }
 
         //Constructor
@@ -82,12 +81,6 @@ namespace Atenas_Gym.ViewModel
             userRepository = new UserRepository();
             LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
             RecoverPasswordCommand = new ViewModelCommand(ExecuteRecoverPassword);
-            CreateAccountCommand = new ViewModelCommand(ExecuteCreateAccount);
-        }
-
-        private void ExecuteCreateAccount(object obj)
-        {
-            
         }
 
         private void ExecuteLoginCommand(object obj)
@@ -98,6 +91,9 @@ namespace Atenas_Gym.ViewModel
             {
                 Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(Username), null);
                 IsViewVisible = false;
+
+                MainViewModel mainViewModel = new MainViewModel();
+                mainViewModel.IsVisible = true;
             }
             else
             {
