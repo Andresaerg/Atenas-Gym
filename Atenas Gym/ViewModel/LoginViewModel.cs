@@ -1,5 +1,7 @@
-﻿using Atenas_Gym.Model;
+﻿using Atenas_Gym.Messages;
+using Atenas_Gym.Model;
 using Atenas_Gym.Repositories;
+using CommunityToolkit.Mvvm.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -92,8 +94,7 @@ namespace Atenas_Gym.ViewModel
                 Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(Username), null);
                 IsViewVisible = false;
 
-                MainViewModel mainViewModel = new MainViewModel();
-                mainViewModel.IsVisible = true;
+                WeakReferenceMessenger.Default.Send(new OpenMainWindowMessage());
             }
             else
             {

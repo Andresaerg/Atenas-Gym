@@ -13,8 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Runtime.InteropServices;
 using System.Windows.Interop;
-using GalaSoft.MvvmLight.Messaging;
 using Atenas_Gym.Messages;
+using CommunityToolkit.Mvvm.Messaging;
 
 namespace Atenas_Gym.View
 {
@@ -23,10 +23,11 @@ namespace Atenas_Gym.View
     /// </summary>
     public partial class MainView : Window
     {
+        private LoginView loginView;
         public MainView()
         {
             InitializeComponent();
-            Messenger.Default.Register<OpenLoginWindowMessage>(this, OpenLoginWindow);
+            WeakReferenceMessenger.Default.Register<OpenLoginWindowMessage>(this, OpenLoginWindow);
         }
 
         [DllImport("user32.dll")]
@@ -90,10 +91,12 @@ namespace Atenas_Gym.View
 
         }
 
-        private void OpenLoginWindow(OpenLoginWindowMessage message)
+        private void OpenLoginWindow(object recipient, OpenLoginWindowMessage message)
         {
-            var loginView = new LoginView();
-            loginView.Show();
+            if(loginView == null)
+            {
+                loginView = new LoginView();
+            }
         }
     }
 }

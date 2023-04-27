@@ -106,3 +106,16 @@ D:\Website\Documents\Atenas-Gym\Atenas Gym\bin\Debug\net6.0-windows\GalaSoft.Mvv
 D:\Website\Documents\Atenas-Gym\Atenas Gym\bin\Debug\net6.0-windows\GalaSoft.MvvmLight.Platform.dll
 D:\Website\Documents\Atenas-Gym\Atenas Gym\bin\Debug\net6.0-windows\GalaSoft.MvvmLight.dll
 D:\Website\Documents\Atenas-Gym\Atenas Gym\bin\Debug\net6.0-windows\System.Windows.Interactivity.dll
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\CommunityToolkit.Mvvm.dll
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\ClientsView.g.cs
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\ConfigView.g.cs
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\CortesView.g.cs
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\CreateAccountView.g.cs
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\HomeView.g.cs
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\PlanesView.g.cs
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\ClientsView.baml
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\ConfigView.baml
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\CortesView.baml
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\CreateAccountView.baml
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\HomeView.baml
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\PlanesView.baml

@@ -18,15 +18,15 @@ namespace Atenas_Gym
         {
             var loginview = new LoginView();
             loginview.Show();
-            loginview.IsVisibleChanged += (s, ev) =>
-            {
-                if (loginview.IsVisible == false && loginview.IsLoaded)
-                {
-                    var mainView = new MainView();
-                    mainView.Show();
-                    loginview.Close();
-                }
-            };
+            //loginview.IsVisibleChanged += (s, ev) =>
+            //{
+            //    if (loginview.IsVisible == false && loginview.IsLoaded)
+            //    {
+            //        var mainView = new MainView();
+            //        mainView.Show();
+            //        loginview.Close();
+            //    }
+            //};
         }
     }
 }

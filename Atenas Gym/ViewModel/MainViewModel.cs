@@ -4,9 +4,8 @@ using System.Windows.Input;
 using Atenas_Gym.Messages;
 using Atenas_Gym.Model;
 using Atenas_Gym.Repositories;
+using CommunityToolkit.Mvvm.Messaging;
 using FontAwesome.Sharp;
-using GalaSoft.MvvmLight.Messaging;
-using Org.BouncyCastle.Asn1.Ocsp;
 
 namespace Atenas_Gym.ViewModel
 {
@@ -18,7 +17,7 @@ namespace Atenas_Gym.ViewModel
         private string _breadcrumb;
         private IconChar _icon;
         private IUserRepository userRepository;
-        private bool _isVisible;
+        private bool _isVisible = true;
 
         //Properties
         public UserAccountModel CurrentUserAccount
@@ -118,14 +117,7 @@ namespace Atenas_Gym.ViewModel
         private void ExecuteLogout(object obj)
         {
             IsVisible = false;
-            Messenger.Default.Send(new OpenLoginWindowMessage());
-            
-            
-            //var mainWindow = Application.Current.MainWindow;
-            //mainWindow.Close();
-
-            //System.Windows.Forms.Application.Restart();
-            //Application.Current.Shutdown();
+            WeakReferenceMessenger.Default.Send(new OpenLoginWindowMessage());
         }
 
         private void ExecuteShowConfigViewCommand(object obj)

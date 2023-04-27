@@ -7,7 +7,7 @@
         xmlns:viewModel="clr-namespace:Atenas_Gym.ViewModel"
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         mc:Ignorable="d"
-        Title="Atenas Gym | Dashboard" Height="750" Width="1250"
+        Title="Atenas Gym | Dashboard" Height="700" Width="1200"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         Background="Transparent"
@@ -43,9 +43,9 @@
 
     </Window.Resources>
 
-    <!--<Window.Visibility>
+    <Window.Visibility>
         <Binding Path="IsVisible" Mode="TwoWay" Converter="{StaticResource BooleanToVisibility}"/>
-    </Window.Visibility>-->
+    </Window.Visibility>
 
     <Border CornerRadius="10"
             BorderThickness="5">

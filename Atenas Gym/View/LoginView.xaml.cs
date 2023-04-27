@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Atenas_Gym.Messages;
+using Atenas_Gym.ViewModel;
+using CommunityToolkit.Mvvm.Messaging;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -23,11 +26,14 @@ namespace Atenas_Gym.View
     /// </summary>
     public partial class LoginView : Window
     {
+        private MainView mainView;
+
         public object originalContent;
         public LoginView()
         {
             InitializeComponent();
             originalContent = Content;
+            WeakReferenceMessenger.Default.Register<OpenMainWindowMessage>(this, OpenMainWindow);
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -68,8 +74,14 @@ namespace Atenas_Gym.View
         {
             CreateAccountView createAccount = new();
             this.Content = createAccount;
-            //this.Visibility = Visibility.Hidden;
-            //createAccount.Show();
+        }
+
+        private void OpenMainWindow(object recipient, OpenMainWindowMessage message)
+        {
+            if(mainView == null)
+            {
+                mainView = new MainView();
+            }
         }
     }
 }
