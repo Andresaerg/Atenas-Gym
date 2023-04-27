@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Atenas_Gym.View"
         xmlns:viewModel="clr-namespace:Atenas_Gym.ViewModel"
         xmlns:customcontrols="clr-namespace:Atenas_Gym.CustomControls"
         mc:Ignorable="d"
@@ -20,7 +21,9 @@
     </Window.DataContext>
 
     <Window.Resources>
+
         <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
+
     </Window.Resources>
 
     <Window.Visibility>
@@ -136,6 +139,7 @@
                     </Button>
                 </Grid>
 
+
                 <StackPanel Width="250"
                             Grid.Row="2"
                             Orientation="Vertical"
@@ -145,7 +149,7 @@
                            Width="200" 
                            Height="200"/>
 
-                    <Label Content="Usuario" 
+                        <Label Content="Usuario" 
                            HorizontalAlignment="Left" 
                            Height="25" 
                            Margin="0, 25, 0, 0" 
@@ -154,7 +158,7 @@
                            FontSize="12" 
                            FontWeight="Medium"/>
 
-                    <TextBox x:Name="Cedula" 
+                        <TextBox x:Name="Cedula" 
                              MaxLength="10"
                              HorizontalAlignment="Stretch" 
                              BorderBrush="DarkGray" 
@@ -169,46 +173,46 @@
                              Height="20" 
                              TextChanged="Cedula_change"
                              PreviewTextInput="NumberValidationTextBox">
-                        <TextBox.Style>
+                            <TextBox.Style>
 
-                            <Style TargetType="TextBox">
-                                <Setter Property="Template">
-                                    <Setter.Value>
-                                        <ControlTemplate TargetType="TextBox">
-                                            <Border BorderThickness="{TemplateBinding Border.BorderThickness}"
+                                <Style TargetType="TextBox">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="TextBox">
+                                                <Border BorderThickness="{TemplateBinding Border.BorderThickness}"
                                                     BorderBrush="{TemplateBinding Border.BorderBrush}"
                                                     Background="{TemplateBinding Panel.Background}"
                                                     Name="border"
                                                     SnapsToDevicePixels="True">
-                                                <ScrollViewer HorizontalScrollBarVisibility="Hidden"
+                                                    <ScrollViewer HorizontalScrollBarVisibility="Hidden"
                                                               VerticalScrollBarVisibility="Hidden"
                                                               Name="PART_ContentHost"
                                                               Focusable="False" />
-                                            </Border>
-                                            <ControlTemplate.Triggers>
-                                                <Trigger Property="UIElement.IsMouseOver" Value="True">
-                                                    <Setter Property="Border.BorderBrush" TargetName="border" 
+                                                </Border>
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="UIElement.IsMouseOver" Value="True">
+                                                        <Setter Property="Border.BorderBrush" TargetName="border" 
                                                             Value="Red"/>
-                                                </Trigger>
-                                                <Trigger Property="UIElement.IsFocused" Value="True">
-                                                    <Setter Property="Border.BorderBrush" TargetName="border" 
+                                                    </Trigger>
+                                                    <Trigger Property="UIElement.IsFocused" Value="True">
+                                                        <Setter Property="Border.BorderBrush" TargetName="border" 
                                                             Value="Red"/>
-                                                </Trigger>
-                                            </ControlTemplate.Triggers>
-                                        </ControlTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </Style>
-                        </TextBox.Style>
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </TextBox.Style>
 
-                        <TextBox.Background>
-                            <ImageBrush ImageSource="/Images/user-icon.png" 
+                            <TextBox.Background>
+                                <ImageBrush ImageSource="/Images/user-icon.png" 
                                         Stretch="none"
                                         AlignmentX="Left"/>
-                        </TextBox.Background>
+                            </TextBox.Background>
 
-                    </TextBox>
-                    <TextBlock x:Name="WatermarkCI"
+                        </TextBox>
+                        <TextBlock x:Name="WatermarkCI"
                                Text="Ingrese su cédula"
                                Margin="35,-20,0,0"
                                Foreground="Gray"
@@ -216,9 +220,9 @@
                                FontFamily="Montserrat"
                                Panel.ZIndex="-1">
 
-                    </TextBlock>
+                        </TextBlock>
 
-                    <Label Content="Contraseña" 
+                        <Label Content="Contraseña" 
                            HorizontalAlignment="Left" 
                            Height="25" 
                            Margin="0, 25, 0, 0" 
@@ -227,13 +231,13 @@
                            FontSize="12" 
                            FontWeight="Medium"/>
 
-                    <customcontrols:BindablePasswordBox x:Name="Pass"
+                        <customcontrols:BindablePasswordBox x:Name="Pass"
                                                         Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                         Margin="0,5,0,0"
                                                         Height="20">
-                    </customcontrols:BindablePasswordBox>
+                        </customcontrols:BindablePasswordBox>
 
-                    <TextBlock x:Name="ErrorMessage"
+                        <TextBlock x:Name="ErrorMessage"
                                Text="{Binding ErrorMessage}"
                                Margin="0,5,0,0"
                                Foreground="Red"
@@ -241,9 +245,9 @@
                                FontFamily="Montserrat"
                                Panel.ZIndex="-1"
                                TextWrapping="Wrap">
-                    </TextBlock>
+                        </TextBlock>
 
-                    <Button x:Name="Login"
+                        <Button x:Name="Login"
                             Command="{Binding LoginCommand}"
                             BorderThickness="0"
                             FontSize="15"
@@ -254,43 +258,45 @@
                             Margin="20 10"
                             IsDefault="True">
 
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Background" Value="#5D5D5D"/>
-                                <Setter Property="Foreground" Value="White"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="DarkRed"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="#5D5D5D"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="DarkRed"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
 
-                        <Button.Template>
-                            <ControlTemplate TargetType="{x:Type Button}">
-                                <Border CornerRadius="10"
+                            <Button.Template>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border CornerRadius="10"
                                         Background="{TemplateBinding Background}">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
 
-                    </Button>
+                        </Button>
 
-                    <TextBlock x:Name="Create_user"
-                               Text="Crear nuevo usuario"
-                               FontWeight="Bold"
-                               Foreground="#F5F2F2"
-                               TextAlignment="Center"
-                               Margin="0,0,0,5"
-                               Cursor="Hand"/>
+                        <Button x:Name="Create_user"
+                            Content="Crear nuevo usuario"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            FontWeight="Bold"
+                            Foreground="#F5F2F2"
+                            Margin="0,0,0,5"
+                            Width="250"
+                            Style="{StaticResource controlButton}"
+                            Click="Create_user_Click"/>
                     <TextBlock x:Name="Forgot_pass"
                                Text="Olvidé mi contraseña"
                                FontWeight="Normal"
                                Foreground="#F5F2F2"
                                TextAlignment="Center"
                                Cursor="Hand"/>
-
 
                 </StackPanel>
                 

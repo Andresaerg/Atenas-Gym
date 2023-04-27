@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -9,6 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
@@ -21,9 +23,11 @@ namespace Atenas_Gym.View
     /// </summary>
     public partial class LoginView : Window
     {
+        public object originalContent;
         public LoginView()
         {
             InitializeComponent();
+            originalContent = Content;
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -58,6 +62,14 @@ namespace Atenas_Gym.View
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void Create_user_Click(object sender, RoutedEventArgs e)
+        {
+            CreateAccountView createAccount = new();
+            this.Content = createAccount;
+            //this.Visibility = Visibility.Hidden;
+            //createAccount.Show();
         }
     }
 }

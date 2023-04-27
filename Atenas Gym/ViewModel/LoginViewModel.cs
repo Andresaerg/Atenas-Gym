@@ -9,6 +9,7 @@ using System.Security.Principal;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Atenas_Gym.ViewModel
@@ -20,6 +21,7 @@ namespace Atenas_Gym.ViewModel
         private SecureString? _password;
         private string? _errorMessage;
         private bool _isViewVisible = true;
+        private ViewModelBase _currentChildView;
 
         private IUserRepository userRepository;
 
@@ -52,12 +54,24 @@ namespace Atenas_Gym.ViewModel
                 OnPropertyChanged(nameof(IsViewVisible));
             }
         }
+        public ViewModelBase CurrentChildView
+        {
+            get
+            {
+                return _currentChildView;
+            }
+
+            set
+            {
+                _currentChildView = value;
+                OnPropertyChanged(nameof(CurrentChildView));
+            }
+        }
 
         //-> Commands
 
         public ICommand LoginCommand { get; }
         public ICommand RecoverPasswordCommand { get; }
-        public ICommand? CreateAccountCommand { get; }
         public ICommand? ShowPasswordCommand{ get; }
 
         //Constructor
@@ -69,7 +83,6 @@ namespace Atenas_Gym.ViewModel
             RecoverPasswordCommand = new ViewModelCommand(ExecuteRecoverPassword);
         }
 
-
         private void ExecuteLoginCommand(object obj)
         {
             var isValidUser = userRepository.AuthenticateUser(new NetworkCredential(Username, Password));
@@ -78,6 +91,9 @@ namespace Atenas_Gym.ViewModel
             {
                 Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(Username), null);
                 IsViewVisible = false;
+
+                MainViewModel mainViewModel = new MainViewModel();
+                mainViewModel.IsVisible = true;
             }
             else
             {
