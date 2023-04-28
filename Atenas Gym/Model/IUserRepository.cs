@@ -10,7 +10,7 @@ namespace Atenas_Gym.Model
     public interface IUserRepository
     {
         bool AuthenticateUser(NetworkCredential credential);
-        void Add(UserModel userModel);
+        bool Add(UserModel userModel);
         void Edit(UserModel userModel);
         void Delete(int id);
         UserModel GetById(int id);

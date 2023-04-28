@@ -113,6 +113,15 @@
                                  Tag="{StaticResource secondaryForeground}"
                                  Command="{Binding ShowClientsViewCommand}">
                         <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="ConciergeBell" Style="{StaticResource menuButtonIcon}"/>
+                            <TextBlock Text="Recepción" Style="{StaticResource menuButtonText}"/>
+                        </StackPanel>
+                    </RadioButton>
+
+                    <RadioButton Style="{StaticResource menuButton}"
+                                 Tag="{StaticResource secondaryForeground}"
+                                 Command="{Binding ShowClientsViewCommand}">
+                        <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="PeopleGroup" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Clientes" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
@@ -142,6 +151,15 @@
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Gears" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Configuración" Style="{StaticResource menuButtonText}"/>
+                        </StackPanel>
+                    </RadioButton>
+
+                    <RadioButton Style="{StaticResource menuButton}"
+                                 Tag="{StaticResource secondaryForeground}"
+                                 Command="{Binding ShowConfigViewCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="Dumbbell" Style="{StaticResource menuButtonIcon}"/>
+                            <TextBlock Text="Trainers" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
 
@@ -276,12 +294,22 @@
                                               Style="{StaticResource userDataButtonIcon}"/>
                             </Button>
 
-                            <TextBlock Text="{Binding CurrentUserAccount.DisplayName}"
-                                       Foreground="{StaticResource secondaryForeground}"
-                                       FontFamily="Montserrat"
-                                       FontSize="12"
-                                       VerticalAlignment="Center"
-                                       />
+                            <StackPanel Orientation="Vertical">
+                                
+                                <TextBlock Text="{Binding CurrentUserAccount.Cargo}"
+                                           Foreground="{StaticResource secondaryForeground}"
+                                           VerticalAlignment="Top"
+                                           FontFamily="Montserrat"
+                                           FontSize="10"/>
+
+                                <TextBlock Text="{Binding CurrentUserAccount.DisplayName}"
+                                           Foreground="{StaticResource secondaryForeground}"
+                                           FontFamily="Montserrat"
+                                           FontSize="12"
+                                           VerticalAlignment="Center"/>
+
+                            </StackPanel>
+
 
                             <Ellipse Height="35"
                                      Width="35"

@@ -166,7 +166,8 @@ namespace Atenas_Gym.ViewModel
             }
             else
             {
-                CurrentUserAccount.DisplayName = "Ivalid user, not logged in";
+                CurrentUserAccount.DisplayName = "Usuario inválido, no inició sesión";
+                CurrentUserAccount.Cargo = "Sin privilegios";
                 //HideChildView
             }
         }
