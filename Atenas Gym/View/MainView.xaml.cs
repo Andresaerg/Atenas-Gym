@@ -23,7 +23,7 @@ namespace Atenas_Gym.View
     /// </summary>
     public partial class MainView : Window
     {
-        private LoginView loginView;
+        private LoginView? loginView;
         public MainView()
         {
             InitializeComponent();

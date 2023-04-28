@@ -6,14 +6,49 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Atenas_Gym.Repositories
 {
     public class UserRepository : RepositoryBase, IUserRepository
     {
-        public void Add(UserModel userModel)
+        public bool Add(UserModel userModel)
         {
-            throw new NotImplementedException();
+            bool valid_data;
+            MySqlCommand cmd = new MySqlCommand();
+            {
+                GetConnection.Open();
+                cmd.Connection = GetConnection;
+                cmd.CommandText = "INSERT INTO usuarios(Nombre, Cedula, Password, Estado) VALUES(@name, @username, @password, @status)";
+
+                bool ci_exists = false;
+                using (MySqlCommand command = new MySqlCommand("SELECT * FROM usuarios WHERE Cedula = @cedula", GetConnection))
+                {
+                    command.Parameters.Add("@cedula", MySqlDbType.String).Value = userModel.Username;
+                    ci_exists = command.ExecuteScalar() == null ? false : true;
+                }
+
+                bool result = int.TryParse(userModel.Username, out _);
+                if (result && !string.IsNullOrEmpty(userModel.Password) && !string.IsNullOrEmpty(userModel.Name) && ci_exists == false)
+                {
+                    cmd.Parameters.Add("@name", MySqlDbType.String).Value = userModel.Name;
+                    cmd.Parameters.Add("@username", MySqlDbType.Int64).Value = userModel.Username;
+                    cmd.Parameters.Add("@password", MySqlDbType.String).Value = userModel.Password;
+                    cmd.Parameters.Add("@status", MySqlDbType.String).Value = userModel.Status;
+
+                    valid_data = cmd.ExecuteNonQuery() > 0 ? true : false;
+
+                    var message = string.Format("Nombre de usuario: {0}\nContraseña: {1}\nNombre: {2}\nEstado: {3}", userModel.Username, userModel.Password, userModel.Name, userModel.Status);
+                    MessageBox.Show(message, "Datos del usuario");
+                }
+                else
+                {
+                    valid_data = false;
+                }
+
+                GetConnection.Close();
+            }
+            return valid_data;
         }
 
         public bool AuthenticateUser(NetworkCredential credential)
