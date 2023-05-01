@@ -15,6 +15,8 @@ using System.Runtime.InteropServices;
 using System.Windows.Interop;
 using Atenas_Gym.Messages;
 using CommunityToolkit.Mvvm.Messaging;
+using System.Windows.Media.Animation;
+using Microsoft.VisualBasic.ApplicationServices;
 
 namespace Atenas_Gym.View
 {
@@ -88,7 +90,6 @@ namespace Atenas_Gym.View
                 openBtnIcon.IsEnabled = false;
                 openBtnIcon.Visibility = Visibility.Hidden;
             }
-
         }
 
         private void OpenLoginWindow(object recipient, OpenLoginWindowMessage message)
@@ -96,6 +97,19 @@ namespace Atenas_Gym.View
             if(loginView == null)
             {
                 loginView = new LoginView();
+            }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (Status.Text == "Guardia")
+            {
+                dashboardBtn.Visibility = Visibility.Collapsed;
+                plansBtn.Visibility = Visibility.Collapsed;
+                cutsBtn.Visibility = Visibility.Collapsed;
+                trainersBtn.Visibility = Visibility.Collapsed;
+
+                receptionBtn.IsChecked = true;
             }
         }
     }
