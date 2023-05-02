@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Windows;
 using System.Windows.Input;
 using Atenas_Gym.Messages;
@@ -87,6 +88,7 @@ namespace Atenas_Gym.ViewModel
 
         //-> Commands
         public ICommand ShowHomeViewCommand { get; }
+        public ICommand ShowReceptionViewCommand { get; }
         public ICommand ShowClientsViewCommand { get; }
         public ICommand ShowPlanesViewCommand { get; }
         public ICommand ShowCortesViewCommand { get; }
@@ -100,6 +102,7 @@ namespace Atenas_Gym.ViewModel
 
             //Inicializando commands
             ShowHomeViewCommand = new ViewModelCommand(ExecuteShowHomeViewCommand);
+            ShowReceptionViewCommand = new ViewModelCommand(ExecuteShowReceptionViewCommand);
             ShowClientsViewCommand = new ViewModelCommand(ExecuteShowClientsViewCommand);
             ShowPlanesViewCommand = new ViewModelCommand(ExecuteShowPlanesViewCommand);
             ShowCortesViewCommand = new ViewModelCommand(ExecuteShowCortesViewCommand);
@@ -114,10 +117,17 @@ namespace Atenas_Gym.ViewModel
             Logout = new ViewModelCommand(ExecuteLogout);
         }
 
+
         private void ExecuteLogout(object obj)
         {
             IsVisible = false;
             WeakReferenceMessenger.Default.Send(new OpenLoginWindowMessage());
+        }
+        private void ExecuteShowReceptionViewCommand(object obj)
+        {
+            CurrentChildView = new ReceptionViewModel();
+            Breadcrumb = "Recepción";
+            Icon = IconChar.ConciergeBell;
         }
 
         private void ExecuteShowConfigViewCommand(object obj)

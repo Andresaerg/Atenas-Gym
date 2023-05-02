@@ -8,6 +8,7 @@
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         mc:Ignorable="d"
         Title="Atenas Gym | Dashboard" Height="700" Width="1200"
+        Icon="/Images/App-Logo.png"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         Background="Transparent"
@@ -23,6 +24,10 @@
             <local:HomeView/>
         </DataTemplate>
 
+        <DataTemplate DataType="{x:Type viewModel:ReceptionViewModel}">
+            <local:ReceptionView/>
+        </DataTemplate>
+        
         <DataTemplate DataType="{x:Type viewModel:ClientsViewModel}">
             <local:ClientsView/>
         </DataTemplate>
@@ -113,7 +118,7 @@
                     <RadioButton x:Name="receptionBtn"
                                  Style="{StaticResource menuButton}"
                                  Tag="{StaticResource secondaryForeground}"
-                                 Command="{Binding ShowClientsViewCommand}">
+                                 Command="{Binding ShowReceptionViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="ConciergeBell" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Recepción" Style="{StaticResource menuButtonText}"/>
