@@ -163,6 +163,11 @@ namespace Atenas_Gym.ViewModel
                 CurrentUserAccount.Cedula = user.Username;
                 CurrentUserAccount.DisplayName = $"{user.Name}";
                 CurrentUserAccount.Cargo = user.Status;
+
+                if(user.Status == "Guardia")
+                {
+                    ExecuteShowClientsViewCommand(null);
+                }
             }
             else
             {

@@ -76,7 +76,7 @@
                     </LinearGradientBrush>
                 </Border.Background>
 
-                <StackPanel>
+                <StackPanel Loaded="Window_Loaded">
                     <!--Logo-->
                     <StackPanel Orientation="Horizontal"
                                 Height="35"
@@ -99,7 +99,8 @@
 
                     </StackPanel>
                     <!--Menu Btns-->
-                    <RadioButton Style="{StaticResource menuButton}"
+                    <RadioButton x:Name="dashboardBtn"
+                                 Style="{StaticResource menuButton}"
                                  Tag="{StaticResource secondaryForeground}"
                                  Command="{Binding ShowHomeViewCommand}"
                                  IsChecked="True">
@@ -109,7 +110,8 @@
                         </StackPanel>
                     </RadioButton>
 
-                    <RadioButton Style="{StaticResource menuButton}"
+                    <RadioButton x:Name="receptionBtn"
+                                 Style="{StaticResource menuButton}"
                                  Tag="{StaticResource secondaryForeground}"
                                  Command="{Binding ShowClientsViewCommand}">
                         <StackPanel Orientation="Horizontal">
@@ -127,7 +129,8 @@
                         </StackPanel>
                     </RadioButton>
 
-                    <RadioButton Style="{StaticResource menuButton}"
+                    <RadioButton x:Name="plansBtn"
+                                 Style="{StaticResource menuButton}"
                                  Tag="{StaticResource secondaryForeground}"
                                  Command="{Binding ShowPlanesViewCommand}">
                         <StackPanel Orientation="Horizontal">
@@ -136,12 +139,23 @@
                         </StackPanel>
                     </RadioButton>
 
-                    <RadioButton Style="{StaticResource menuButton}"
+                    <RadioButton x:Name="cutsBtn"
+                                 Style="{StaticResource menuButton}"
                                  Tag="{StaticResource secondaryForeground}"
                                  Command="{Binding ShowCortesViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Dollar" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Cortes" Style="{StaticResource menuButtonText}"/>
+                        </StackPanel>
+                    </RadioButton>
+
+                    <RadioButton x:Name="trainersBtn"
+                                 Style="{StaticResource menuButton}"
+                                 Tag="{StaticResource secondaryForeground}"
+                                 Command="{Binding ShowConfigViewCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="Dumbbell" Style="{StaticResource menuButtonIcon}"/>
+                            <TextBlock Text="Entrenadores" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
 
@@ -154,14 +168,6 @@
                         </StackPanel>
                     </RadioButton>
 
-                    <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource secondaryForeground}"
-                                 Command="{Binding ShowConfigViewCommand}">
-                        <StackPanel Orientation="Horizontal">
-                            <fa:IconImage Icon="Dumbbell" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="Trainers" Style="{StaticResource menuButtonText}"/>
-                        </StackPanel>
-                    </RadioButton>
 
                     <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource secondaryForeground}"
@@ -172,7 +178,7 @@
                         </StackPanel>
                     </RadioButton>
                 </StackPanel>
-                
+
             </Border>
 
             <!--Content section-->
@@ -296,7 +302,8 @@
 
                             <StackPanel Orientation="Vertical">
                                 
-                                <TextBlock Text="{Binding CurrentUserAccount.Cargo}"
+                                <TextBlock x:Name="Status"
+                                           Text="{Binding CurrentUserAccount.Cargo}"
                                            Foreground="{StaticResource secondaryForeground}"
                                            VerticalAlignment="Top"
                                            FontFamily="Montserrat"
