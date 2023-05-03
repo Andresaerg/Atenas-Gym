@@ -39,7 +39,8 @@
                     Grid.Column="1"
                     HorizontalAlignment="Right"
                     Margin="0,0,10,5"
-                    IsDefault="True">
+                    IsDefault="True"
+                    Command="{Binding getClientInfo}">
                 
                 <Button.Style>
                     <Style TargetType="Button">
