@@ -183,7 +183,8 @@
                          Grid.ColumnSpan="2"
                          HorizontalAlignment="Center" 
                          VerticalAlignment="Top">
-                    <TextBlock Text="Nombre del Cliente" 
+                    <TextBlock x:Name="clientName"
+                               Text="Nombre del Cliente" 
                                Width="Auto"
                                FontFamily="Montserrat"
                                HorizontalAlignment="Stretch"
@@ -196,7 +197,7 @@
                          Grid.Column="1"
                          HorizontalAlignment="Left" 
                          VerticalAlignment="Top" >
-                    <TextBlock Text="Fecha de ingreso:" 
+                    <TextBlock Text="Ingreso:" 
                                Width="Auto"
                                FontFamily="Montserrat"
                                FontSize="16"
@@ -218,7 +219,7 @@
                          Grid.Column="1"
                          HorizontalAlignment="Left" 
                          VerticalAlignment="Top" >
-                    <TextBlock Text="Fecha de ingreso:" 
+                    <TextBlock Text="Pago:" 
                                Width="Auto"
                                FontFamily="Montserrat"
                                FontSize="16"
@@ -240,7 +241,7 @@
                          Grid.Column="1"
                          HorizontalAlignment="Left" 
                          VerticalAlignment="Top" >
-                    <TextBlock Text="Solvente hasta:" 
+                    <TextBlock Text="Vencimiento:" 
                                Width="Auto"
                                FontFamily="Montserrat"
                                FontSize="16"
@@ -272,7 +273,8 @@
                          Grid.Column="2"
                          HorizontalAlignment="Left" 
                          VerticalAlignment="Top" >
-                    <TextBlock Text="Solvente" 
+                    <TextBlock x:Name="clientStatus"
+                               Text="Solvente" 
                                Width="Auto"
                                FontFamily="Montserrat"
                                FontSize="16"
