@@ -172,11 +172,11 @@
                              Foreground="Gray" 
                              Height="20" 
                              TextChanged="Cedula_change"
-                             PreviewTextInput="NumberValidationTextBox">
+                             PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" HorizontalScrollBarVisibility="Disabled">
                             <TextBox.Style>
 
-                                <Style TargetType="TextBox">
-                                    <Setter Property="Template">
+                            <Style TargetType="TextBox">
+                                <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate TargetType="TextBox">
                                                 <Border BorderThickness="{TemplateBinding Border.BorderThickness}"
@@ -259,7 +259,7 @@
                             IsDefault="True">
                         <!--Click="Login_Click"-->
 
-                        <Button.Style>
+                            <Button.Style>
                                 <Style TargetType="Button">
                                     <Setter Property="Background" Value="#5D5D5D"/>
                                     <Setter Property="Foreground" Value="White"/>

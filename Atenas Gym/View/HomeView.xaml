@@ -4,28 +4,349 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Atenas_Gym.View"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+             xmlns:wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              mc:Ignorable="d" 
+             Width="Auto"
+             Height="Auto"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <StackPanel Orientation="Horizontal"
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="2"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center">
-            <TextBlock x:Name="TESTEO" Background="Gray" Width="200" Height="125" Margin="0,0,10,0"/>
-            <TextBlock Background="White" Width="200" Height="125" Margin="0,0,10,0"/>
-            <TextBlock Background="Gray" Width="200" Height="125" Margin="0,0,10,0"/>
-            <TextBlock Background="Gray" Width="200" Height="125"/>
-        </StackPanel>
+        <Grid Grid.Row="0"
+              Width="Auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <materialDesign:Card HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0">
+                <materialDesign:Card.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0.4">
+                        <GradientStop Color="{StaticResource borderColor3}"/>
+                        <GradientStop Color="{StaticResource borderColor1}" Offset="1"/>
+                    </LinearGradientBrush>
+                </materialDesign:Card.Background>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Vertical"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2">
+
+                        <Label Content="Remuneración mensual" 
+                           HorizontalAlignment="Left" 
+                           Height="30" 
+                           Margin="10,10,0,0" 
+                           VerticalAlignment="Top" 
+                           Width="160" 
+                           FontFamily="Montserrat"
+                           FontSize="14"
+                           Foreground="{StaticResource secondaryForeground}"/>
+                        <Label Content="$ Monto" 
+                           HorizontalAlignment="Left" 
+                           Height="30" 
+                           Margin="10,5,0,0" 
+                           VerticalAlignment="Top" 
+                           Width="130" 
+                           FontFamily="Montserrat"
+                           Foreground="{StaticResource secondaryForeground}" 
+                           FontSize="18" 
+                           FontWeight="Bold"/>
+
+                        <Label Content="Actualizado ..." 
+                           HorizontalAlignment="Left" 
+                           Height="30" 
+                           Margin="10,5,0,0" 
+                           VerticalAlignment="Top" 
+                           Width="130" 
+                           FontFamily="Montserrat"
+                           Foreground="{StaticResource secondaryForeground}" 
+                           FontSize="12"/>
+
+                    </StackPanel>
+
+                    <fa:IconImage Icon="CircleDollarToSlot" 
+                                  Foreground="#FF202121"
+                                  Height="Auto"
+                                  Width="Auto"
+                                  Margin="0,0,0,0"
+                                  Grid.Column="1"/>
+                </Grid>
+
+            </materialDesign:Card>
+            <materialDesign:Card Margin="10,0,0,0" HorizontalAlignment="Stretch" MinWidth="180" MinHeight="130" Grid.Column="1">
+                <materialDesign:Card.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0.4">
+                        <GradientStop Color="{StaticResource primaryBackColor1}"/>
+                        <GradientStop Color="{StaticResource primaryBackColor2}" Offset="1"/>
+                    </LinearGradientBrush>
+                </materialDesign:Card.Background>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Vertical"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2">
+
+                        <Label Content="Clientes actuales" 
+                           HorizontalAlignment="Left" 
+                           Height="30" 
+                           Margin="10,10,0,0" 
+                           VerticalAlignment="Top" 
+                           Width="160" 
+                           FontFamily="Montserrat"
+                           FontSize="14"
+                           Foreground="{StaticResource secondaryForeground}"/>
+                        <Label Content="Cantidad" 
+                           HorizontalAlignment="Left" 
+                           Height="30" 
+                           Margin="10,5,0,0" 
+                           VerticalAlignment="Top" 
+                           Width="130" 
+                           FontFamily="Montserrat"
+                           Foreground="{StaticResource secondaryForeground}" 
+                           FontSize="18" 
+                           FontWeight="Bold"/>
+
+                        <Label Content="Actualizado ..." 
+                           HorizontalAlignment="Left" 
+                           Height="30" 
+                           Margin="10,5,0,0" 
+                           VerticalAlignment="Top" 
+                           Width="130" 
+                           FontFamily="Montserrat"
+                           Foreground="{StaticResource secondaryForeground}" 
+                           FontSize="12"/>
+
+                    </StackPanel>
+
+                    <fa:IconImage Icon="UserGroup" 
+                                  Foreground="DarkRed"
+                                  Height="Auto"
+                                  Width="Auto"
+                                  Margin="0,0,0,0"
+                                  Grid.Column="1"/>
+                </Grid>
+            </materialDesign:Card>
+            <materialDesign:Card Margin="10,0,0,0" HorizontalAlignment="Stretch" MinWidth="180" MinHeight="130" Grid.Column="2">
+                <materialDesign:Card.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0.4">
+                        <GradientStop Color="{StaticResource borderColor3}"/>
+                        <GradientStop Color="{StaticResource borderColor1}" Offset="1"/>
+                    </LinearGradientBrush>
+                </materialDesign:Card.Background>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Vertical"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2">
+
+                        <Label Content="Entrenadores" 
+                           HorizontalAlignment="Left" 
+                           Height="30" 
+                           Margin="10,10,0,0" 
+                           VerticalAlignment="Top" 
+                           Width="160" 
+                           FontFamily="Montserrat"
+                           FontSize="14"
+                           Foreground="{StaticResource secondaryForeground}"/>
+                        <Label Content="Total" 
+                           HorizontalAlignment="Left" 
+                           Height="30" 
+                           Margin="10,5,0,0" 
+                           VerticalAlignment="Top" 
+                           Width="130" 
+                           FontFamily="Montserrat"
+                           Foreground="{StaticResource secondaryForeground}" 
+                           FontSize="18" 
+                           FontWeight="Bold"/>
+
+                        <Label Content="Actualizado ..." 
+                           HorizontalAlignment="Left" 
+                           Height="30" 
+                           Margin="10,5,0,0" 
+                           VerticalAlignment="Top" 
+                           Width="130" 
+                           FontFamily="Montserrat"
+                           Foreground="{StaticResource secondaryForeground}" 
+                           FontSize="12"/>
+
+                    </StackPanel>
+
+                    <fa:IconImage Icon="Dumbbell" 
+                                  Foreground="#FF202121"
+                                  Height="Auto"
+                                  Width="Auto"
+                                  Margin="0,0,0,0"
+                                  Grid.Column="1"/>
+                </Grid>
+            </materialDesign:Card>
+            <materialDesign:Card Margin="10,0,0,0" HorizontalAlignment="Stretch" MinWidth="180" MinHeight="130" Grid.Column="3">
+                <materialDesign:Card.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0.4">
+                        <GradientStop Color="{StaticResource primaryBackColor1}"/>
+                        <GradientStop Color="{StaticResource primaryBackColor2}" Offset="1"/>
+                    </LinearGradientBrush>
+                </materialDesign:Card.Background>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Vertical"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2">
+
+                        <Label Content="Planes disponibles" 
+                           HorizontalAlignment="Left" 
+                           Height="30" 
+                           Margin="10,10,0,0" 
+                           VerticalAlignment="Top" 
+                           Width="160" 
+                           FontFamily="Montserrat"
+                           FontSize="14"
+                           Foreground="{StaticResource secondaryForeground}"/>
+                        <Label Content="Cantidad" 
+                           HorizontalAlignment="Left" 
+                           Height="30" 
+                           Margin="10,5,0,0" 
+                           VerticalAlignment="Top" 
+                           Width="130" 
+                           FontFamily="Montserrat"
+                           Foreground="{StaticResource secondaryForeground}" 
+                           FontSize="18" 
+                           FontWeight="Bold"/>
+
+                        <Label Content="Actualizado ..." 
+                           HorizontalAlignment="Left" 
+                           Height="30" 
+                           Margin="10,5,0,0" 
+                           VerticalAlignment="Top" 
+                           Width="130" 
+                           FontFamily="Montserrat"
+                           Foreground="{StaticResource secondaryForeground}" 
+                           FontSize="12"/>
+
+                    </StackPanel>
+
+                    <fa:IconImage Icon="ListAlt" 
+                                  Foreground="DarkRed"
+                                  Height="Auto"
+                                  Width="Auto"
+                                  Margin="0,0,0,0"
+                                  Grid.Column="1"/>
+                </Grid>
+            </materialDesign:Card>
+
+        </Grid>
+        <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth1" Height="Auto" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="Auto" Background="Transparent" Foreground="{StaticResource secondaryForeground}">
+            <wpf:CartesianChart LegendLocation="Bottom">
+                <wpf:CartesianChart.AxisX>
+                    <wpf:Axis Title="Fechas"/>
+                </wpf:CartesianChart.AxisX>
+
+                <wpf:CartesianChart.AxisY>
+                    <wpf:Axis Title="Clientes"/>
+                </wpf:CartesianChart.AxisY>
+            </wpf:CartesianChart>
+        </materialDesign:Card>
+        <Grid Grid.Row="2">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <materialDesign:Card HorizontalAlignment="Stretch" Height="Auto" Grid.Column="0" VerticalAlignment="Stretch" Width="Auto" Background="Transparent" Foreground="{StaticResource secondaryForeground}">
+                    <wpf:PieChart LegendLocation="Right">
+                        <wpf:PieChart.Series>
+                            <wpf:PieSeries Title="Matutino" Values="18" DataLabels="True" />
+                            <wpf:PieSeries Title="Vespertino" Values="24" DataLabels="True" />
+                            <wpf:PieSeries Title="Nocturno" Values="20" DataLabels="True" />
+                        </wpf:PieChart.Series>
+                    </wpf:PieChart>
+                </materialDesign:Card>
+                <materialDesign:Card Grid.Column="2" HorizontalAlignment="Stretch" Background="Transparent" Foreground="{StaticResource secondaryForeground}">
+                    <TextBlock HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Text="PEQUEÑA TABLA DE CLIENTES RECIENTES"/>
+                    <!--<FlowDocumentReader UseLayoutRounding="True" SnapsToDevicePixels="True">
+                        <FlowDocumentReader.Resources>
+                            <Style TargetType="TableCell">
+                                <Setter Property="TextAlignment" Value="Center"/>
+                            </Style>
+                        </FlowDocumentReader.Resources>
+                        <FlowDocument>
+                            <Table CellSpacing="0">
+                                <Table.Columns>
+                                    <TableColumn/>
+                                    <TableColumn/>
+                                    <TableColumn/>
+                                    <TableColumn/>
+                                </Table.Columns>
+                                <TableRowGroup>
+                                    <TableRow>
+                                        <TableCell BorderBrush="DarkGray" BorderThickness="1">
+                                            <Paragraph FontWeight="Bold">Category</Paragraph>
+                                        </TableCell>
+                                        <TableCell BorderBrush="Black" BorderThickness="0,1,1,1">
+                                            <Paragraph FontWeight="Bold">A</Paragraph>
+                                        </TableCell>
+                                        <TableCell BorderBrush="Black" BorderThickness="0,1,1,1">
+                                            <Paragraph FontWeight="Bold">B</Paragraph>
+                                        </TableCell>
+                                        <TableCell BorderBrush="Black" BorderThickness="0,1,1,1">
+                                            <Paragraph FontWeight="Bold">C</Paragraph>
+                                        </TableCell>
+                                    </TableRow>
+                                    <TableRow>
+                                        <TableCell BorderBrush="Black" BorderThickness="1,0,1,1">
+                                            <Paragraph FontWeight="Bold">Subscription</Paragraph>
+                                        </TableCell>
+                                        <TableCell BorderBrush="Black" BorderThickness="0,0,1,1">
+                                            <Paragraph>Monthly</Paragraph>
+                                        </TableCell>
+                                        <TableCell BorderBrush="Black" BorderThickness="0,0,1,1">
+                                            <Paragraph>Yearly</Paragraph>
+                                        </TableCell>
+                                        <TableCell BorderBrush="Black" BorderThickness="0,0,1,1">
+                                            <Paragraph>Monthly</Paragraph>
+                                        </TableCell>
+                                    </TableRow>
+                                    <TableRow>
+                                        <TableCell BorderBrush="Black" BorderThickness="1,0,1,1" TextAlignment="Center">
+                                            <Paragraph FontWeight="Bold">Price</Paragraph>
+                                        </TableCell>
+                                        <TableCell BorderBrush="Black" BorderThickness="0,0,1,1">
+                                            <Paragraph>$120.00</Paragraph>
+                                        </TableCell>
+                                        <TableCell BorderBrush="Black" BorderThickness="0,0,1,1">
+                                            <Paragraph>$1000.00</Paragraph>
+                                        </TableCell>
+                                        <TableCell BorderBrush="Black" BorderThickness="0,0,1,1">
+                                            <Paragraph>$130.00</Paragraph>
+                                        </TableCell>
+                                    </TableRow>
+                                </TableRowGroup>
+                            </Table>
+                        </FlowDocument>
+                    </FlowDocumentReader>-->
+                </materialDesign:Card>
+            </Grid>
+        </Grid>
     </Grid>
 </UserControl>

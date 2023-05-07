@@ -116,3 +116,10 @@ C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\Vie
 C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\HomeView.baml
 C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\PlanesView.baml
 D:\Website\Documents\Atenas-Gym\Atenas Gym\bin\Debug\net6.0-windows\CommunityToolkit.Mvvm.dll
+D:\Website\Documents\Atenas-Gym\Atenas Gym\bin\Debug\net6.0-windows\MaterialDesignColors.dll
+D:\Website\Documents\Atenas-Gym\Atenas Gym\bin\Debug\net6.0-windows\MaterialDesignThemes.Wpf.dll
+D:\Website\Documents\Atenas-Gym\Atenas Gym\bin\Debug\net6.0-windows\Microsoft.Xaml.Behaviors.dll
+D:\Website\Documents\Atenas-Gym\Atenas Gym\bin\Debug\net6.0-windows\LiveCharts.dll
+D:\Website\Documents\Atenas-Gym\Atenas Gym\bin\Debug\net6.0-windows\LiveCharts.Wpf.dll
+D:\Website\Documents\Atenas-Gym\Atenas Gym\obj\Debug\net6.0-windows\View\ReceptionView.g.cs
+D:\Website\Documents\Atenas-Gym\Atenas Gym\obj\Debug\net6.0-windows\View\ReceptionView.baml

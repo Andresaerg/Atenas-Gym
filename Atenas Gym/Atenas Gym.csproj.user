@@ -34,6 +34,9 @@
     <Compile Update="View\PlanesView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\ReceptionView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="CustomControls\BindablePasswordBox.xaml">
@@ -67,6 +70,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\PlanesView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\ReceptionView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

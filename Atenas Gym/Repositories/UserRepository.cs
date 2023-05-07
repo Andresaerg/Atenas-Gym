@@ -38,8 +38,8 @@ namespace Atenas_Gym.Repositories
 
                     valid_data = cmd.ExecuteNonQuery() > 0 ? true : false;
 
-                    var message = string.Format("Nombre de usuario: {0}\nContraseña: {1}\nNombre: {2}\nEstado: {3}", userModel.Username, userModel.Password, userModel.Name, userModel.Status);
-                    MessageBox.Show(message, "Datos del usuario");
+                    //var message = string.Format("Nombre de usuario: {0}\nContraseña: {1}\nNombre: {2}\nEstado: {3}", userModel.Username, userModel.Password, userModel.Name, userModel.Status);
+                    //MessageBox.Show(message, "Datos del usuario");
                 }
                 else
                 {
