@@ -31,7 +31,7 @@ namespace Atenas_Gym.Repositories
             {
                 GetConnection.Open();
                 command.Connection = GetConnection;
-                command.CommandText = "SELECT * FROM clientes WHERE Cedula = @username";
+                command.CommandText = "SELECT c.*, p.Fecha_Pago, p.Fecha_Vencimiento FROM clientes c INNER JOIN pagos p ON p.Cedula = c.Cedula WHERE c.Cedula = @username;";
 
                 bool result = int.TryParse(cedula, out _);
                 if (result)
@@ -43,11 +43,27 @@ namespace Atenas_Gym.Repositories
                     {
                         MySqlDataReader reader = command.ExecuteReader();
                         reader.Read();
+
+                        DateTime date1 = DateTime.Parse(reader.GetString(4));
+                        DateTime date2 = DateTime.Parse(reader.GetString(12));
+                        DateTime date3 = DateTime.Parse(reader.GetString(13));
+                        string formattedDate1 = date1.ToString("dd/MM/yyyy");
+                        string formattedDate2 = date2.ToString("dd/MM/yyyy");
+                        string formattedDate3 = date3.ToString("dd/MM/yyyy");
+
                         Obj.Name = reader.GetString(1);
                         Obj.Cedula = reader.GetString(2);
                         Obj.PaymentStatus = reader.GetString(3);
-                        Obj.RegisterDate = reader.GetString(4);
+                        Obj.RegisterDate = formattedDate1;
                         Obj.Image = reader.GetString(5);
+                        Obj.Weight = reader.IsDBNull(6) ? "Sin datos" : reader.GetString(6);
+                        Obj.Height = reader.IsDBNull(7) ? "Sin datos" : reader.GetString(7);
+                        Obj.Arms = reader.IsDBNull(8) ? "Sin datos" : reader.GetString(8);
+                        Obj.Waist = reader.IsDBNull(9) ? "Sin datos" : reader.GetString(9);
+                        Obj.Hips = reader.IsDBNull(10) ? "Sin datos" : reader.GetString(10);
+                        Obj.Thights = reader.IsDBNull(11) ? "Sin datos" : reader.GetString(11);
+                        Obj.Payment = formattedDate2;
+                        Obj.Expire = formattedDate3;
                     }
                 }
 

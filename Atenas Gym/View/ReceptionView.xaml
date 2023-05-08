@@ -18,6 +18,15 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="5*"/>
         </Grid.RowDefinitions>
+        
+        <materialDesign:DialogHost x:Name="Testing" Grid.ColumnSpan="2" Grid.RowSpan="2" BorderBrush="{DynamicResource MaterialDesignDivider}">
+            <materialDesign:DialogHost.DialogContent>
+                <StackPanel>
+                    <TextBlock Text="Contenido del DialogHost" />
+                    <Button Content="Cerrar" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" />
+                </StackPanel>
+            </materialDesign:DialogHost.DialogContent>
+        </materialDesign:DialogHost>
 
         <Grid Grid.Row="0"
               Grid.Column="0">
@@ -96,7 +105,7 @@
                      VerticalContentAlignment="Top" 
                      HorizontalScrollBarVisibility="Disabled"
                      Grid.Column="1"
-                     Text="{Binding ClientCI, UpdateSourceTrigger=PropertyChanged}">
+                     Text="{Binding ClientID, UpdateSourceTrigger=PropertyChanged}">
                 <TextBox.Style>
 
                     <Style TargetType="TextBox">
@@ -159,7 +168,7 @@
             <Border Grid.Row="0" 
                     Grid.Column="0"
                     Padding="5" 
-                    BorderBrush="GREEN"
+                    BorderBrush="{Binding ClientStatus}"
                     BorderThickness="5">
                 <Border.Background>
                     <ImageBrush ImageSource="{Binding ClientImage, UpdateSourceTrigger=PropertyChanged}"/>
@@ -175,6 +184,7 @@
                     <RowDefinition Height="20"/>
                     <RowDefinition Height="20"/>
                     <RowDefinition Height="20"/>
+                    <RowDefinition Height="20"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -183,22 +193,43 @@
                     <ColumnDefinition Width=".7*"/>
                 </Grid.ColumnDefinitions>
 
-                <Viewbox Grid.Row="0"
+                <Grid Grid.Row="0"
                          Grid.Column="1"
                          Grid.ColumnSpan="2"
-                         HorizontalAlignment="Center" 
-                         VerticalAlignment="Top">
-                    <TextBlock x:Name="clientName"
-                               Text="{Binding ClientName, UpdateSourceTrigger=PropertyChanged}" 
+                         Background="{Binding ClientStatus}">
+                    <Viewbox>
+                        <TextBlock x:Name="clientName"
+                                   Text="{Binding ClientName}" 
+                                   FontFamily="Montserrat"
+                                   Foreground="{StaticResource secondaryForeground}"
+                                   TextDecorations="Underline"/>
+                    </Viewbox>
+                </Grid>
+
+                <Viewbox Grid.Row="2"
+                         Grid.Column="1"
+                         HorizontalAlignment="Left" 
+                         VerticalAlignment="Top" >
+                    <TextBlock Text="Cédula:" 
                                Width="Auto"
                                FontFamily="Montserrat"
-                               HorizontalAlignment="Stretch"
+                               FontSize="16"
                                Foreground="{StaticResource secondaryForeground}"
-                               TextDecorations="Underline"
-                               Background="{Binding ClientStatus, UpdateSourceTrigger=PropertyChanged}"/>
+                               Visibility="{Binding ItemsVisibility1}"/>
                 </Viewbox>
 
                 <Viewbox Grid.Row="2"
+                         Grid.Column="2"
+                         HorizontalAlignment="Left" 
+                         VerticalAlignment="Top" >
+                    <TextBlock Text="{Binding ClientCI, UpdateSourceTrigger=PropertyChanged}" 
+                               Width="Auto"
+                               FontFamily="Montserrat"
+                               FontSize="16"
+                               Foreground="{StaticResource secondaryForeground}"/>
+                </Viewbox>
+                
+                <Viewbox Grid.Row="3"
                          Grid.Column="1"
                          HorizontalAlignment="Left" 
                          VerticalAlignment="Top" >
@@ -206,21 +237,22 @@
                                Width="Auto"
                                FontFamily="Montserrat"
                                FontSize="16"
-                               Foreground="{StaticResource secondaryForeground}"/>
+                               Foreground="{StaticResource secondaryForeground}"
+                               Visibility="{Binding ItemsVisibility1}"/>
                 </Viewbox>
 
-                <Viewbox Grid.Row="2"
+                <Viewbox Grid.Row="3"
                          Grid.Column="2"
                          HorizontalAlignment="Left" 
                          VerticalAlignment="Top" >
-                    <TextBlock Text="dd/mm/yyyy" 
+                    <TextBlock Text="{Binding ClientRegisterDate, UpdateSourceTrigger=PropertyChanged}" 
                                Width="Auto"
                                FontFamily="Montserrat"
                                FontSize="16"
                                Foreground="{StaticResource secondaryForeground}"/>
                 </Viewbox>
 
-                <Viewbox Grid.Row="3"
+                <Viewbox Grid.Row="4"
                          Grid.Column="1"
                          HorizontalAlignment="Left" 
                          VerticalAlignment="Top" >
@@ -228,21 +260,22 @@
                                Width="Auto"
                                FontFamily="Montserrat"
                                FontSize="16"
-                               Foreground="{StaticResource secondaryForeground}"/>
+                               Foreground="{StaticResource secondaryForeground}"
+                               Visibility="{Binding ItemsVisibility1}"/>
                 </Viewbox>
 
-                <Viewbox Grid.Row="3"
+                <Viewbox Grid.Row="4"
                          Grid.Column="2"
                          HorizontalAlignment="Left" 
                          VerticalAlignment="Top" >
-                    <TextBlock Text="dd/mm/yyyy" 
+                    <TextBlock Text="{Binding ClientPaymentDate, UpdateSourceTrigger=PropertyChanged}" 
                                Width="Auto"
                                FontFamily="Montserrat"
                                FontSize="16"
                                Foreground="{StaticResource secondaryForeground}"/>
                 </Viewbox>
 
-                <Viewbox Grid.Row="4"
+                <Viewbox Grid.Row="5"
                          Grid.Column="1"
                          HorizontalAlignment="Left" 
                          VerticalAlignment="Top" >
@@ -250,36 +283,38 @@
                                Width="Auto"
                                FontFamily="Montserrat"
                                FontSize="16"
-                               Foreground="{StaticResource secondaryForeground}"/>
+                               Foreground="{StaticResource secondaryForeground}"
+                               Visibility="{Binding ItemsVisibility1}"/>
                 </Viewbox>
 
-                <Viewbox Grid.Row="4"
+                <Viewbox Grid.Row="5"
                          Grid.Column="2"
                          HorizontalAlignment="Left" 
                          VerticalAlignment="Top" >
-                    <TextBlock Text="dd/mm/yyyy" 
+                    <TextBlock Text="{Binding ClientPaymentExpireDate, UpdateSourceTrigger=PropertyChanged}" 
                                Width="Auto"
                                FontFamily="Montserrat"
                                FontSize="16"
                                Foreground="{StaticResource secondaryForeground}"/>
                 </Viewbox>
                 
-                <Viewbox Grid.Row="5"
+                <Viewbox Grid.Row="6"
                          Grid.Column="1"
                          HorizontalAlignment="Left">
                     <TextBlock Text="Estado:" 
                                Width="Auto"
                                FontFamily="Montserrat"
                                FontSize="16"
-                               Foreground="{StaticResource secondaryForeground}"/>
+                               Foreground="{StaticResource secondaryForeground}"
+                               Visibility="{Binding ItemsVisibility1}"/>
                 </Viewbox>
 
-                <Viewbox Grid.Row="5"
+                <Viewbox Grid.Row="6"
                          Grid.Column="2"
                          HorizontalAlignment="Left" 
                          VerticalAlignment="Top" >
                     <TextBlock x:Name="clientStatus"
-                               Text="Solvente" 
+                               Text="{Binding ClientStatusText, UpdateSourceTrigger=PropertyChanged}" 
                                Width="Auto"
                                FontFamily="Montserrat"
                                FontSize="16"
@@ -287,76 +322,54 @@
                 </Viewbox>
 
                 <StackPanel Grid.Row="6"
-                        Grid.Column="1"
-                        VerticalAlignment="Top"
-                        HorizontalAlignment="Stretch"
-                            Margin="0,20,0,0">
+                            Grid.RowSpan="2"
+                            Grid.Column="1"
+                            Grid.ColumnSpan="2"
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Stretch"
+                            Margin="0,35,0,0">
+                    <Button Content="Ver detalles" 
+                            Width="Auto"
+                            FontFamily="Montserrat"
+                            FontSize="14"
+                            Padding="5"
+                            Visibility="{Binding DetailsBtn}"
+                            Style="{StaticResource commonButton}"
+                            Margin="0,0,0,5"
+                            Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"/>
                     <Button Content="Nuevo usuario" 
-                        Width="Auto"
-                        FontFamily="Montserrat"
-                        FontSize="14"
-                        Padding="5"
-                        Foreground="Black"/>
-                    <Button Content="Renovar mensualidad" 
-                        Width="Auto"
-                        FontFamily="Montserrat"
-                        FontSize="14"
-                        Padding="5"
-                        Foreground="Black"/>
+                            Width="Auto"
+                            FontFamily="Montserrat"
+                            FontSize="14"
+                            Padding="5"
+                            Visibility="{Binding CreateBtn}"
+                            Style="{StaticResource commonButton}"
+                            Margin="0,0,0,5"/>
+                    <Button Content="Renovar" 
+                            Width="Auto"
+                            FontFamily="Montserrat"
+                            FontSize="14"
+                            Padding="5"
+                            Visibility="{Binding UpdateBtn}"
+                            Style="{StaticResource commonButton}"/>
                 </StackPanel>
 
             </Grid>
-            <StackPanel Grid.Row="0"
-                        Grid.RowSpan="1"
-                        Grid.Column="1"
-                        HorizontalAlignment="Right">
-                <Viewbox HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="140">
-                    <StackPanel>
-                        <!--<TextBlock Text="Nombre del Cliente" 
-                                   HorizontalAlignment="Left" 
-                                   VerticalAlignment="Top" 
-                                   Width="Auto"
-                                   FontFamily="Montserrat"
-                                   FontSize="16"
-                                   Foreground="{StaticResource secondaryForeground}"/>-->
-                        <!--<TextBlock Text="Fecha de ingreso: dd/mm/yyyy" 
-                                   HorizontalAlignment="Left" 
-                                   VerticalAlignment="Top" 
-                                   Width="Auto"
-                                   FontFamily="Montserrat"
-                                   FontSize="12"
-                                   Foreground="{StaticResource ResourceKey=secondaryForeground}"
-                                   Margin="0,10,0,0"/>-->
-                        <!--<TextBlock Text="Última fecha de pago: dd/mm/yyyy" 
-                                   HorizontalAlignment="Left" 
-                                   VerticalAlignment="Top" 
-                                   Width="Auto"
-                                   FontFamily="Montserrat"
-                                   FontSize="12"
-                                   Foreground="{StaticResource ResourceKey=secondaryForeground}"
-                                   Margin="0,10,0,0"/>-->
-                        <!--<TextBlock Text="Solvencia hasta: dd/mm/yyyy" 
-                                   HorizontalAlignment="Stretch" 
-                                   VerticalAlignment="Stretch" 
-                                   Width="Auto"
-                                   FontFamily="Montserrat"
-                                   Foreground="{StaticResource ResourceKey=secondaryForeground}"
-                                   TextWrapping="Wrap"
-                                   Margin="0,10,0,0"/>
-                        <TextBlock Text="Estado actual: 'solvente o deuda'" 
-                                   HorizontalAlignment="Stretch" 
-                                   VerticalAlignment="Stretch" 
-                                   Width="Auto"
-                                   FontFamily="Montserrat"
-                                   Foreground="{StaticResource ResourceKey=secondaryForeground}"
-                                   TextWrapping="Wrap"
-                                   Margin="0,10,0,0"/>-->
 
-                    </StackPanel>
-                </Viewbox>
-            </StackPanel>
-            <Button Content="Capturar" HorizontalAlignment="Right" Margin="0,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="79"/>
-            <Button Content="Camara" HorizontalAlignment="Left" Margin="0,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="78"/>
+            <Button Content="Capturar" 
+                    HorizontalAlignment="Right" 
+                    Margin="0,10,0,0" 
+                    Grid.Row="1" 
+                    VerticalAlignment="Top" 
+                    Width="80"
+                    Visibility="{Binding ItemsVisibility1}"/>
+            <Button Content="Camara" 
+                    HorizontalAlignment="Left" 
+                    Margin="0,10,0,0" 
+                    Grid.Row="1" 
+                    VerticalAlignment="Top" 
+                    Width="80"
+                    Visibility="{Binding ItemsVisibility1}"/>
         </Grid>
         <StackPanel Grid.Column="1" 
                     Grid.Row="1" 
