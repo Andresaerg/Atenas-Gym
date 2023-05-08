@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Atenas_Gym.View"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp" 
+             xmlns:viewModel="clr-namespace:Atenas_Gym.ViewModel" d:DataContext="{d:DesignInstance Type=viewModel:ReceptionViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -40,7 +41,8 @@
                     HorizontalAlignment="Right"
                     Margin="0,0,10,5"
                     IsDefault="True"
-                    Command="{Binding getClientInfo}">
+                    Panel.ZIndex="99"
+                    Command="{Binding SearchClient}">
                 
                 <Button.Style>
                     <Style TargetType="Button">
@@ -58,7 +60,7 @@
                 <Button.Template>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Border CornerRadius="10"
-                                        Background="{TemplateBinding Background}">
+                                Background="{TemplateBinding Background}">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
@@ -93,7 +95,8 @@
                      HorizontalContentAlignment="Left" 
                      VerticalContentAlignment="Top" 
                      HorizontalScrollBarVisibility="Disabled"
-                     Grid.Column="1">
+                     Grid.Column="1"
+                     Text="{Binding ClientCI, UpdateSourceTrigger=PropertyChanged}">
                 <TextBox.Style>
 
                     <Style TargetType="TextBox">
@@ -157,8 +160,10 @@
                     Grid.Column="0"
                     Padding="5" 
                     BorderBrush="GREEN"
-                    BorderThickness="5"
-                    Background="Transparent">
+                    BorderThickness="5">
+                <Border.Background>
+                    <ImageBrush ImageSource="{Binding ClientImage, UpdateSourceTrigger=PropertyChanged}"/>
+                </Border.Background>
                 <Canvas />
             </Border>
             <Grid Grid.Column="1"
@@ -184,13 +189,13 @@
                          HorizontalAlignment="Center" 
                          VerticalAlignment="Top">
                     <TextBlock x:Name="clientName"
-                               Text="Nombre del Cliente" 
+                               Text="{Binding ClientName, UpdateSourceTrigger=PropertyChanged}" 
                                Width="Auto"
                                FontFamily="Montserrat"
                                HorizontalAlignment="Stretch"
                                Foreground="{StaticResource secondaryForeground}"
                                TextDecorations="Underline"
-                               Background="GREEN"/>
+                               Background="{Binding ClientStatus, UpdateSourceTrigger=PropertyChanged}"/>
                 </Viewbox>
 
                 <Viewbox Grid.Row="2"

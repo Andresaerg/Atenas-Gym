@@ -9,8 +9,11 @@ namespace Atenas_Gym.Model
     public class ClientModel
     {
         public string? Id { get; set; }
-        public string? Username { get; set; }
+        public string? Cedula { get; set; }
         public string? Name { get; set; }
+        public string? PaymentStatus { get; set; }
+        public string? RegisterDate { get; set; }
+        public string? Image { get; set; }
         public string? Height { get; set; }
         public string? Weight { get; set; }
         public string? Waist { get; set; }

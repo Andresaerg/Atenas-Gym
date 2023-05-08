@@ -1,27 +1,3 @@
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\Atenas Gym.exe
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\Atenas Gym.deps.json
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\Atenas Gym.runtimeconfig.json
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\Atenas Gym.dll
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\Atenas Gym.pdb
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\Atenas Gym.csproj.AssemblyReference.cache
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\CustomControls\BindablePasswordBox.g.cs
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\LoginView.g.cs
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\App.g.cs
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\Atenas Gym_MarkupCompile.cache
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\Atenas Gym_MarkupCompile.lref
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\CustomControls\BindablePasswordBox.baml
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\LoginView.baml
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\Atenas Gym.g.resources
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\Atenas Gym.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\Atenas Gym.AssemblyInfoInputs.cache
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\Atenas Gym.AssemblyInfo.cs
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\Atenas Gym.csproj.CoreCompileInputs.cache
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\Atenas Gym.dll
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\refint\Atenas Gym.dll
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\Atenas Gym.pdb
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\Atenas Gym.genruntimeconfig.cache
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\ref\Atenas Gym.dll
 D:\Website\Documents\Atenas-Gym\Atenas Gym\bin\Debug\net6.0-windows\Atenas Gym.exe
 D:\Website\Documents\Atenas-Gym\Atenas Gym\bin\Debug\net6.0-windows\Atenas Gym.deps.json
 D:\Website\Documents\Atenas-Gym\Atenas Gym\bin\Debug\net6.0-windows\Atenas Gym.runtimeconfig.json
@@ -64,28 +40,6 @@ D:\Website\Documents\Atenas-Gym\Atenas Gym\bin\Debug\net6.0-windows\runtimes\bro
 D:\Website\Documents\Atenas-Gym\Atenas Gym\obj\Debug\net6.0-windows\View\MainView.g.cs
 D:\Website\Documents\Atenas-Gym\Atenas Gym\obj\Debug\net6.0-windows\View\MainView.baml
 D:\Website\Documents\Atenas-Gym\Atenas Gym\obj\Debug\net6.0-windows\Atenas Gym.csproj.CopyComplete
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\Google.Protobuf.dll
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\K4os.Compression.LZ4.dll
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\K4os.Compression.LZ4.Streams.dll
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\K4os.Hash.xxHash.dll
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\MySql.Data.dll
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\BouncyCastle.Crypto.dll
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\System.IO.Pipelines.dll
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\System.Text.Encodings.Web.dll
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\System.Text.Json.dll
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\runtimes\win-x64\native\comerr64.dll
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\runtimes\win-x64\native\gssapi64.dll
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\runtimes\win-x64\native\k5sprt64.dll
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\runtimes\win-x64\native\krb5_64.dll
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\runtimes\win-x64\native\krbcc64.dll
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\MainView.g.cs
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\MainView.baml
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\Atenas Gym.csproj.CopyComplete
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\Styles\UIColors.baml
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\App.baml
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\FontAwesome.Sharp.dll
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\Styles\ButtonStyles.baml
 D:\Website\Documents\Atenas-Gym\Atenas Gym\bin\Debug\net6.0-windows\FontAwesome.Sharp.dll
 D:\Website\Documents\Atenas-Gym\Atenas Gym\obj\Debug\net6.0-windows\Styles\ButtonStyles.baml
 D:\Website\Documents\Atenas-Gym\Atenas Gym\obj\Debug\net6.0-windows\Styles\UIColors.baml
@@ -102,19 +56,6 @@ D:\Website\Documents\Atenas-Gym\Atenas Gym\obj\Debug\net6.0-windows\View\CortesV
 D:\Website\Documents\Atenas-Gym\Atenas Gym\obj\Debug\net6.0-windows\View\PlanesView.baml
 D:\Website\Documents\Atenas-Gym\Atenas Gym\obj\Debug\net6.0-windows\View\CreateAccountView.g.cs
 D:\Website\Documents\Atenas-Gym\Atenas Gym\obj\Debug\net6.0-windows\View\CreateAccountView.baml
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\CommunityToolkit.Mvvm.dll
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\ClientsView.g.cs
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\ConfigView.g.cs
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\CortesView.g.cs
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\CreateAccountView.g.cs
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\HomeView.g.cs
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\PlanesView.g.cs
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\ClientsView.baml
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\ConfigView.baml
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\CortesView.baml
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\CreateAccountView.baml
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\HomeView.baml
-C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\PlanesView.baml
 D:\Website\Documents\Atenas-Gym\Atenas Gym\bin\Debug\net6.0-windows\CommunityToolkit.Mvvm.dll
 D:\Website\Documents\Atenas-Gym\Atenas Gym\bin\Debug\net6.0-windows\MaterialDesignColors.dll
 D:\Website\Documents\Atenas-Gym\Atenas Gym\bin\Debug\net6.0-windows\MaterialDesignThemes.Wpf.dll
@@ -123,3 +64,69 @@ D:\Website\Documents\Atenas-Gym\Atenas Gym\bin\Debug\net6.0-windows\LiveCharts.d
 D:\Website\Documents\Atenas-Gym\Atenas Gym\bin\Debug\net6.0-windows\LiveCharts.Wpf.dll
 D:\Website\Documents\Atenas-Gym\Atenas Gym\obj\Debug\net6.0-windows\View\ReceptionView.g.cs
 D:\Website\Documents\Atenas-Gym\Atenas Gym\obj\Debug\net6.0-windows\View\ReceptionView.baml
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\Atenas Gym.exe
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\Atenas Gym.deps.json
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\Atenas Gym.runtimeconfig.json
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\Atenas Gym.dll
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\Atenas Gym.pdb
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\CommunityToolkit.Mvvm.dll
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\FontAwesome.Sharp.dll
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\Google.Protobuf.dll
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\K4os.Compression.LZ4.dll
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\K4os.Compression.LZ4.Streams.dll
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\K4os.Hash.xxHash.dll
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\LiveCharts.dll
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\LiveCharts.Wpf.dll
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\MaterialDesignColors.dll
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\MaterialDesignThemes.Wpf.dll
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\Microsoft.Xaml.Behaviors.dll
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\MySql.Data.dll
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\BouncyCastle.Crypto.dll
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\System.IO.Pipelines.dll
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\System.Text.Encodings.Web.dll
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\System.Text.Json.dll
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\runtimes\win-x64\native\comerr64.dll
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\runtimes\win-x64\native\gssapi64.dll
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\runtimes\win-x64\native\k5sprt64.dll
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\runtimes\win-x64\native\krb5_64.dll
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\runtimes\win-x64\native\krbcc64.dll
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\bin\Debug\net6.0-windows\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\Atenas Gym.csproj.AssemblyReference.cache
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\Styles\ButtonStyles.baml
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\Styles\UIColors.baml
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\CustomControls\BindablePasswordBox.g.cs
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\ClientsView.g.cs
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\ConfigView.g.cs
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\CortesView.g.cs
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\CreateAccountView.g.cs
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\HomeView.g.cs
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\LoginView.g.cs
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\MainView.g.cs
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\PlanesView.g.cs
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\ReceptionView.g.cs
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\App.g.cs
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\Atenas Gym_MarkupCompile.cache
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\Atenas Gym_MarkupCompile.lref
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\App.baml
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\CustomControls\BindablePasswordBox.baml
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\ClientsView.baml
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\ConfigView.baml
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\CortesView.baml
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\CreateAccountView.baml
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\HomeView.baml
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\LoginView.baml
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\MainView.baml
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\PlanesView.baml
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\View\ReceptionView.baml
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\Atenas Gym.g.resources
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\Atenas Gym.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\Atenas Gym.AssemblyInfoInputs.cache
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\Atenas Gym.AssemblyInfo.cs
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\Atenas Gym.csproj.CoreCompileInputs.cache
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\Atenas Gym.csproj.CopyComplete
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\Atenas Gym.dll
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\refint\Atenas Gym.dll
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\Atenas Gym.pdb
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\Atenas Gym.genruntimeconfig.cache
+C:\Users\USUARIO\source\repos\Atenas Gym\Atenas Gym\obj\Debug\net6.0-windows\ref\Atenas Gym.dll
