@@ -18,13 +18,205 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="5*"/>
         </Grid.RowDefinitions>
-        
-        <materialDesign:DialogHost x:Name="Testing" Grid.ColumnSpan="2" Grid.RowSpan="2" BorderBrush="{DynamicResource MaterialDesignDivider}">
+
+        <materialDesign:DialogHost x:Name="Testing" 
+                                   Grid.ColumnSpan="2" 
+                                   Grid.RowSpan="2"
+                                   Panel.ZIndex="999">
             <materialDesign:DialogHost.DialogContent>
-                <StackPanel>
-                    <TextBlock Text="Contenido del DialogHost" />
-                    <Button Content="Cerrar" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" />
-                </StackPanel>
+                <Grid Width="800" Height="400"
+                      Background="#343434">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+                    <!--#region Modal Head, Title-->
+                    <Border Grid.Row="0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            BorderThickness="0,0,0,2"
+                            BorderBrush="{StaticResource principalForeground}">
+                        <TextBlock Text="{Binding ClientName, UpdateSourceTrigger=PropertyChanged, StringFormat=Datos para {0}}"
+                                   Margin="15"
+                                   Foreground="{StaticResource secondaryForeground}"
+                                   FontSize="18"
+                                   FontFamily="Montserrat"/>
+                    </Border>
+                    <!--#region Modal Body-->
+                    <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.Style>
+                            <Style TargetType="Grid">
+                                <Style.Resources>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="FontSize" Value="18"/>
+                                        <Setter Property="FontFamily" Value="Montserrat"/>
+                                        <Setter Property="Foreground" Value="{StaticResource secondaryForeground}"/>
+                                    </Style>
+                                </Style.Resources>
+                            </Style>
+                        </Grid.Style>
+
+                        <TextBlock Grid.Row="0"
+                                   Grid.ColumnSpan="4"
+                                   Text="Datos del cliente"
+                                   HorizontalAlignment="Center"
+                                   FontWeight="Bold"
+                                   Margin="0,0,0,20"/>
+
+                        <TextBlock Grid.Column="0"
+                                   Grid.Row="1"
+                                   Text="Nombre: "/>
+                        <TextBlock Grid.Column="1"
+                                   Grid.Row="1"
+                                   Text="{Binding ClientName, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Grid.Column="2"
+                                   Grid.Row="1"
+                                   Margin="100,0,0,0"
+                                   Text="Cédula: "/>
+                        <TextBlock Grid.Column="3"
+                                   Grid.Row="1"
+                                   Text="{Binding ClientCI, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        <TextBlock Grid.Column="0"
+                                   Grid.Row="2"
+                                   Text="Ingresó: "/>
+                        <TextBlock Grid.Column="1"
+                                   Grid.Row="2"
+                                   Text="{Binding ClientRegisterDate, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Grid.Column="2"
+                                   Grid.Row="2"
+                                   Margin="100,0,0,0"
+                                   Text="Pagó: "/>
+                        <TextBlock Grid.Column="3"
+                                   Grid.Row="2"
+                                   Text="{Binding ClientPaymentDate, UpdateSourceTrigger=PropertyChanged}"/>
+                        
+                        <TextBlock Grid.Column="0"
+                                   Grid.Row="3"
+                                   Text="Estado: "/>
+                        <TextBlock Grid.Column="1"
+                                   Grid.Row="3"
+                                   Text="{Binding ClientStatusText, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Grid.Column="2"
+                                   Grid.Row="3"
+                                   Margin="100,0,0,0"
+                                   Text="Expira: "/>
+                        <TextBlock Grid.Column="3"
+                                   Grid.Row="3"
+                                   Text="{Binding ClientPaymentExpireDate, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Grid.ColumnSpan="4"
+                                   Grid.Column="0"
+                                   Grid.Row="4"
+                                   Text="Entrenador: NOMBRE DEL ENTRENADOR"/>
+                    </Grid>
+
+                    <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,60,0,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.Style>
+                            <Style TargetType="Grid">
+                                <Style.Resources>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="FontSize" Value="18"/>
+                                        <Setter Property="FontFamily" Value="Montserrat"/>
+                                        <Setter Property="Foreground" Value="{StaticResource secondaryForeground}"/>
+                                    </Style>
+                                </Style.Resources>
+                            </Style>
+                        </Grid.Style>
+
+                        <TextBlock Grid.Row="0"
+                                   Grid.ColumnSpan="4"
+                                   Text="Medidas antropométricas"
+                                   HorizontalAlignment="Center"
+                                   FontWeight="Bold"
+                                   Margin="0,0,0,20"/>
+
+                        <TextBlock Grid.Column="0"
+                                   Grid.Row="1"
+                                   Text="Brazos: "/>
+                        <TextBlock Grid.Column="1"
+                                   Grid.Row="1"
+                                   Text="MEDIDAS DE BRAZOS"/>
+                        <TextBlock Grid.Column="2"
+                                   Grid.Row="1"
+                                   Margin="100,0,0,0"
+                                   Text="Piernas: "/>
+                        <TextBlock Grid.Column="3"
+                                   Grid.Row="1"
+                                   Text="MEDIDAS DE PIERNAS"/>
+
+                        <TextBlock Grid.Column="0"
+                                   Grid.Row="2"
+                                   Text="Cintura: "/>
+                        <TextBlock Grid.Column="1"
+                                   Grid.Row="2"
+                                   Text="MEDIDA DE CINTURA"/>
+                        <TextBlock Grid.Column="2"
+                                   Grid.Row="2"
+                                   Margin="100,0,0,0"
+                                   Text="Caderas: "/>
+                        <TextBlock Grid.Column="3"
+                                   Grid.Row="2"
+                                   Text="MEDIDAS DE CADERAS"/>
+
+                        <TextBlock Grid.Column="0"
+                                   Grid.Row="3"
+                                   Text="Pecho: "/>
+                        <TextBlock Grid.Column="1"
+                                   Grid.Row="3"
+                                   Text="MEDIDA DE PECHO"/>
+                        <TextBlock Grid.Column="2"
+                                   Grid.Row="3"
+                                   Margin="100,0,0,0"
+                                   Text="Hombros: "/>
+                        <TextBlock Grid.Column="3"
+                                   Grid.Row="3"
+                                   Text="MEDIDAS DEL HOMBRO"/>
+
+                    </Grid>
+                    <!--#region Modal Footer-->
+                    <Border Grid.Row="2"
+                            BorderThickness="0,2,0,0"
+                            BorderBrush="{StaticResource principalForeground}">
+                        <Button Content="Salir"
+                                Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                VerticalContentAlignment="Center"
+                                HorizontalContentAlignment="Center"
+                                Style="{StaticResource commonButton}"
+                                Width="75"
+                                Height="25"
+                                Margin="15"/>
+                    </Border>
+                </Grid>
             </materialDesign:DialogHost.DialogContent>
         </materialDesign:DialogHost>
 
@@ -51,7 +243,8 @@
                     Margin="0,0,10,5"
                     IsDefault="True"
                     Panel.ZIndex="99"
-                    Command="{Binding SearchClient}">
+                    Command="{Binding SearchClient}"
+                    Click="Hide_Options">
                 
                 <Button.Style>
                     <Style TargetType="Button">
@@ -87,6 +280,7 @@
             </Button>
 
             <TextBox x:Name="Cedula" 
+                     Style="{DynamicResource myTextBox}"
                      MaxLength="10"
                      HorizontalAlignment="Stretch" 
                      BorderBrush="DarkGray" 
@@ -95,8 +289,7 @@
                      FontWeight="Medium" 
                      FontFamily="Montserrat" 
                      FontSize="14"
-                     Margin="0,0,0,0" 
-                     Padding="10,0,0,0"
+                     Margin="0,0,0,0"
                      Foreground="Gray" 
                      Height="20" 
                      TextChanged="Cedula_change"
@@ -106,38 +299,6 @@
                      HorizontalScrollBarVisibility="Disabled"
                      Grid.Column="1"
                      Text="{Binding ClientID, UpdateSourceTrigger=PropertyChanged}">
-                <TextBox.Style>
-
-                    <Style TargetType="TextBox">
-                        <Setter Property="Background" Value="Transparent"/>
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="TextBox">
-                                    <Border BorderThickness="{TemplateBinding Border.BorderThickness}"
-                                            BorderBrush="{TemplateBinding Border.BorderBrush}"
-                                            Background="{TemplateBinding Panel.Background}"
-                                            Name="border"
-                                            SnapsToDevicePixels="True">
-                                        <ScrollViewer HorizontalScrollBarVisibility="Hidden"
-                                                      VerticalScrollBarVisibility="Hidden"
-                                                      Name="PART_ContentHost"
-                                                      Focusable="False" />
-                                    </Border>
-                                    <ControlTemplate.Triggers>
-                                        <Trigger Property="UIElement.IsMouseOver" Value="True">
-                                            <Setter Property="Border.BorderBrush" TargetName="border" 
-                                                    Value="Red"/>
-                                        </Trigger>
-                                        <Trigger Property="UIElement.IsFocused" Value="True">
-                                            <Setter Property="Border.BorderBrush" TargetName="border" 
-                                                    Value="Red"/>
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </TextBox.Style>
 
             </TextBox>
             <TextBlock x:Name="WatermarkCI"
@@ -328,6 +489,7 @@
                             VerticalAlignment="Top"
                             HorizontalAlignment="Stretch"
                             Margin="0,35,0,0">
+
                     <Button Content="Ver detalles" 
                             Width="Auto"
                             FontFamily="Montserrat"
@@ -336,7 +498,8 @@
                             Visibility="{Binding DetailsBtn}"
                             Style="{StaticResource commonButton}"
                             Margin="0,0,0,5"
-                            Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"/>
+                            Click="Button_Click"/>
+                    
                     <Button Content="Nuevo usuario" 
                             Width="Auto"
                             FontFamily="Montserrat"
@@ -344,14 +507,16 @@
                             Padding="5"
                             Visibility="{Binding CreateBtn}"
                             Style="{StaticResource commonButton}"
-                            Margin="0,0,0,5"/>
+                            Margin="0,0,0,5"
+                            Click="Create_Client"/>
                     <Button Content="Renovar" 
                             Width="Auto"
                             FontFamily="Montserrat"
                             FontSize="14"
                             Padding="5"
                             Visibility="{Binding UpdateBtn}"
-                            Style="{StaticResource commonButton}"/>
+                            Style="{StaticResource commonButton}"
+                            Click="Renew_Client"/>
                 </StackPanel>
 
             </Grid>
@@ -371,46 +536,109 @@
                     Width="80"
                     Visibility="{Binding ItemsVisibility1}"/>
         </Grid>
-        <StackPanel Grid.Column="1" 
+        <StackPanel Grid.Column="1"
                     Grid.Row="1" 
                     HorizontalAlignment="Center">
-            <Label Content="Renovar para 'Nombre de cliente'" 
-                   HorizontalAlignment="Left" 
-                   VerticalAlignment="Top" 
-                   Width="Auto"
-                   FontFamily="Montserrat"
-                   FontSize="16"
-                   Foreground="{StaticResource secondaryForeground}"/>
-            <ComboBox FontFamily="Montserrat"
-                      FontSize="12"
-                      Margin="0,20,0,0">
-                <ComboBoxItem IsSelected="True" IsEnabled="False">Seleccione un plan</ComboBoxItem>
-                <ComboBoxItem>Mensualidad</ComboBoxItem>
-                <ComboBoxItem>Trimestre</ComboBoxItem>
-                <ComboBoxItem>Anualidad</ComboBoxItem>
-            </ComboBox>
-            <TextBlock Text="$ Cantidad total a pagar"
-                       Foreground="{StaticResource secondaryForeground}"
-                       FontFamily="Montserrat"
-                       FontSize="14"
-                       Margin="0,20,0,0"/>
-            <ComboBox FontFamily="Montserrat"
-                      FontSize="12"
-                      Margin="0,20,0,0">
-                <ComboBoxItem IsSelected="True" IsEnabled="False">Seleccione un método de pago</ComboBoxItem>
-                <ComboBoxItem>Efectivo</ComboBoxItem>
-                <ComboBoxItem>Transferencia bancaria</ComboBoxItem>
-                <ComboBoxItem>Pago móvil</ComboBoxItem>
-                <ComboBoxItem>Zelle</ComboBoxItem>
-            </ComboBox>
-            <TextBox Text="Referencia de pago"
-                     Foreground="{StaticResource secondaryForeground}"
-                     FontFamily="Montserrat"
-                     FontSize="14"
-                     Background="Transparent"
-                     BorderThickness="0,0,0,2"
-                     Margin="0,20,0,0"
-                     BorderBrush="DarkRed"/>
+
+            <StackPanel x:Name="Create"
+                        Visibility="Visible">
+                <TextBlock Text="Agregar cliente" 
+                           HorizontalAlignment="Center" 
+                           VerticalAlignment="Top" 
+                           Width="Auto"
+                           FontFamily="Montserrat"
+                           FontSize="16"
+                           Foreground="{StaticResource secondaryForeground}"/>
+                <TextBox Style="{StaticResource myTextBox}"
+                         Text="Ingrese el nombre del cliente"
+                         Foreground="{StaticResource secondaryForeground}"
+                         Margin="0,20,0,0"/>
+                <TextBox Style="{StaticResource myTextBox}"
+                         Text="Ingrese la cédula del cliente"
+                         Foreground="{StaticResource secondaryForeground}"
+                         Margin="0,20,0,0"/>
+                <ComboBox FontFamily="Montserrat"
+                          FontSize="12"
+                          Margin="0,20,0,0"
+                          Style="{x:Null}"
+                          SelectedValue="{Binding PlanOption, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedValuePath="Content">
+                    <ComboBoxItem IsSelected="True" IsEnabled="False" Content="{Binding PlanOption}"></ComboBoxItem>
+                    <ComboBoxItem>Semanal</ComboBoxItem>
+                    <ComboBoxItem>Mensualidad</ComboBoxItem>
+                    <ComboBoxItem>Trimestre</ComboBoxItem>
+                    <ComboBoxItem>Semestre</ComboBoxItem>
+                    <ComboBoxItem>Anualidad</ComboBoxItem>
+                </ComboBox>
+                <TextBlock Text="{Binding PlanOption, UpdateSourceTrigger=PropertyChanged}"
+                           Foreground="White"/>
+                <TextBlock Text="{Binding Total, UpdateSourceTrigger=PropertyChanged, StringFormat=Monto a pagar: ${0}}"
+                           Foreground="{StaticResource secondaryForeground}"
+                           FontFamily="Montserrat"
+                           FontSize="14"
+                           Margin="0,20,0,0"/>
+                <ComboBox FontFamily="Montserrat"
+                          FontSize="12"
+                          Margin="0,20,0,0"
+                          Style="{x:Null}">
+                    <ComboBoxItem IsSelected="True" IsEnabled="False">Seleccione un método de pago</ComboBoxItem>
+                    <ComboBoxItem>Efectivo</ComboBoxItem>
+                    <ComboBoxItem>Transferencia bancaria</ComboBoxItem>
+                    <ComboBoxItem>Pago móvil</ComboBoxItem>
+                    <ComboBoxItem>Zelle</ComboBoxItem>
+                </ComboBox>
+                <TextBox Text="Referencia de pago"
+                         Foreground="{StaticResource secondaryForeground}"
+                         FontFamily="Montserrat"
+                         FontSize="14"
+                         Background="Transparent"
+                         BorderThickness="0,0,0,2"
+                         Margin="0,20,0,0"
+                         BorderBrush="DarkRed"/>
+            </StackPanel>
+            
+            <StackPanel x:Name="Renew"
+                        Visibility="Collapsed">
+                <TextBlock Text="{Binding ClientName, UpdateSourceTrigger=PropertyChanged, StringFormat=Renovar para {0}}" 
+                           HorizontalAlignment="Center" 
+                           VerticalAlignment="Top" 
+                           Width="Auto"
+                           FontFamily="Montserrat"
+                           FontSize="16"
+                           Foreground="{StaticResource secondaryForeground}"/>
+                <ComboBox FontFamily="Montserrat"
+                          FontSize="12"
+                          Margin="0,20,0,0"
+                          Style="{x:Null}">
+                    <ComboBoxItem IsSelected="True" IsEnabled="False">Seleccione un plan</ComboBoxItem>
+                    <ComboBoxItem>Mensualidad</ComboBoxItem>
+                    <ComboBoxItem>Trimestre</ComboBoxItem>
+                    <ComboBoxItem>Anualidad</ComboBoxItem>
+                </ComboBox>
+                <TextBlock Text="$ Cantidad total a pagar"
+                           Foreground="{StaticResource secondaryForeground}"
+                           FontFamily="Montserrat"
+                           FontSize="14"
+                           Margin="0,20,0,0"/>
+                <ComboBox FontFamily="Montserrat"
+                          FontSize="12"
+                          Margin="0,20,0,0"
+                          Style="{x:Null}">
+                    <ComboBoxItem IsSelected="True" IsEnabled="False">Seleccione un método de pago</ComboBoxItem>
+                    <ComboBoxItem>Efectivo</ComboBoxItem>
+                    <ComboBoxItem>Transferencia bancaria</ComboBoxItem>
+                    <ComboBoxItem>Pago móvil</ComboBoxItem>
+                    <ComboBoxItem>Zelle</ComboBoxItem>
+                </ComboBox>
+                <TextBox Text="Referencia de pago"
+                         Foreground="{StaticResource secondaryForeground}"
+                         FontFamily="Montserrat"
+                         FontSize="14"
+                         Background="Transparent"
+                         BorderThickness="0,0,0,2"
+                         Margin="0,20,0,0"
+                         BorderBrush="DarkRed"/>
+            </StackPanel>
         </StackPanel>
 
     </Grid>

@@ -44,5 +44,28 @@ namespace Atenas_Gym.View
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Testing.IsOpen = true;
+        }
+
+        private void Create_Client(object sender, RoutedEventArgs e)
+        {
+            Create.Visibility = Visibility.Visible;
+            Renew.Visibility = Visibility.Collapsed;
+        }
+
+        private void Renew_Client(object sender, RoutedEventArgs e)
+        {
+            Renew.Visibility = Visibility.Visible;
+            Create.Visibility = Visibility.Collapsed;
+        }
+
+        private void Hide_Options(object sender, RoutedEventArgs e)
+        {
+            Renew.Visibility = Visibility.Collapsed;
+            Create.Visibility = Visibility.Collapsed;
+        }
     }
 }

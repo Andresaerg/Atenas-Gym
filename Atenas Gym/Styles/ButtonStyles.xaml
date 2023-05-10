@@ -185,5 +185,40 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+    
+    <!--Testing TextBox Vs MaterialDesign-->
+    <Style x:Key="myTextBox"  TargetType="TextBox">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Padding" Value="10,0,0,0"/>
+        <Setter Property="BorderThickness" Value="0,0,0,2"/>
+        <Setter Property="BorderBrush" Value="Gray"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBox">
+                    <Border Padding="{TemplateBinding Padding}"
+                            BorderThickness="{TemplateBinding Border.BorderThickness}"
+                            BorderBrush="{TemplateBinding Border.BorderBrush}"
+                            Background="{TemplateBinding Panel.Background}"
+                            Name="border"
+                            SnapsToDevicePixels="True">
+                        <ScrollViewer HorizontalScrollBarVisibility="Hidden"
+                                                      VerticalScrollBarVisibility="Hidden"
+                                                      Name="PART_ContentHost"
+                                                      Focusable="False" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="UIElement.IsMouseOver" Value="True">
+                            <Setter Property="Border.BorderBrush" TargetName="border" 
+                                                    Value="Red"/>
+                        </Trigger>
+                        <Trigger Property="UIElement.IsFocused" Value="True">
+                            <Setter Property="Border.BorderBrush" TargetName="border" 
+                                                    Value="Red"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
 </ResourceDictionary>

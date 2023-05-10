@@ -31,6 +31,14 @@ namespace Atenas_Gym.ViewModel
         private string? _UpdateBtn = "Collapsed";
         private string? _itemsVisibility1 = "Collapsed";
 
+        //Option fields
+        private string? _planOption = "Seleccione un plan";
+
+        //Prices
+        private int? _Mes = 15;
+        private int? _Total;
+
+
         private IClientRepository clientRepository;
 
         private ClientModel clientModel;
@@ -55,16 +63,16 @@ namespace Atenas_Gym.ViewModel
                 OnPropertyChanged(nameof(ClientName));
             }
         }
-        public string? ClientCI 
-        { 
+        public string? ClientCI
+        {
             get => _clientCI;
-            set 
+            set
             {
                 _clientCI = value;
                 OnPropertyChanged(nameof(ClientCI));
             }
         }
-        public string? ClientRegisterDate 
+        public string? ClientRegisterDate
         {
             get => _ClientRegisterDate;
             set
@@ -73,13 +81,13 @@ namespace Atenas_Gym.ViewModel
                 OnPropertyChanged(nameof(ClientRegisterDate));
             }
         }
-        public string? ClientStatusText 
-        { 
-            get => _clientStatusText; 
-            set 
+        public string? ClientStatusText
+        {
+            get => _clientStatusText;
+            set
             {
                 _clientStatusText = value;
-                OnPropertyChanged(nameof(ClientStatusText)); 
+                OnPropertyChanged(nameof(ClientStatusText));
             }
         }
         public string? ClientStatus
@@ -91,10 +99,10 @@ namespace Atenas_Gym.ViewModel
                 OnPropertyChanged(nameof(ClientStatus));
             }
         }
-        public string? ClientImage 
-        { 
+        public string? ClientImage
+        {
             get => _clientImage;
-            set 
+            set
             {
                 _clientImage = value;
                 OnPropertyChanged(nameof(ClientImage));
@@ -102,67 +110,93 @@ namespace Atenas_Gym.ViewModel
         }
         public string? ClientPaymentDate
         {
-            get => _clientPaymentDate; 
-            set 
+            get => _clientPaymentDate;
+            set
             {
                 _clientPaymentDate = value;
                 OnPropertyChanged(nameof(ClientPaymentDate));
-            } 
+            }
         }
-        public string? ClientPaymentExpireDate 
+        public string? ClientPaymentExpireDate
         {
-            get => _clientPaymentExpireDate; 
+            get => _clientPaymentExpireDate;
             set
             {
                 _clientPaymentExpireDate = value;
                 OnPropertyChanged(nameof(ClientPaymentExpireDate));
-            } 
+            }
         }
 
-        public string? DetailsBtn 
+        public string? DetailsBtn
         {
             get => _DetailsBtn;
             set
             {
                 _DetailsBtn = value;
                 OnPropertyChanged(nameof(DetailsBtn));
-            } 
+            }
         }
-        public string? CreateBtn 
-        { 
+        public string? CreateBtn
+        {
             get => _CreateBtn;
             set
             {
                 _CreateBtn = value;
                 OnPropertyChanged(nameof(CreateBtn));
-            } 
+            }
         }
-        public string? UpdateBtn 
+        public string? UpdateBtn
         {
-            get => _UpdateBtn; 
-            set 
+            get => _UpdateBtn;
+            set
             {
                 _UpdateBtn = value;
                 OnPropertyChanged(nameof(UpdateBtn));
             }
-            
+
         }
-        public string? ItemsVisibility1 
+        public string? ItemsVisibility1
         {
-            get => _itemsVisibility1; 
-            set 
+            get => _itemsVisibility1;
+            set
             {
                 _itemsVisibility1 = value;
                 OnPropertyChanged(nameof(ItemsVisibility1));
             }
         }
+        public int? Total { get => _Total; set { _Total = value; OnPropertyChanged(nameof(Total)); } }
+        public string? PlanOption { get => _planOption; set { _planOption = value; OnPropertyChanged(nameof(PlanOption)); } }
+
         //-> Commands
         public ICommand SearchClient { get; }
+        public ICommand CreateClient { get; }
+        public ICommand UpdateClient { get; }
+        public ICommand GetTotal { get; }
 
         public ReceptionViewModel()
         {
             clientRepository = new ClientRepository();
             SearchClient = new ViewModelCommand(ExecuteSearchClient, CanExecuteSearchClient);
+            CreateClient = new ViewModelCommand(ExecuteCreateClient, CanExecuteCreateClient);
+            GetTotal = new ViewModelCommand(ExecuteGetTotal);
+        }
+
+        private void ExecuteGetTotal(object obj)
+        {
+            if (PlanOption == "Mensualidad")
+            {
+                Total = 15;
+            }
+        }
+
+        private bool CanExecuteCreateClient(object obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ExecuteCreateClient(object obj)
+        {
+            throw new NotImplementedException();
         }
 
         private bool CanExecuteSearchClient(object obj)
