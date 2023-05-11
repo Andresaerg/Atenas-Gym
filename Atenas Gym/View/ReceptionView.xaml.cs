@@ -1,4 +1,5 @@
-﻿using MaterialDesignThemes.Wpf;
+﻿using Atenas_Gym.ViewModel;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,8 @@ namespace Atenas_Gym.View
         public ReceptionView()
         {
             InitializeComponent();
+            ReceptionViewModel vm = new ReceptionViewModel();
+            DataContext = vm;
         }
 
         private void Cedula_change(object sender, RoutedEventArgs e)

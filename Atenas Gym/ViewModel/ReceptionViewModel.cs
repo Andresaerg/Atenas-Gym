@@ -33,6 +33,7 @@ namespace Atenas_Gym.ViewModel
 
         //Option fields
         private string? _planOption = "Seleccione un plan";
+        private List<PlanesModel> _planes = new List<PlanesModel>();
 
         //Prices
         private int? _Mes = 15;
@@ -40,8 +41,10 @@ namespace Atenas_Gym.ViewModel
 
 
         private IClientRepository clientRepository;
+        private IPlanRepository planRepository;
 
         private ClientModel clientModel;
+        private PlanesModel planModel;
 
         //Properties
         public string? ClientID
@@ -166,27 +169,34 @@ namespace Atenas_Gym.ViewModel
         }
         public int? Total { get => _Total; set { _Total = value; OnPropertyChanged(nameof(Total)); } }
         public string? PlanOption { get => _planOption; set { _planOption = value; OnPropertyChanged(nameof(PlanOption)); } }
+        public List<PlanesModel> Planes 
+        { 
+            get => _planes;
+            set
+            {
+                _planes = value;
+                OnPropertyChanged(nameof(Planes));
+            } 
+        }
 
         //-> Commands
         public ICommand SearchClient { get; }
         public ICommand CreateClient { get; }
         public ICommand UpdateClient { get; }
-        public ICommand GetTotal { get; }
+        public ICommand GetPlanes { get; }
 
         public ReceptionViewModel()
         {
             clientRepository = new ClientRepository();
+            planRepository = new PlanRepository();
             SearchClient = new ViewModelCommand(ExecuteSearchClient, CanExecuteSearchClient);
             CreateClient = new ViewModelCommand(ExecuteCreateClient, CanExecuteCreateClient);
-            GetTotal = new ViewModelCommand(ExecuteGetTotal);
+            ExecuteGetPlanes();
         }
 
-        private void ExecuteGetTotal(object obj)
+        private void ExecuteGetPlanes()
         {
-            if (PlanOption == "Mensualidad")
-            {
-                Total = 15;
-            }
+            Planes = planRepository.GetByAll().ToList();
         }
 
         private bool CanExecuteCreateClient(object obj)

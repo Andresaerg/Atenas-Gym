@@ -7,8 +7,12 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp" 
              xmlns:viewModel="clr-namespace:Atenas_Gym.ViewModel" d:DataContext="{d:DesignInstance Type=viewModel:ReceptionViewModel}"
+             xmlns:custom="clr-namespace:Atenas_Gym.CustomControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <custom:PlanToPriceConverter x:Key="PlanToPriceConverter"/>
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -370,7 +374,7 @@
                 <Viewbox Grid.Row="2"
                          Grid.Column="1"
                          HorizontalAlignment="Left" 
-                         VerticalAlignment="Top" >
+                         VerticalAlignment="Top">
                     <TextBlock Text="Cédula:" 
                                Width="Auto"
                                FontFamily="Montserrat"
@@ -538,106 +542,213 @@
         </Grid>
         <StackPanel Grid.Column="1"
                     Grid.Row="1" 
-                    HorizontalAlignment="Center">
+                    Margin="30,0">
 
             <StackPanel x:Name="Create"
-                        Visibility="Visible">
-                <TextBlock Text="Agregar cliente" 
-                           HorizontalAlignment="Center" 
-                           VerticalAlignment="Top" 
-                           Width="Auto"
-                           FontFamily="Montserrat"
-                           FontSize="16"
-                           Foreground="{StaticResource secondaryForeground}"/>
-                <TextBox Style="{StaticResource myTextBox}"
-                         Text="Ingrese el nombre del cliente"
-                         Foreground="{StaticResource secondaryForeground}"
-                         Margin="0,20,0,0"/>
-                <TextBox Style="{StaticResource myTextBox}"
-                         Text="Ingrese la cédula del cliente"
-                         Foreground="{StaticResource secondaryForeground}"
-                         Margin="0,20,0,0"/>
-                <ComboBox FontFamily="Montserrat"
-                          FontSize="12"
-                          Margin="0,20,0,0"
-                          Style="{x:Null}"
-                          SelectedValue="{Binding PlanOption, UpdateSourceTrigger=PropertyChanged}"
-                          SelectedValuePath="Content">
-                    <ComboBoxItem IsSelected="True" IsEnabled="False" Content="{Binding PlanOption}"></ComboBoxItem>
-                    <ComboBoxItem>Semanal</ComboBoxItem>
-                    <ComboBoxItem>Mensualidad</ComboBoxItem>
-                    <ComboBoxItem>Trimestre</ComboBoxItem>
-                    <ComboBoxItem>Semestre</ComboBoxItem>
-                    <ComboBoxItem>Anualidad</ComboBoxItem>
-                </ComboBox>
-                <TextBlock Text="{Binding PlanOption, UpdateSourceTrigger=PropertyChanged}"
-                           Foreground="White"/>
-                <TextBlock Text="{Binding Total, UpdateSourceTrigger=PropertyChanged, StringFormat=Monto a pagar: ${0}}"
-                           Foreground="{StaticResource secondaryForeground}"
-                           FontFamily="Montserrat"
-                           FontSize="14"
-                           Margin="0,20,0,0"/>
-                <ComboBox FontFamily="Montserrat"
-                          FontSize="12"
-                          Margin="0,20,0,0"
-                          Style="{x:Null}">
-                    <ComboBoxItem IsSelected="True" IsEnabled="False">Seleccione un método de pago</ComboBoxItem>
-                    <ComboBoxItem>Efectivo</ComboBoxItem>
-                    <ComboBoxItem>Transferencia bancaria</ComboBoxItem>
-                    <ComboBoxItem>Pago móvil</ComboBoxItem>
-                    <ComboBoxItem>Zelle</ComboBoxItem>
-                </ComboBox>
-                <TextBox Text="Referencia de pago"
-                         Foreground="{StaticResource secondaryForeground}"
-                         FontFamily="Montserrat"
-                         FontSize="14"
-                         Background="Transparent"
-                         BorderThickness="0,0,0,2"
-                         Margin="0,20,0,0"
-                         BorderBrush="DarkRed"/>
+                        Visibility="Visible"
+                        Orientation="Vertical"
+                        VerticalAlignment="Stretch"
+                        Margin="50,0">
+                <Grid VerticalAlignment="Stretch"
+                      HorizontalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="15"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="15"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="15"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="15"/>
+                        <RowDefinition Height="20"/>
+                    </Grid.RowDefinitions>
+
+                    <Viewbox Grid.Row="0" Grid.ColumnSpan="3">
+                        <TextBlock Text="Agregar cliente" 
+                               HorizontalAlignment="Center" 
+                               VerticalAlignment="Top" 
+                               Width="Auto"
+                               FontFamily="Montserrat"
+                               FontSize="16"
+                               FontWeight="Bold"
+                               Foreground="{StaticResource secondaryForeground}"/>
+                    </Viewbox>
+
+                        <TextBox   Text="Nombre del cliente"
+                                   Foreground="White"
+                                   FontFamily="Montserrat"
+                                   Style="{StaticResource myTextBox}"
+                                   Padding="0"
+                                   Grid.Row="2"/>
+
+                        <TextBox   Text="Cédula del cliente"
+                                   Foreground="White"
+                                   FontFamily="Montserrat"
+                                   Style="{StaticResource myTextBox}"
+                                   Padding="0"
+                                   Grid.Column="2"
+                                   Grid.Row="2"/>
+
+                        <Viewbox Grid.Row="4">
+                        <TextBlock Text="Seleccione un plan:"
+                                   Foreground="White"
+                                   FontFamily="Montserrat"/>
+                    </Viewbox>
+
+                    <ComboBox Name="PlanComboBox"
+                              FontFamily="Montserrat"
+                              FontSize="15"
+                              Style="{x:Null}"
+                              ItemsSource="{Binding Planes}"
+                              SelectedValue="ID"
+                              DisplayMemberPath="Plan"
+                              SelectedIndex="0"
+                              Grid.Row="5"/>
+
+                    <Viewbox Grid.Row="7" Grid.Column="2">
+                        <TextBlock Text="{Binding SelectedItem, ElementName=PlanComboBox, Converter={StaticResource PlanToPriceConverter}, StringFormat=Total a pagar: ${0}}"
+                               Foreground="{StaticResource secondaryForeground}"
+                               FontFamily="Montserat"/>
+                    </Viewbox>
+
+                    <Viewbox Grid.Row="4" Grid.Column="2">
+                        <TextBlock Text="Método de pago:"
+                                   Foreground="White"
+                                   FontFamily="Montserrat"
+                                   FontSize="14"/>
+                    </Viewbox>
+
+                    <ComboBox FontFamily="Montserrat"
+                              FontSize="14"
+                              Style="{x:Null}"
+                              Grid.Row="5"
+                              Grid.Column="2">
+                        <ComboBoxItem IsSelected="True" IsEnabled="False">Seleccione un método de pago</ComboBoxItem>
+                        <ComboBoxItem>Efectivo</ComboBoxItem>
+                        <ComboBoxItem>Transferencia bancaria</ComboBoxItem>
+                        <ComboBoxItem>Pago móvil</ComboBoxItem>
+                        <ComboBoxItem>Zelle</ComboBoxItem>
+                    </ComboBox>
+
+                    <TextBox Text="Referencia de pago"
+                                 Foreground="{StaticResource secondaryForeground}"
+                                 FontFamily="Montserrat"
+                                 FontSize="14"
+                                 Background="Transparent"
+                                 BorderThickness="0,0,0,2"
+                                 BorderBrush="DarkRed"
+                                 Grid.Row="9"
+                                 Grid.Column="2"/>
+
+                    <Button Content="Crear cliente"
+                                Style="{StaticResource commonButton}"
+                                Grid.Row="11"
+                                Grid.Column="2"/>
+
+                </Grid>
             </StackPanel>
-            
+
             <StackPanel x:Name="Renew"
-                        Visibility="Collapsed">
-                <TextBlock Text="{Binding ClientName, UpdateSourceTrigger=PropertyChanged, StringFormat=Renovar para {0}}" 
-                           HorizontalAlignment="Center" 
-                           VerticalAlignment="Top" 
-                           Width="Auto"
-                           FontFamily="Montserrat"
-                           FontSize="16"
-                           Foreground="{StaticResource secondaryForeground}"/>
-                <ComboBox FontFamily="Montserrat"
-                          FontSize="12"
-                          Margin="0,20,0,0"
-                          Style="{x:Null}">
-                    <ComboBoxItem IsSelected="True" IsEnabled="False">Seleccione un plan</ComboBoxItem>
-                    <ComboBoxItem>Mensualidad</ComboBoxItem>
-                    <ComboBoxItem>Trimestre</ComboBoxItem>
-                    <ComboBoxItem>Anualidad</ComboBoxItem>
-                </ComboBox>
-                <TextBlock Text="$ Cantidad total a pagar"
-                           Foreground="{StaticResource secondaryForeground}"
-                           FontFamily="Montserrat"
-                           FontSize="14"
-                           Margin="0,20,0,0"/>
-                <ComboBox FontFamily="Montserrat"
-                          FontSize="12"
-                          Margin="0,20,0,0"
-                          Style="{x:Null}">
-                    <ComboBoxItem IsSelected="True" IsEnabled="False">Seleccione un método de pago</ComboBoxItem>
-                    <ComboBoxItem>Efectivo</ComboBoxItem>
-                    <ComboBoxItem>Transferencia bancaria</ComboBoxItem>
-                    <ComboBoxItem>Pago móvil</ComboBoxItem>
-                    <ComboBoxItem>Zelle</ComboBoxItem>
-                </ComboBox>
-                <TextBox Text="Referencia de pago"
-                         Foreground="{StaticResource secondaryForeground}"
-                         FontFamily="Montserrat"
-                         FontSize="14"
-                         Background="Transparent"
-                         BorderThickness="0,0,0,2"
-                         Margin="0,20,0,0"
-                         BorderBrush="DarkRed"/>
+                        Visibility="Collapsed"
+                        Orientation="Vertical"
+                        VerticalAlignment="Stretch"
+                        Margin="50,0">
+                <Grid VerticalAlignment="Stretch"
+                      HorizontalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="25"/>
+                    </Grid.RowDefinitions>
+
+                    <Viewbox Grid.Row="0" Grid.ColumnSpan="3">
+                        <TextBlock Text="{Binding ClientName, UpdateSourceTrigger=PropertyChanged, StringFormat=Renovar para {0}}" 
+                               HorizontalAlignment="Center" 
+                               VerticalAlignment="Top" 
+                               Width="Auto"
+                               FontFamily="Montserrat"
+                               FontSize="16"
+                               FontWeight="Bold"
+                               Foreground="{StaticResource secondaryForeground}"/>
+                    </Viewbox>
+
+                    <Viewbox Grid.Row="2">
+                        <TextBlock Text="Seleccione un plan:"
+                                   Foreground="White"
+                                   FontFamily="Montserrat"/>
+                    </Viewbox>
+
+                    <ComboBox Name="PlanComboBox2"
+                              FontFamily="Montserrat"
+                              FontSize="15"
+                              Style="{x:Null}"
+                              ItemsSource="{Binding Planes}"
+                              SelectedValue="ID"
+                              DisplayMemberPath="Plan"
+                              SelectedIndex="0"
+                              Grid.Row="3"/>
+
+                    <Viewbox Grid.Row="5" Grid.Column="2">
+                        <TextBlock Text="{Binding SelectedItem, ElementName=PlanComboBox2, Converter={StaticResource PlanToPriceConverter}, StringFormat=Total a pagar: ${0}}"
+                               Foreground="{StaticResource secondaryForeground}"
+                               FontFamily="Montserat"/>
+                    </Viewbox>
+
+                    <Viewbox Grid.Row="2" Grid.Column="2">
+                        <TextBlock Text="Método de pago:"
+                                   Foreground="White"
+                                   FontFamily="Montserrat"
+                                   FontSize="14"/>
+                    </Viewbox>
+                    
+                    <ComboBox FontFamily="Montserrat"
+                              FontSize="14"
+                              Style="{x:Null}"
+                              Grid.Row="3"
+                              Grid.Column="2">
+                        <ComboBoxItem IsSelected="True" IsEnabled="False">Seleccione un método de pago</ComboBoxItem>
+                        <ComboBoxItem>Efectivo</ComboBoxItem>
+                        <ComboBoxItem>Transferencia bancaria</ComboBoxItem>
+                        <ComboBoxItem>Pago móvil</ComboBoxItem>
+                        <ComboBoxItem>Zelle</ComboBoxItem>
+                    </ComboBox>
+
+                        <TextBox Text="Referencia de pago"
+                                 Foreground="{StaticResource secondaryForeground}"
+                                 FontFamily="Montserrat"
+                                 FontSize="14"
+                                 Background="Transparent"
+                                 BorderThickness="0,0,0,2"
+                                 BorderBrush="DarkRed"
+                                 Grid.Row="7"
+                                 Grid.Column="2"/>
+                    
+                        <Button Content="Renovar cliente"
+                                Style="{StaticResource commonButton}"
+                                Grid.Row="9"
+                                Grid.Column="2"/>
+
+                </Grid>
             </StackPanel>
         </StackPanel>
 
