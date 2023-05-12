@@ -16,9 +16,30 @@ namespace Atenas_Gym.Repositories
             throw new NotImplementedException();
         }
 
-        public void AddClientPayment(ClientModel clientModel)
+        public bool AddClientPayment(string cedula, string opcion, string method, string reference)
         {
-            throw new NotImplementedException();
+            bool result;
+
+            MySqlCommand command = new MySqlCommand();
+            {
+                GetConnection.Open();
+                command.Connection = GetConnection;
+                //command.CommandText = "UPDATE pagos p INNER JOIN clientes c ON p.Cedula = c.Cedula SET p.Fecha_Pago = IF(c.Estado = 'En deuda', CURDATE(), IF(CURDATE() = p.Fecha_Vencimiento, CURDATE(), p.Fecha_Pago)), p.Fecha_Vencimiento = IF(c.Estado = 'En deuda', DATE_ADD(CURDATE(), INTERVAL " + opcion+"), DATE_ADD(p.Fecha_Vencimiento, INTERVAL "+opcion+")), c.Estado = IF(c.Estado = 'En deuda', 'Solvente', c.Estado) WHERE p.Cedula = @cedula";
+                command.CommandText = "INSERT INTO pagos (Cedula, Fecha_Pago, Fecha_Vencimiento, Tipo_Pago, Referencia) SELECT c.Cedula, IF(c.Estado = 'En deuda', CURDATE(), IF(CURDATE() = p.Fecha_Vencimiento, CURDATE(), p.Fecha_Pago)), IF(c.Estado = 'En deuda', DATE_ADD(CURDATE(), INTERVAL " + opcion+"), DATE_ADD(p.Fecha_Vencimiento, INTERVAL "+opcion+")), @method, @reference FROM clientes c LEFT JOIN pagos p ON p.Cedula = c.Cedula WHERE c.Cedula = @cedula;";
+                
+                command.Parameters.Add("@cedula", MySqlDbType.Int64).Value = cedula;
+
+                result = command.ExecuteNonQuery() > 0 ? true : false;
+
+                //MySqlCommand updateCommand = new MySqlCommand();
+                //updateCommand.Connection = GetConnection;
+                //updateCommand.CommandText = "UPDATE clientes SET Estado = IF(Estado = 'En deuda', 'Solvente', Estado) WHERE Cedula = @cedula;";
+                //updateCommand.Parameters.Add("@cedula", MySqlDbType.Int64).Value = cedula;
+                //updateCommand.ExecuteNonQuery();
+
+                GetConnection.Close();
+            }
+            return result;
         }
 
         public ClientModel AuthenticateClient(string cedula)
@@ -93,3 +114,7 @@ namespace Atenas_Gym.Repositories
         }
     }
 }
+
+
+
+//INSERT INTO pagos (Cliente, Cedula, Fecha_Pago, Fecha_Vencimiento, Tipo_Pago, Referencia) SELECT c.Nombre, c.Cedula, IF(c.Estado = 'En deuda', CURDATE(), IF(CURDATE() = p.Fecha_Vencimiento, CURDATE(), p.Fecha_Pago)), IF(c.Estado = 'En deuda', DATE_ADD(CURDATE(), INTERVAL 1 MONTH), DATE_ADD(p.Fecha_Vencimiento, INTERVAL 1 MONTH)), "Pago móvil", "UNA PRUEBA" FROM clientes c LEFT JOIN pagos p ON p.Cedula = c.Cedula WHERE c.Cedula = 123455;

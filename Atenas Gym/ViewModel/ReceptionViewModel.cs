@@ -7,6 +7,7 @@ using System.Net;
 using System.Security.Principal;
 using System.Text;
 using System.Threading;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -32,12 +33,10 @@ namespace Atenas_Gym.ViewModel
         private string? _itemsVisibility1 = "Collapsed";
 
         //Option fields
-        private string? _planOption = "Seleccione un plan";
+        private string? _paymentMethods;
         private List<PlanesModel> _planes = new List<PlanesModel>();
-
-        //Prices
-        private int? _Mes = 15;
-        private int? _Total;
+        private int _selectedIndex = 0;
+        private string? _referencia;
 
 
         private IClientRepository clientRepository;
@@ -167,8 +166,7 @@ namespace Atenas_Gym.ViewModel
                 OnPropertyChanged(nameof(ItemsVisibility1));
             }
         }
-        public int? Total { get => _Total; set { _Total = value; OnPropertyChanged(nameof(Total)); } }
-        public string? PlanOption { get => _planOption; set { _planOption = value; OnPropertyChanged(nameof(PlanOption)); } }
+        public string? Payment_Methods { get => _paymentMethods; set { _paymentMethods = value; OnPropertyChanged(nameof(Payment_Methods)); } }
         public List<PlanesModel> Planes 
         { 
             get => _planes;
@@ -178,6 +176,8 @@ namespace Atenas_Gym.ViewModel
                 OnPropertyChanged(nameof(Planes));
             } 
         }
+        public int SelectedIndex { get => _selectedIndex; set { _selectedIndex = value; OnPropertyChanged(nameof(SelectedIndex)); } }
+        public string? Referencia_Pago { get => _referencia; set { _referencia = value; OnPropertyChanged(nameof(Referencia_Pago)); } }
 
         //-> Commands
         public ICommand SearchClient { get; }
@@ -191,6 +191,7 @@ namespace Atenas_Gym.ViewModel
             planRepository = new PlanRepository();
             SearchClient = new ViewModelCommand(ExecuteSearchClient, CanExecuteSearchClient);
             CreateClient = new ViewModelCommand(ExecuteCreateClient, CanExecuteCreateClient);
+            UpdateClient = new ViewModelCommand(ExecuteUpdateClient, CanExecuteUpdateClient);
             ExecuteGetPlanes();
         }
 
@@ -199,9 +200,30 @@ namespace Atenas_Gym.ViewModel
             Planes = planRepository.GetByAll().ToList();
         }
 
+        private bool CanExecuteUpdateClient(object obj)
+        {
+            bool validData;
+            if (string.IsNullOrWhiteSpace(ClientCI) || ClientCI.Length < 5)
+            {
+                validData = false;
+            }
+            else
+            {
+                validData = true;
+            }
+            return validData;
+        }
+
+        private void ExecuteUpdateClient(object obj)
+        {
+            var method = clientRepository.AddClientPayment(ClientCI, Planes[SelectedIndex].Tiempo, Payment_Methods, Referencia_Pago);
+
+            if (method) { MessageBox.Show("Cliente Actualizado"); ExecuteSearchClient(ClientCI); }
+        }
+
         private bool CanExecuteCreateClient(object obj)
         {
-            throw new NotImplementedException();
+            return false;
         }
 
         private void ExecuteCreateClient(object obj)

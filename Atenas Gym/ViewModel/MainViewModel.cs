@@ -176,7 +176,7 @@ namespace Atenas_Gym.ViewModel
 
                 if(user.Status == "Guardia")
                 {
-                    ExecuteShowClientsViewCommand(null);
+                    ExecuteShowReceptionViewCommand(null);
                 }
             }
             else

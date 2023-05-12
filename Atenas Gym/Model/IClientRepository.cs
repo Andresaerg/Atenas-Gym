@@ -13,7 +13,7 @@ namespace Atenas_Gym.Model
         bool AddClient(ClientModel clientModel);
         void EditClient(ClientModel clientModel);
         void DeleteClient(int id);
-        void AddClientPayment(ClientModel clientModel);
+        bool AddClientPayment(string cedula, string opcion, string method, string reference);
         ClientModel GetClienById(int id);
         IEnumerable<UserModel> GetByAll();
         //...

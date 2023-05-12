@@ -37,9 +37,10 @@ namespace Atenas_Gym.Repositories
                 MySqlDataReader reader =  cmd.ExecuteReader();
                 while(reader.Read()){
                     PlanesModel plan = new PlanesModel();
-                    plan.ID = reader.GetString(0);
+                    plan.ID = reader.GetInt32(0);
                     plan.Plan = reader.GetString(1);
                     plan.Precio = reader.GetString(2);
+                    plan.Tiempo = reader.GetString(3);
 
                     result.Add(plan);
                 }

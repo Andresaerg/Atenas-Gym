@@ -545,7 +545,7 @@
                     Margin="30,0">
 
             <StackPanel x:Name="Create"
-                        Visibility="Visible"
+                        Visibility="Collapsed"
                         Orientation="Vertical"
                         VerticalAlignment="Stretch"
                         Margin="50,0">
@@ -564,7 +564,7 @@
                         <RowDefinition Height="20"/>
                         <RowDefinition Height="20"/>
                         <RowDefinition Height="15"/>
-                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="25"/>
                         <RowDefinition Height="15"/>
                         <RowDefinition Height="25"/>
                         <RowDefinition Height="15"/>
@@ -613,7 +613,7 @@
                               SelectedIndex="0"
                               Grid.Row="5"/>
 
-                    <Viewbox Grid.Row="7" Grid.Column="2">
+                    <Viewbox Grid.Row="7" Grid.Column="0">
                         <TextBlock Text="{Binding SelectedItem, ElementName=PlanComboBox, Converter={StaticResource PlanToPriceConverter}, StringFormat=Total a pagar: ${0}}"
                                Foreground="{StaticResource secondaryForeground}"
                                FontFamily="Montserat"/>
@@ -630,7 +630,9 @@
                               FontSize="14"
                               Style="{x:Null}"
                               Grid.Row="5"
-                              Grid.Column="2">
+                              Grid.Column="2"
+                              SelectedValue="{Binding Payment_Methods, UpdateSourceTrigger=PropertyChanged}"
+                              SelectedValuePath="Content">
                         <ComboBoxItem IsSelected="True" IsEnabled="False">Seleccione un método de pago</ComboBoxItem>
                         <ComboBoxItem>Efectivo</ComboBoxItem>
                         <ComboBoxItem>Transferencia bancaria</ComboBoxItem>
@@ -639,25 +641,25 @@
                     </ComboBox>
 
                     <TextBox Text="Referencia de pago"
-                                 Foreground="{StaticResource secondaryForeground}"
-                                 FontFamily="Montserrat"
-                                 FontSize="14"
-                                 Background="Transparent"
-                                 BorderThickness="0,0,0,2"
-                                 BorderBrush="DarkRed"
-                                 Grid.Row="9"
-                                 Grid.Column="2"/>
+                             Foreground="{StaticResource secondaryForeground}"
+                             FontFamily="Montserrat"
+                             FontSize="14"
+                             Background="Transparent"
+                             BorderThickness="0,0,0,2"
+                             BorderBrush="DarkRed"
+                             Grid.Row="7"
+                             Grid.Column="2"/>
 
                     <Button Content="Crear cliente"
-                                Style="{StaticResource commonButton}"
-                                Grid.Row="11"
-                                Grid.Column="2"/>
-
+                            Style="{StaticResource commonButton}"
+                            Grid.Row="9"
+                            Grid.Column="2"
+                            Command="{Binding CreateClient}"/>
                 </Grid>
             </StackPanel>
 
             <StackPanel x:Name="Renew"
-                        Visibility="Collapsed"
+                        Visibility="Visible"
                         Orientation="Vertical"
                         VerticalAlignment="Stretch"
                         Margin="50,0">
@@ -673,8 +675,8 @@
                         <RowDefinition Height="20"/>
                         <RowDefinition Height="20"/>
                         <RowDefinition Height="20"/>
-                        <RowDefinition Height="40"/>
                         <RowDefinition Height="20"/>
+                        <RowDefinition Height="25"/>
                         <RowDefinition Height="20"/>
                         <RowDefinition Height="25"/>
                         <RowDefinition Height="20"/>
@@ -683,13 +685,13 @@
 
                     <Viewbox Grid.Row="0" Grid.ColumnSpan="3">
                         <TextBlock Text="{Binding ClientName, UpdateSourceTrigger=PropertyChanged, StringFormat=Renovar para {0}}" 
-                               HorizontalAlignment="Center" 
-                               VerticalAlignment="Top" 
-                               Width="Auto"
-                               FontFamily="Montserrat"
-                               FontSize="16"
-                               FontWeight="Bold"
-                               Foreground="{StaticResource secondaryForeground}"/>
+                                   HorizontalAlignment="Center" 
+                                   VerticalAlignment="Top" 
+                                   Width="Auto"
+                                   FontFamily="Montserrat"
+                                   FontSize="16"
+                                   FontWeight="Bold"
+                                   Foreground="{StaticResource secondaryForeground}"/>
                     </Viewbox>
 
                     <Viewbox Grid.Row="2">
@@ -705,13 +707,13 @@
                               ItemsSource="{Binding Planes}"
                               SelectedValue="ID"
                               DisplayMemberPath="Plan"
-                              SelectedIndex="0"
+                              SelectedIndex="{Binding SelectedIndex}"
                               Grid.Row="3"/>
 
-                    <Viewbox Grid.Row="5" Grid.Column="2">
+                    <Viewbox Grid.Row="5" Grid.Column="0">
                         <TextBlock Text="{Binding SelectedItem, ElementName=PlanComboBox2, Converter={StaticResource PlanToPriceConverter}, StringFormat=Total a pagar: ${0}}"
-                               Foreground="{StaticResource secondaryForeground}"
-                               FontFamily="Montserat"/>
+                                   Foreground="{StaticResource secondaryForeground}"
+                                   FontFamily="Montserat"/>
                     </Viewbox>
 
                     <Viewbox Grid.Row="2" Grid.Column="2">
@@ -725,28 +727,31 @@
                               FontSize="14"
                               Style="{x:Null}"
                               Grid.Row="3"
-                              Grid.Column="2">
+                              Grid.Column="2"
+                              SelectedValue="{Binding Payment_Methods, UpdateSourceTrigger=PropertyChanged}"
+                              SelectedValuePath="Content">
                         <ComboBoxItem IsSelected="True" IsEnabled="False">Seleccione un método de pago</ComboBoxItem>
                         <ComboBoxItem>Efectivo</ComboBoxItem>
-                        <ComboBoxItem>Transferencia bancaria</ComboBoxItem>
                         <ComboBoxItem>Pago móvil</ComboBoxItem>
+                        <ComboBoxItem>Transferencia bancaria</ComboBoxItem>
                         <ComboBoxItem>Zelle</ComboBoxItem>
                     </ComboBox>
 
-                        <TextBox Text="Referencia de pago"
-                                 Foreground="{StaticResource secondaryForeground}"
-                                 FontFamily="Montserrat"
-                                 FontSize="14"
-                                 Background="Transparent"
-                                 BorderThickness="0,0,0,2"
-                                 BorderBrush="DarkRed"
-                                 Grid.Row="7"
-                                 Grid.Column="2"/>
-                    
-                        <Button Content="Renovar cliente"
-                                Style="{StaticResource commonButton}"
-                                Grid.Row="9"
-                                Grid.Column="2"/>
+                    <TextBox Text="{Binding Referencia_Pago, UpdateSourceTrigger=PropertyChanged}"
+                             Foreground="{StaticResource secondaryForeground}"
+                             FontFamily="Montserrat"
+                             FontSize="14"
+                             Background="Transparent"
+                             BorderThickness="0,0,0,2"
+                             BorderBrush="DarkRed"
+                             Grid.Row="5"
+                             Grid.Column="2"/>
+
+                    <Button Content="Renovar cliente"
+                            Style="{StaticResource commonButton}"
+                            Grid.Row="7"
+                            Grid.Column="2"
+                            Command="{Binding UpdateClient}"/>
 
                 </Grid>
             </StackPanel>
