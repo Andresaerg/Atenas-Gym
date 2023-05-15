@@ -379,8 +379,7 @@
                                Width="Auto"
                                FontFamily="Montserrat"
                                FontSize="16"
-                               Foreground="{StaticResource secondaryForeground}"
-                               Visibility="{Binding ItemsVisibility1}"/>
+                               Foreground="{StaticResource secondaryForeground}"/>
                 </Viewbox>
 
                 <Viewbox Grid.Row="2"
@@ -545,7 +544,7 @@
                     Margin="30,0">
 
             <StackPanel x:Name="Create"
-                        Visibility="Collapsed"
+                        Visibility="Visible"
                         Orientation="Vertical"
                         VerticalAlignment="Stretch"
                         Margin="50,0">
@@ -582,20 +581,21 @@
                                Foreground="{StaticResource secondaryForeground}"/>
                     </Viewbox>
 
-                        <TextBox   Text="Nombre del cliente"
-                                   Foreground="White"
+                        <TextBox   Text="{Binding ClientName, UpdateSourceTrigger=PropertyChanged}"
+                                   Foreground="{StaticResource secondaryForeground}"
                                    FontFamily="Montserrat"
                                    Style="{StaticResource myTextBox}"
                                    Padding="0"
                                    Grid.Row="2"/>
 
-                        <TextBox   Text="Cédula del cliente"
-                                   Foreground="White"
+                        <TextBox   Text="{Binding ClientID, UpdateSourceTrigger=PropertyChanged}"
+                                   Foreground="{StaticResource secondaryForeground}"
                                    FontFamily="Montserrat"
                                    Style="{StaticResource myTextBox}"
                                    Padding="0"
                                    Grid.Column="2"
-                                   Grid.Row="2"/>
+                                   Grid.Row="2"
+                                   IsEnabled="False"/>
 
                         <Viewbox Grid.Row="4">
                         <TextBlock Text="Seleccione un plan:"
@@ -610,7 +610,7 @@
                               ItemsSource="{Binding Planes}"
                               SelectedValue="ID"
                               DisplayMemberPath="Plan"
-                              SelectedIndex="0"
+                              SelectedIndex="{Binding SelectedIndex}"
                               Grid.Row="5"/>
 
                     <Viewbox Grid.Row="7" Grid.Column="0">
@@ -654,12 +654,13 @@
                             Style="{StaticResource commonButton}"
                             Grid.Row="9"
                             Grid.Column="2"
-                            Command="{Binding CreateClient}"/>
+                            Command="{Binding CreateClient}"
+                            Click="CreateBtn"/>
                 </Grid>
             </StackPanel>
 
             <StackPanel x:Name="Renew"
-                        Visibility="Visible"
+                        Visibility="Collapsed"
                         Orientation="Vertical"
                         VerticalAlignment="Stretch"
                         Margin="50,0">
@@ -751,7 +752,8 @@
                             Style="{StaticResource commonButton}"
                             Grid.Row="7"
                             Grid.Column="2"
-                            Command="{Binding UpdateClient}"/>
+                            Command="{Binding UpdateClient}"
+                            Click="RenewBtn"/>
 
                 </Grid>
             </StackPanel>

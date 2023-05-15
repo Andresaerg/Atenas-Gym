@@ -223,12 +223,35 @@ namespace Atenas_Gym.ViewModel
 
         private bool CanExecuteCreateClient(object obj)
         {
-            return false;
+            bool validData;
+            if (string.IsNullOrWhiteSpace(ClientCI) || ClientCI.Length < 5)
+            {
+                validData = false;
+            }
+            else
+            {
+                validData = true;
+            }
+            return validData;
         }
 
         private void ExecuteCreateClient(object obj)
         {
-            throw new NotImplementedException();
+            clientModel = new ClientModel();
+            clientModel.Name = ClientName;
+            clientModel.Cedula = ClientID;
+            clientModel.PaymentStatus = "En deuda";
+            clientModel.RegisterDate = DateTime.Now.ToString("yyyy-MM-dd");
+            clientModel.Image = ClientImage;
+            clientModel.Weight = "0";
+            clientModel.Height = "0";
+            clientModel.Arms = "0";
+            clientModel.Waist = "0";
+            clientModel.Hips = "0";
+            clientModel.Thighs = "0";
+
+            var method = clientRepository.AddClient(clientModel, Planes[SelectedIndex].Tiempo, Payment_Methods, Referencia_Pago);
+            if (method) { MessageBox.Show("Cliente creado"); ExecuteSearchClient(ClientCI); }
         }
 
         private bool CanExecuteSearchClient(object obj)

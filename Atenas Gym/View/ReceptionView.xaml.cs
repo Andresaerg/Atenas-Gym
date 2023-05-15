@@ -70,5 +70,15 @@ namespace Atenas_Gym.View
             Renew.Visibility = Visibility.Collapsed;
             Create.Visibility = Visibility.Collapsed;
         }
+
+        private void RenewBtn(object sender, RoutedEventArgs e)
+        {
+            Renew.Visibility = Visibility.Collapsed;
+        }
+
+        private void CreateBtn(object sender, RoutedEventArgs e)
+        {
+            Create.Visibility = Visibility.Collapsed;
+        }
     }
 }

@@ -19,7 +19,7 @@ namespace Atenas_Gym.Model
         public string? Waist { get; set; }
         public string? Hips { get; set; }
         public string? Arms { get; set; }
-        public string? Thights { get; set; }
+        public string? Thighs { get; set; }
         public string? Payment { get; set; }
         public string? Expire { get; set; }
     }

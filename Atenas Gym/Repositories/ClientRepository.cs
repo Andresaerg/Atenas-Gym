@@ -11,9 +11,54 @@ namespace Atenas_Gym.Repositories
 {
     public class ClientRepository : RepositoryBase, IClientRepository
     {
-        public bool AddClient(ClientModel clientModel)
+        public bool AddClient(ClientModel clientModel, string opcion, string method, string reference)
         {
-            throw new NotImplementedException();
+            bool client;
+
+            MySqlCommand command = new MySqlCommand();
+            {
+                GetConnection.Open();
+                command.Connection = GetConnection;
+                command.CommandText = "INSERT INTO clientes(Nombre, Cedula, Estado, Fecha_Ingreso, Ruta_IMG, Peso, Estatura, Brazos, Cintura, Cadera, Muslos) VALUES (@name, @cedula, @estado, @ingreso, @imagen, @peso, @altura, @brazos, @cintura, @caderas, @muslos)";
+
+                bool ci_exists = false;
+                using (MySqlCommand cmd = new MySqlCommand("SELECT * FROM usuarios WHERE Cedula = @cedula", GetConnection))
+                {
+                    cmd.Parameters.Add("@cedula", MySqlDbType.String).Value = clientModel.Cedula;
+                    ci_exists = cmd.ExecuteScalar() == null ? false : true;
+                }
+
+                if (ci_exists == false)
+                {
+                    command.Parameters.Add("@name", MySqlDbType.String).Value = clientModel.Name;
+                    command.Parameters.Add("@cedula", MySqlDbType.String).Value = clientModel.Cedula;
+                    command.Parameters.Add("@estado", MySqlDbType.String).Value = clientModel.PaymentStatus;
+                    command.Parameters.Add("@ingreso", MySqlDbType.String).Value = clientModel.RegisterDate;
+                    command.Parameters.Add("@imagen", MySqlDbType.String).Value = clientModel.Image;
+                    command.Parameters.Add("@peso", MySqlDbType.String).Value = clientModel.Weight;
+                    command.Parameters.Add("@altura", MySqlDbType.String).Value = clientModel.Height;
+                    command.Parameters.Add("@brazos", MySqlDbType.String).Value = clientModel.Arms;
+                    command.Parameters.Add("@cintura", MySqlDbType.String).Value = clientModel.Waist;
+                    command.Parameters.Add("@caderas", MySqlDbType.String).Value = clientModel.Hips;
+                    command.Parameters.Add("@muslos", MySqlDbType.String).Value = clientModel.Thighs;
+
+                    client = command.ExecuteNonQuery() > 0 ? true : false;
+
+                    if (client)
+                    {
+                        GetConnection.Close();
+                        AddClientPayment(clientModel.Cedula, opcion, method, reference);
+                    }
+                }
+                else
+                {
+                    client = false;
+                    GetConnection.Close();
+                }
+
+            }
+
+            return client;
         }
 
         public bool AddClientPayment(string cedula, string opcion, string method, string reference)
@@ -25,17 +70,24 @@ namespace Atenas_Gym.Repositories
                 GetConnection.Open();
                 command.Connection = GetConnection;
                 //command.CommandText = "UPDATE pagos p INNER JOIN clientes c ON p.Cedula = c.Cedula SET p.Fecha_Pago = IF(c.Estado = 'En deuda', CURDATE(), IF(CURDATE() = p.Fecha_Vencimiento, CURDATE(), p.Fecha_Pago)), p.Fecha_Vencimiento = IF(c.Estado = 'En deuda', DATE_ADD(CURDATE(), INTERVAL " + opcion+"), DATE_ADD(p.Fecha_Vencimiento, INTERVAL "+opcion+")), c.Estado = IF(c.Estado = 'En deuda', 'Solvente', c.Estado) WHERE p.Cedula = @cedula";
-                command.CommandText = "INSERT INTO pagos (Cedula, Fecha_Pago, Fecha_Vencimiento, Tipo_Pago, Referencia) SELECT c.Cedula, IF(c.Estado = 'En deuda', CURDATE(), IF(CURDATE() = p.Fecha_Vencimiento, CURDATE(), p.Fecha_Pago)), IF(c.Estado = 'En deuda', DATE_ADD(CURDATE(), INTERVAL " + opcion+"), DATE_ADD(p.Fecha_Vencimiento, INTERVAL "+opcion+")), @method, @reference FROM clientes c LEFT JOIN pagos p ON p.Cedula = c.Cedula WHERE c.Cedula = @cedula;";
-                
+                //command.CommandText = "INSERT INTO pagos (Cedula, Fecha_Pago, Fecha_Vencimiento, Tipo_Pago, Referencia) SELECT c.Cedula, IF(c.Estado = 'En deuda', CURDATE(), IF(CURDATE() = p.Fecha_Vencimiento, CURDATE(), p.Fecha_Pago)), IF(c.Estado = 'En deuda', DATE_ADD(CURDATE(), INTERVAL " + opcion+"), DATE_ADD(p.Fecha_Vencimiento, INTERVAL "+opcion+")), @method, @reference FROM clientes c LEFT JOIN pagos p ON p.Cedula = c.Cedula WHERE c.Cedula = @cedula;";
+
+                command.CommandText = "INSERT INTO pagos (Cliente, Cedula, Fecha_Pago, Fecha_Vencimiento, Tipo_Pago, Referencia) SELECT c.Nombre, c.Cedula, CURDATE(), IF(c.Estado = 'En deuda', DATE_ADD(CURDATE(), INTERVAL " + opcion + "), DATE_ADD(p.Fecha_Vencimiento, INTERVAL " + opcion + ")), @method, @reference FROM clientes c LEFT JOIN pagos p ON p.Cedula = c.Cedula WHERE c.Cedula = @cedula;";
+
                 command.Parameters.Add("@cedula", MySqlDbType.Int64).Value = cedula;
+                command.Parameters.Add("@method", MySqlDbType.String).Value = method;
+                command.Parameters.Add("@reference", MySqlDbType.String).Value = reference;
 
                 result = command.ExecuteNonQuery() > 0 ? true : false;
 
-                //MySqlCommand updateCommand = new MySqlCommand();
-                //updateCommand.Connection = GetConnection;
-                //updateCommand.CommandText = "UPDATE clientes SET Estado = IF(Estado = 'En deuda', 'Solvente', Estado) WHERE Cedula = @cedula;";
-                //updateCommand.Parameters.Add("@cedula", MySqlDbType.Int64).Value = cedula;
-                //updateCommand.ExecuteNonQuery();
+                if (result)
+                {
+                    MySqlCommand updateCommand = new MySqlCommand();
+                    updateCommand.Connection = GetConnection;
+                    updateCommand.CommandText = "UPDATE clientes SET Estado = IF(Estado = 'En deuda', 'Solvente', Estado) WHERE Cedula = @cedula;";
+                    updateCommand.Parameters.Add("@cedula", MySqlDbType.Int64).Value = cedula;
+                    updateCommand.ExecuteNonQuery();
+                }
 
                 GetConnection.Close();
             }
@@ -82,7 +134,7 @@ namespace Atenas_Gym.Repositories
                         Obj.Arms = reader.IsDBNull(8) ? "Sin datos" : reader.GetString(8);
                         Obj.Waist = reader.IsDBNull(9) ? "Sin datos" : reader.GetString(9);
                         Obj.Hips = reader.IsDBNull(10) ? "Sin datos" : reader.GetString(10);
-                        Obj.Thights = reader.IsDBNull(11) ? "Sin datos" : reader.GetString(11);
+                        Obj.Thighs = reader.IsDBNull(11) ? "Sin datos" : reader.GetString(11);
                         Obj.Payment = formattedDate2;
                         Obj.Expire = formattedDate3;
                     }
