@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Atenas_Gym.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace Atenas_Gym.View
         public HomeView()
         {
             InitializeComponent();
+            DataContext = new HomeViewModel();
         }
     }
 }

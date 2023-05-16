@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Atenas_Gym.View"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
-             xmlns:wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" xmlns:viewmodel="clr-namespace:Atenas_Gym.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:HomeViewModel}"
              mc:Ignorable="d" 
              Width="Auto"
              Height="Auto"
@@ -43,35 +43,36 @@
                                 Grid.Column="0"
                                 Grid.ColumnSpan="2">
 
-                        <Label Content="Remuneración mensual" 
-                           HorizontalAlignment="Left" 
-                           Height="30" 
-                           Margin="10,10,0,0" 
-                           VerticalAlignment="Top" 
-                           Width="160" 
-                           FontFamily="Montserrat"
-                           FontSize="14"
-                           Foreground="{StaticResource secondaryForeground}"/>
-                        <Label Content="$ Monto" 
-                           HorizontalAlignment="Left" 
-                           Height="30" 
-                           Margin="10,5,0,0" 
-                           VerticalAlignment="Top" 
-                           Width="130" 
-                           FontFamily="Montserrat"
-                           Foreground="{StaticResource secondaryForeground}" 
-                           FontSize="18" 
-                           FontWeight="Bold"/>
+                        <Label Content="Ganancia mensual" 
+                               HorizontalAlignment="Left" 
+                               Height="30" 
+                               Margin="10,10,0,0" 
+                               VerticalAlignment="Top" 
+                               Width="160" 
+                               FontFamily="Montserrat"
+                               FontSize="14"
+                               Foreground="{StaticResource secondaryForeground}"/>
+                        <TextBlock Text="{Binding Monto, StringFormat=$ {0}}" 
+                                   HorizontalAlignment="Left" 
+                                   Height="30" 
+                                   Margin="10,5,0,0" 
+                                   VerticalAlignment="Top" 
+                                   Width="130" 
+                                   FontFamily="Montserrat"
+                                   Foreground="{StaticResource secondaryForeground}" 
+                                   FontSize="18" 
+                                   FontWeight="Bold"/>
 
-                        <Label Content="Actualizado ..." 
-                           HorizontalAlignment="Left" 
-                           Height="30" 
-                           Margin="10,5,0,0" 
-                           VerticalAlignment="Top" 
-                           Width="130" 
-                           FontFamily="Montserrat"
-                           Foreground="{StaticResource secondaryForeground}" 
-                           FontSize="12"/>
+                        <TextBlock Text="{Binding MontoTotal, StringFormat=Anual: $ {0}}" 
+                                   HorizontalAlignment="Left" 
+                                   Height="30" 
+                                   Margin="10,5,0,0" 
+                                   VerticalAlignment="Top" 
+                                   Width="90" 
+                                   FontFamily="Montserrat"
+                                   Foreground="{StaticResource secondaryForeground}" 
+                                   FontSize="12"
+                                   Background="Transparent"/>
 
                     </StackPanel>
 
@@ -101,34 +102,34 @@
                                 Grid.ColumnSpan="2">
 
                         <Label Content="Clientes actuales" 
-                           HorizontalAlignment="Left" 
-                           Height="30" 
-                           Margin="10,10,0,0" 
-                           VerticalAlignment="Top" 
-                           Width="160" 
-                           FontFamily="Montserrat"
-                           FontSize="14"
-                           Foreground="{StaticResource secondaryForeground}"/>
-                        <Label Content="Cantidad" 
-                           HorizontalAlignment="Left" 
-                           Height="30" 
-                           Margin="10,5,0,0" 
-                           VerticalAlignment="Top" 
-                           Width="130" 
-                           FontFamily="Montserrat"
-                           Foreground="{StaticResource secondaryForeground}" 
-                           FontSize="18" 
-                           FontWeight="Bold"/>
+                               HorizontalAlignment="Left" 
+                               Height="30" 
+                               Margin="10,10,0,0" 
+                               VerticalAlignment="Top" 
+                               Width="160" 
+                               FontFamily="Montserrat"
+                               FontSize="14"
+                               Foreground="{StaticResource secondaryForeground}"/>
+                        <TextBlock Text="{Binding Clientes}" 
+                                   HorizontalAlignment="Left" 
+                                   Height="30" 
+                                   Margin="10,5,0,0" 
+                                   VerticalAlignment="Top" 
+                                   Width="130" 
+                                   FontFamily="Montserrat"
+                                   Foreground="{StaticResource secondaryForeground}" 
+                                   FontSize="18" 
+                                   FontWeight="Bold"/>
 
-                        <Label Content="Actualizado ..." 
-                           HorizontalAlignment="Left" 
-                           Height="30" 
-                           Margin="10,5,0,0" 
-                           VerticalAlignment="Top" 
-                           Width="130" 
-                           FontFamily="Montserrat"
-                           Foreground="{StaticResource secondaryForeground}" 
-                           FontSize="12"/>
+                        <TextBlock Text="{Binding NewClients, StringFormat= ' {0} clientes nuevos'}" 
+                                   HorizontalAlignment="Left" 
+                                   Height="30" 
+                                   Margin="10,5,0,0" 
+                                   VerticalAlignment="Top" 
+                                   Width="130" 
+                                   FontFamily="Montserrat"
+                                   Foreground="{StaticResource secondaryForeground}" 
+                                   FontSize="12"/>
 
                     </StackPanel>
 
@@ -157,34 +158,34 @@
                                 Grid.ColumnSpan="2">
 
                         <Label Content="Entrenadores" 
-                           HorizontalAlignment="Left" 
-                           Height="30" 
-                           Margin="10,10,0,0" 
-                           VerticalAlignment="Top" 
-                           Width="160" 
-                           FontFamily="Montserrat"
-                           FontSize="14"
-                           Foreground="{StaticResource secondaryForeground}"/>
-                        <Label Content="Total" 
-                           HorizontalAlignment="Left" 
-                           Height="30" 
-                           Margin="10,5,0,0" 
-                           VerticalAlignment="Top" 
-                           Width="130" 
-                           FontFamily="Montserrat"
-                           Foreground="{StaticResource secondaryForeground}" 
-                           FontSize="18" 
-                           FontWeight="Bold"/>
+                               HorizontalAlignment="Left" 
+                               Height="30" 
+                               Margin="10,10,0,0" 
+                               VerticalAlignment="Top" 
+                               Width="160" 
+                               FontFamily="Montserrat"
+                               FontSize="14"
+                               Foreground="{StaticResource secondaryForeground}"/>
+                        <TextBlock Text="{Binding Trainers}" 
+                                   HorizontalAlignment="Left" 
+                                   Height="30" 
+                                   Margin="10,5,0,0" 
+                                   VerticalAlignment="Top" 
+                                   Width="130" 
+                                   FontFamily="Montserrat"
+                                   Foreground="{StaticResource secondaryForeground}" 
+                                   FontSize="18" 
+                                   FontWeight="Bold"/>
 
                         <Label Content="Actualizado ..." 
-                           HorizontalAlignment="Left" 
-                           Height="30" 
-                           Margin="10,5,0,0" 
-                           VerticalAlignment="Top" 
-                           Width="130" 
-                           FontFamily="Montserrat"
-                           Foreground="{StaticResource secondaryForeground}" 
-                           FontSize="12"/>
+                               HorizontalAlignment="Left" 
+                               Height="30" 
+                               Margin="10,5,0,0" 
+                               VerticalAlignment="Top" 
+                               Width="130" 
+                               FontFamily="Montserrat"
+                               Foreground="{StaticResource secondaryForeground}" 
+                               FontSize="12"/>
 
                     </StackPanel>
 
@@ -221,26 +222,26 @@
                            FontFamily="Montserrat"
                            FontSize="14"
                            Foreground="{StaticResource secondaryForeground}"/>
-                        <Label Content="Cantidad" 
-                           HorizontalAlignment="Left" 
-                           Height="30" 
-                           Margin="10,5,0,0" 
-                           VerticalAlignment="Top" 
-                           Width="130" 
-                           FontFamily="Montserrat"
-                           Foreground="{StaticResource secondaryForeground}" 
-                           FontSize="18" 
-                           FontWeight="Bold"/>
+                        <TextBlock Text="{Binding Plans}" 
+                                   HorizontalAlignment="Left" 
+                                   Height="30" 
+                                   Margin="10,5,0,0" 
+                                   VerticalAlignment="Top" 
+                                   Width="130" 
+                                   FontFamily="Montserrat"
+                                   Foreground="{StaticResource secondaryForeground}" 
+                                   FontSize="18" 
+                                   FontWeight="Bold"/>
 
                         <Label Content="Actualizado ..." 
-                           HorizontalAlignment="Left" 
-                           Height="30" 
-                           Margin="10,5,0,0" 
-                           VerticalAlignment="Top" 
-                           Width="130" 
-                           FontFamily="Montserrat"
-                           Foreground="{StaticResource secondaryForeground}" 
-                           FontSize="12"/>
+                               HorizontalAlignment="Left" 
+                               Height="30" 
+                               Margin="10,5,0,0" 
+                               VerticalAlignment="Top" 
+                               Width="130" 
+                               FontFamily="Montserrat"
+                               Foreground="{StaticResource secondaryForeground}" 
+                               FontSize="12"/>
 
                     </StackPanel>
 
@@ -281,9 +282,10 @@
                     </wpf:PieChart>
                 </materialDesign:Card>
                 <materialDesign:Card Grid.Column="2" HorizontalAlignment="Stretch" Background="Transparent" Foreground="{StaticResource secondaryForeground}">
-                    <TextBlock HorizontalAlignment="Center"
+                    <DataGrid ItemsSource="{Binding Clients}"/>
+                    <!--<TextBlock HorizontalAlignment="Center"
                                VerticalAlignment="Center"
-                               Text="PEQUEÑA TABLA DE CLIENTES RECIENTES"/>
+                               Text="PEQUEÑA TABLA DE CLIENTES RECIENTES"/>-->
                     <!--<FlowDocumentReader UseLayoutRounding="True" SnapsToDevicePixels="True">
                         <FlowDocumentReader.Resources>
                             <Style TargetType="TableCell">

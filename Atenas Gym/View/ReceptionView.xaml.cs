@@ -57,12 +57,21 @@ namespace Atenas_Gym.View
         {
             Create.Visibility = Visibility.Visible;
             Renew.Visibility = Visibility.Collapsed;
+
+            ClientSendingName.Clear();
+            PlanComboBox.SelectedIndex = 0;
+            Payment_Method.SelectedIndex = 0;
+            ReferenciaCreate.Clear();
         }
 
         private void Renew_Client(object sender, RoutedEventArgs e)
         {
             Renew.Visibility = Visibility.Visible;
             Create.Visibility = Visibility.Collapsed;
+
+            PlanComboBox2.SelectedIndex = 0;
+            Payment_Method2.SelectedIndex = 0;
+            ReferenciaRenew.Clear();
         }
 
         private void Hide_Options(object sender, RoutedEventArgs e)

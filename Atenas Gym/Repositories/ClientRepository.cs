@@ -31,7 +31,7 @@ namespace Atenas_Gym.Repositories
                 if (ci_exists == false)
                 {
                     command.Parameters.Add("@name", MySqlDbType.String).Value = clientModel.Name;
-                    command.Parameters.Add("@cedula", MySqlDbType.String).Value = clientModel.Cedula;
+                    command.Parameters.Add("@cedula", MySqlDbType.Int64).Value = clientModel.Cedula;
                     command.Parameters.Add("@estado", MySqlDbType.String).Value = clientModel.PaymentStatus;
                     command.Parameters.Add("@ingreso", MySqlDbType.String).Value = clientModel.RegisterDate;
                     command.Parameters.Add("@imagen", MySqlDbType.String).Value = clientModel.Image;
@@ -161,6 +161,39 @@ namespace Atenas_Gym.Repositories
         }
 
         public ClientModel GetClienById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<ClientModel> GetLastClients()
+        {
+            List<ClientModel> result = new List<ClientModel>();
+
+            MySqlCommand cmd = new();
+            {
+                GetConnection.Open();
+                cmd.Connection = GetConnection;
+                cmd.CommandText = "SELECT * FROM clientes ORDER BY ID DESC LIMIT 0,5;";
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    ClientModel client = new ClientModel();
+                    DateTime date1 = DateTime.Parse(reader.GetString(4));
+                    string formattedDate1 = date1.ToString("dd/MM/yyyy");
+
+                    client.Id = reader.GetString(0);
+                    client.Name = reader.GetString(1);
+                    client.Cedula = reader.GetString(2);
+                    client.RegisterDate = formattedDate1;
+
+                    result.Add(client);
+                }
+                GetConnection.Close();
+            }
+            return result;
+        }
+
+        IEnumerable<ClientModel> IClientRepository.GetByAll()
         {
             throw new NotImplementedException();
         }

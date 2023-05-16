@@ -26,6 +26,8 @@ namespace Atenas_Gym.ViewModel
         private string? _clientPaymentDate;
         private string? _clientPaymentExpireDate;
 
+        private string? _clientNameSend;
+
         //Button Fields
         private string? _DetailsBtn = "Collapsed";
         private string? _CreateBtn = "Collapsed";
@@ -178,6 +180,7 @@ namespace Atenas_Gym.ViewModel
         }
         public int SelectedIndex { get => _selectedIndex; set { _selectedIndex = value; OnPropertyChanged(nameof(SelectedIndex)); } }
         public string? Referencia_Pago { get => _referencia; set { _referencia = value; OnPropertyChanged(nameof(Referencia_Pago)); } }
+        public string? ClientNameSend { get => _clientNameSend; set => _clientNameSend = value; }
 
         //-> Commands
         public ICommand SearchClient { get; }
@@ -238,7 +241,7 @@ namespace Atenas_Gym.ViewModel
         private void ExecuteCreateClient(object obj)
         {
             clientModel = new ClientModel();
-            clientModel.Name = ClientName;
+            clientModel.Name = ClientNameSend;
             clientModel.Cedula = ClientID;
             clientModel.PaymentStatus = "En deuda";
             clientModel.RegisterDate = DateTime.Now.ToString("yyyy-MM-dd");

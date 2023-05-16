@@ -379,7 +379,8 @@
                                Width="Auto"
                                FontFamily="Montserrat"
                                FontSize="16"
-                               Foreground="{StaticResource secondaryForeground}"/>
+                               Foreground="{StaticResource secondaryForeground}"
+                               Visibility="{Binding ItemsVisibility1}"/>
                 </Viewbox>
 
                 <Viewbox Grid.Row="2"
@@ -544,7 +545,7 @@
                     Margin="30,0">
 
             <StackPanel x:Name="Create"
-                        Visibility="Visible"
+                        Visibility="Collapsed"
                         Orientation="Vertical"
                         VerticalAlignment="Stretch"
                         Margin="50,0">
@@ -581,14 +582,15 @@
                                Foreground="{StaticResource secondaryForeground}"/>
                     </Viewbox>
 
-                        <TextBox   Text="{Binding ClientName, UpdateSourceTrigger=PropertyChanged}"
+                        <TextBox   Text="{Binding ClientNameSend, UpdateSourceTrigger=PropertyChanged}"
                                    Foreground="{StaticResource secondaryForeground}"
                                    FontFamily="Montserrat"
                                    Style="{StaticResource myTextBox}"
                                    Padding="0"
-                                   Grid.Row="2"/>
+                                   Grid.Row="2"
+                                   x:Name="ClientSendingName"/>
 
-                        <TextBox   Text="{Binding ClientID, UpdateSourceTrigger=PropertyChanged}"
+                        <TextBox   Text="{Binding ClientID}"
                                    Foreground="{StaticResource secondaryForeground}"
                                    FontFamily="Montserrat"
                                    Style="{StaticResource myTextBox}"
@@ -632,15 +634,15 @@
                               Grid.Row="5"
                               Grid.Column="2"
                               SelectedValue="{Binding Payment_Methods, UpdateSourceTrigger=PropertyChanged}"
-                              SelectedValuePath="Content">
-                        <ComboBoxItem IsSelected="True" IsEnabled="False">Seleccione un método de pago</ComboBoxItem>
-                        <ComboBoxItem>Efectivo</ComboBoxItem>
+                              SelectedValuePath="Content"
+                              Name="Payment_Method">
+                        <ComboBoxItem IsSelected="True">Efectivo</ComboBoxItem>
                         <ComboBoxItem>Transferencia bancaria</ComboBoxItem>
                         <ComboBoxItem>Pago móvil</ComboBoxItem>
                         <ComboBoxItem>Zelle</ComboBoxItem>
                     </ComboBox>
 
-                    <TextBox Text="Referencia de pago"
+                    <TextBox Text="{Binding Referencia_Pago, UpdateSourceTrigger=PropertyChanged}"
                              Foreground="{StaticResource secondaryForeground}"
                              FontFamily="Montserrat"
                              FontSize="14"
@@ -648,7 +650,8 @@
                              BorderThickness="0,0,0,2"
                              BorderBrush="DarkRed"
                              Grid.Row="7"
-                             Grid.Column="2"/>
+                             Grid.Column="2"
+                             Name="ReferenciaCreate"/>
 
                     <Button Content="Crear cliente"
                             Style="{StaticResource commonButton}"
@@ -723,16 +726,16 @@
                                    FontFamily="Montserrat"
                                    FontSize="14"/>
                     </Viewbox>
-                    
+
                     <ComboBox FontFamily="Montserrat"
                               FontSize="14"
                               Style="{x:Null}"
                               Grid.Row="3"
                               Grid.Column="2"
                               SelectedValue="{Binding Payment_Methods, UpdateSourceTrigger=PropertyChanged}"
-                              SelectedValuePath="Content">
-                        <ComboBoxItem IsSelected="True" IsEnabled="False">Seleccione un método de pago</ComboBoxItem>
-                        <ComboBoxItem>Efectivo</ComboBoxItem>
+                              SelectedValuePath="Content"
+                              Name="Payment_Method2">
+                        <ComboBoxItem IsSelected="True">Efectivo</ComboBoxItem>
                         <ComboBoxItem>Pago móvil</ComboBoxItem>
                         <ComboBoxItem>Transferencia bancaria</ComboBoxItem>
                         <ComboBoxItem>Zelle</ComboBoxItem>
@@ -746,7 +749,8 @@
                              BorderThickness="0,0,0,2"
                              BorderBrush="DarkRed"
                              Grid.Row="5"
-                             Grid.Column="2"/>
+                             Grid.Column="2"
+                             Name="ReferenciaRenew"/>
 
                     <Button Content="Renovar cliente"
                             Style="{StaticResource commonButton}"

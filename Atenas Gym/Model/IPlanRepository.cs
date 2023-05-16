@@ -8,7 +8,6 @@ namespace Atenas_Gym.Model
 {
     public interface IPlanRepository
     {
-        PlanesModel GetPlanes(string plan);
         bool AddPlan(PlanesModel planModel);
         void EditPlan(PlanesModel planModel);
         void DeletePlan(int id);

@@ -48,10 +48,5 @@ namespace Atenas_Gym.Repositories
             }
             return result;
         }
-
-        public PlanesModel GetPlanes(string plan)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
