@@ -1,5 +1,7 @@
 ﻿using Atenas_Gym.Model;
 using Atenas_Gym.Repositories;
+using LiveCharts;
+using LiveCharts.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +18,10 @@ namespace Atenas_Gym.ViewModel
         private int _newClientes;
         private int _trainers;
         private int _plans;
-        private List<ClientModel> _clients;
+        private List<DataGridClientModel> _clients;
+        private List<ChartsModel> _charts;
+        private SeriesCollection _seriesCollection;
+        private List<string> _labels;
 
         private IDashboardRepository _boardRepository;
         private IClientRepository _clientRepository;
@@ -80,7 +85,7 @@ namespace Atenas_Gym.ViewModel
             }
         }
 
-        public List<ClientModel> Clients
+        public List<DataGridClientModel> Clients
         {
             get { return _clients; }
             set
@@ -90,10 +95,42 @@ namespace Atenas_Gym.ViewModel
             }
         }
 
+        public List<ChartsModel> Charts 
+        {
+            get => _charts; 
+            set
+            {
+                _charts = value;
+                OnPropertyChanged(nameof(Charts));
+            }
+        }
+
+        public SeriesCollection SeriesCollection
+        {
+            get { return _seriesCollection; }
+            set
+            {
+                _seriesCollection = value;
+                OnPropertyChanged("SeriesCollection");
+            }
+        }
+
+        public List<string> Labels
+        {
+            get => _labels; 
+            set
+            {
+                _labels = value;
+                OnPropertyChanged(nameof(Labels));
+            }
+        }
+
+
         public HomeViewModel()
         {
             _boardRepository = new DashboardRepository();
             _clientRepository = new ClientRepository();
+
             GetMonthlyRemuneration();
             GetTotalRemuneration();
             GetClients();
@@ -101,6 +138,31 @@ namespace Atenas_Gym.ViewModel
             GetTrainers();
             GetPlans();
             GetLastClients();
+            GetLineCharts();
+        }
+
+        private void GetLineCharts()
+        {
+            Charts = _boardRepository.GetCharts().ToList();
+            List<double> data = new List<double>();
+            Labels = new List<string>();
+
+            foreach (var chart in Charts)
+            {
+                data.Add(chart.Cantidad);
+                Labels.Add(chart.Meses);
+            }
+
+            SeriesCollection = new SeriesCollection
+            {
+                new LineSeries
+                {
+                    Title = "",
+                    PointGeometry = null,
+                    DataLabels = Labels,
+                    Values = new ChartValues<double>(data)
+                },
+            };
         }
 
         private void GetLastClients()

@@ -17,7 +17,7 @@ namespace Atenas_Gym.Model
         ClientModel GetClienById(int id);
         IEnumerable<ClientModel> GetByAll();
 
-        IEnumerable<ClientModel> GetLastClients();
+        IEnumerable<DataGridClientModel> GetLastClients();
         //...
     }
 }

@@ -10,6 +10,29 @@ namespace Atenas_Gym.Repositories
 {
     public class DashboardRepository : RepositoryBase, IDashboardRepository
     {
+        public IEnumerable<ChartsModel> GetCharts()
+        {
+            List<ChartsModel> charts = new List<ChartsModel>();
+
+            MySqlCommand cmd = new MySqlCommand();
+            {
+                GetConnection.Open();
+                cmd.Connection = GetConnection;
+                cmd.CommandText = "SELECT meses.Meses, IFNULL(COUNT(pagos.ID), 0) AS Cantidad FROM meses LEFT JOIN pagos ON mes(pagos.Fecha_Pago,'es_ES') = meses.Meses AND YEAR(pagos.Fecha_Pago) = YEAR(CURDATE()) GROUP BY meses.Meses ORDER BY MAX(meses.ID) LIMIT 0, 5;";
+                MySqlDataReader read = cmd.ExecuteReader();
+                while (read.Read())
+                {
+                    ChartsModel chart = new ChartsModel();
+                    chart.Meses = read.GetString(0);
+                    chart.Cantidad = read.GetInt32(1);
+
+                    charts.Add(chart);
+                }
+                GetConnection.Close();
+            }
+            return charts;
+        }
+
         public int ShowClients()
         {
             int clientes;

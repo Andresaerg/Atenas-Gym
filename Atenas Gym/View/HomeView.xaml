@@ -177,7 +177,7 @@
                                    FontSize="18" 
                                    FontWeight="Bold"/>
 
-                        <Label Content="Actualizado ..." 
+                        <Label Content="Actualizado hoy" 
                                HorizontalAlignment="Left" 
                                Height="30" 
                                Margin="10,5,0,0" 
@@ -233,7 +233,7 @@
                                    FontSize="18" 
                                    FontWeight="Bold"/>
 
-                        <Label Content="Actualizado ..." 
+                        <Label Content="Actualizado hoy" 
                                HorizontalAlignment="Left" 
                                Height="30" 
                                Margin="10,5,0,0" 
@@ -256,9 +256,10 @@
 
         </Grid>
         <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth1" Height="Auto" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="Auto" Background="Transparent" Foreground="{StaticResource secondaryForeground}">
-            <wpf:CartesianChart LegendLocation="Bottom">
+            <wpf:CartesianChart LegendLocation="Bottom" Series="{Binding SeriesCollection}">
                 <wpf:CartesianChart.AxisX>
-                    <wpf:Axis Title="Fechas"/>
+                    <wpf:Axis Title="Meses" Labels="{Binding Labels[0]}">
+                    </wpf:Axis>
                 </wpf:CartesianChart.AxisX>
 
                 <wpf:CartesianChart.AxisY>
@@ -282,71 +283,15 @@
                     </wpf:PieChart>
                 </materialDesign:Card>
                 <materialDesign:Card Grid.Column="2" HorizontalAlignment="Stretch" Background="Transparent" Foreground="{StaticResource secondaryForeground}">
-                    <DataGrid ItemsSource="{Binding Clients}"/>
-                    <!--<TextBlock HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               Text="PEQUEÑA TABLA DE CLIENTES RECIENTES"/>-->
-                    <!--<FlowDocumentReader UseLayoutRounding="True" SnapsToDevicePixels="True">
-                        <FlowDocumentReader.Resources>
-                            <Style TargetType="TableCell">
-                                <Setter Property="TextAlignment" Value="Center"/>
+                    <DataGrid ItemsSource="{Binding Clients}" Background="Transparent" Foreground="{StaticResource secondaryForeground}" IsReadOnly="True">
+                        <DataGrid.Resources>
+                            <Style TargetType="{x:Type DataGridColumnHeader}">
+                                <Setter Property="Foreground" Value="{StaticResource secondaryForeground}" />
+                                <Setter Property="Background" Value="Transparent" />
+                                <Setter Property="HorizontalAlignment" Value="Center" />
                             </Style>
-                        </FlowDocumentReader.Resources>
-                        <FlowDocument>
-                            <Table CellSpacing="0">
-                                <Table.Columns>
-                                    <TableColumn/>
-                                    <TableColumn/>
-                                    <TableColumn/>
-                                    <TableColumn/>
-                                </Table.Columns>
-                                <TableRowGroup>
-                                    <TableRow>
-                                        <TableCell BorderBrush="DarkGray" BorderThickness="1">
-                                            <Paragraph FontWeight="Bold">Category</Paragraph>
-                                        </TableCell>
-                                        <TableCell BorderBrush="Black" BorderThickness="0,1,1,1">
-                                            <Paragraph FontWeight="Bold">A</Paragraph>
-                                        </TableCell>
-                                        <TableCell BorderBrush="Black" BorderThickness="0,1,1,1">
-                                            <Paragraph FontWeight="Bold">B</Paragraph>
-                                        </TableCell>
-                                        <TableCell BorderBrush="Black" BorderThickness="0,1,1,1">
-                                            <Paragraph FontWeight="Bold">C</Paragraph>
-                                        </TableCell>
-                                    </TableRow>
-                                    <TableRow>
-                                        <TableCell BorderBrush="Black" BorderThickness="1,0,1,1">
-                                            <Paragraph FontWeight="Bold">Subscription</Paragraph>
-                                        </TableCell>
-                                        <TableCell BorderBrush="Black" BorderThickness="0,0,1,1">
-                                            <Paragraph>Monthly</Paragraph>
-                                        </TableCell>
-                                        <TableCell BorderBrush="Black" BorderThickness="0,0,1,1">
-                                            <Paragraph>Yearly</Paragraph>
-                                        </TableCell>
-                                        <TableCell BorderBrush="Black" BorderThickness="0,0,1,1">
-                                            <Paragraph>Monthly</Paragraph>
-                                        </TableCell>
-                                    </TableRow>
-                                    <TableRow>
-                                        <TableCell BorderBrush="Black" BorderThickness="1,0,1,1" TextAlignment="Center">
-                                            <Paragraph FontWeight="Bold">Price</Paragraph>
-                                        </TableCell>
-                                        <TableCell BorderBrush="Black" BorderThickness="0,0,1,1">
-                                            <Paragraph>$120.00</Paragraph>
-                                        </TableCell>
-                                        <TableCell BorderBrush="Black" BorderThickness="0,0,1,1">
-                                            <Paragraph>$1000.00</Paragraph>
-                                        </TableCell>
-                                        <TableCell BorderBrush="Black" BorderThickness="0,0,1,1">
-                                            <Paragraph>$130.00</Paragraph>
-                                        </TableCell>
-                                    </TableRow>
-                                </TableRowGroup>
-                            </Table>
-                        </FlowDocument>
-                    </FlowDocumentReader>-->
+                        </DataGrid.Resources>
+                    </DataGrid>
                 </materialDesign:Card>
             </Grid>
         </Grid>

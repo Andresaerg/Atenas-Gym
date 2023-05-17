@@ -165,26 +165,26 @@ namespace Atenas_Gym.Repositories
             throw new NotImplementedException();
         }
 
-        public IEnumerable<ClientModel> GetLastClients()
+        public IEnumerable<DataGridClientModel> GetLastClients()
         {
-            List<ClientModel> result = new List<ClientModel>();
+            List<DataGridClientModel> result = new List<DataGridClientModel>();
 
             MySqlCommand cmd = new();
             {
                 GetConnection.Open();
                 cmd.Connection = GetConnection;
-                cmd.CommandText = "SELECT * FROM clientes ORDER BY ID DESC LIMIT 0,5;";
+                cmd.CommandText = "SELECT * FROM clientes ORDER BY ID DESC LIMIT 0,4;";
                 MySqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    ClientModel client = new ClientModel();
+                    DataGridClientModel client = new DataGridClientModel();
                     DateTime date1 = DateTime.Parse(reader.GetString(4));
                     string formattedDate1 = date1.ToString("dd/MM/yyyy");
 
-                    client.Id = reader.GetString(0);
-                    client.Name = reader.GetString(1);
-                    client.Cedula = reader.GetString(2);
-                    client.RegisterDate = formattedDate1;
+                    client.ID = reader.GetString(0);
+                    client.Nombre = reader.GetString(1);
+                    client.Cédula = reader.GetString(2);
+                    client.Registro = formattedDate1;
 
                     result.Add(client);
                 }
