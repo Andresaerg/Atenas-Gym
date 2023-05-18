@@ -4,9 +4,11 @@ using LiveCharts;
 using LiveCharts.Wpf;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace Atenas_Gym.ViewModel
 {
@@ -21,7 +23,7 @@ namespace Atenas_Gym.ViewModel
         private List<DataGridClientModel> _clients;
         private List<ChartsModel> _charts;
         private SeriesCollection _seriesCollection;
-        private List<string> _labels;
+        private AxesCollection _labels;
 
         private IDashboardRepository _boardRepository;
         private IClientRepository _clientRepository;
@@ -115,16 +117,15 @@ namespace Atenas_Gym.ViewModel
             }
         }
 
-        public List<string> Labels
+        public AxesCollection XAxisCollection
         {
             get => _labels; 
             set
             {
                 _labels = value;
-                OnPropertyChanged(nameof(Labels));
+                OnPropertyChanged(nameof(XAxisCollection));
             }
         }
-
 
         public HomeViewModel()
         {
@@ -139,18 +140,20 @@ namespace Atenas_Gym.ViewModel
             GetPlans();
             GetLastClients();
             GetLineCharts();
+
+
         }
 
         private void GetLineCharts()
         {
             Charts = _boardRepository.GetCharts().ToList();
             List<double> data = new List<double>();
-            Labels = new List<string>();
+            List<string> label = new List<string>();
 
             foreach (var chart in Charts)
             {
                 data.Add(chart.Cantidad);
-                Labels.Add(chart.Meses);
+                label.Add(chart.Meses);
             }
 
             SeriesCollection = new SeriesCollection
@@ -159,9 +162,31 @@ namespace Atenas_Gym.ViewModel
                 {
                     Title = "",
                     PointGeometry = null,
-                    DataLabels = Labels,
-                    Values = new ChartValues<double>(data)
+                    Values = new ChartValues<double>(data),
+                    DataLabels = true,
+                    Foreground = new SolidColorBrush(Colors.White),
+                    FontSize = 16,
+
+                    //Title = "My Line Series",
+                    //Values = new ChartValues<double> { 3, 5, 7, 4 },
+                    //PointGeometry = DefaultGeometries.Circle,
+                    //PointGeometrySize = 10,
+                    //PointForeground = System.Windows.Media.Brushes.Red,
+                    //StrokeThickness = 4,
+                    //Fill = System.Windows.Media.Brushes.Transparent,
+                    //LineSmoothness = 0.5,
+                    //DataLabels = true,
+                    //LabelPoint = point => $"({point.X}, {point.Y})"
                 },
+            };
+
+            XAxisCollection = new AxesCollection
+            {
+                new Axis
+                {
+                    Title = "Meses",
+                    Labels = new List<string>(label)
+                }
             };
         }
 

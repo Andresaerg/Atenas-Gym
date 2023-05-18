@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:Atenas_Gym.View"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
-             xmlns:wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" xmlns:viewmodel="clr-namespace:Atenas_Gym.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:HomeViewModel}"
+             xmlns:wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" 
+             xmlns:viewmodel="clr-namespace:Atenas_Gym.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:HomeViewModel}"
              mc:Ignorable="d" 
              Width="Auto"
              Height="Auto"
@@ -255,12 +256,8 @@
             </materialDesign:Card>
 
         </Grid>
-        <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth1" Height="Auto" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="Auto" Background="Transparent" Foreground="{StaticResource secondaryForeground}">
-            <wpf:CartesianChart LegendLocation="Bottom" Series="{Binding SeriesCollection}">
-                <wpf:CartesianChart.AxisX>
-                    <wpf:Axis Title="Meses" Labels="{Binding Labels[0]}">
-                    </wpf:Axis>
-                </wpf:CartesianChart.AxisX>
+        <materialDesign:Card Height="Auto" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="Auto" Background="Transparent">
+            <wpf:CartesianChart LegendLocation="Bottom" Series="{Binding SeriesCollection}" AxisX="{Binding XAxisCollection}">
 
                 <wpf:CartesianChart.AxisY>
                     <wpf:Axis Title="Clientes"/>
@@ -273,7 +270,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <materialDesign:Card HorizontalAlignment="Stretch" Height="Auto" Grid.Column="0" VerticalAlignment="Stretch" Width="Auto" Background="Transparent" Foreground="{StaticResource secondaryForeground}">
+                <materialDesign:Card HorizontalAlignment="Stretch" Height="Auto" Grid.Column="0" VerticalAlignment="Stretch" Width="Auto" Background="Transparent" Foreground="{StaticResource secondaryForeground}" Padding="0,0,50,0">
                     <wpf:PieChart LegendLocation="Right">
                         <wpf:PieChart.Series>
                             <wpf:PieSeries Title="Matutino" Values="18" DataLabels="True" />
