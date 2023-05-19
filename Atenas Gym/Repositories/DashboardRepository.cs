@@ -13,17 +13,47 @@ namespace Atenas_Gym.Repositories
         public IEnumerable<ChartsModel> GetCharts()
         {
             List<ChartsModel> charts = new List<ChartsModel>();
+            int month = DateTime.Now.Month;
 
             MySqlCommand cmd = new MySqlCommand();
             {
                 GetConnection.Open();
                 cmd.Connection = GetConnection;
-                cmd.CommandText = "SELECT meses.Meses, IFNULL(COUNT(pagos.ID), 0) AS Cantidad FROM meses LEFT JOIN pagos ON mes(pagos.Fecha_Pago,'es_ES') = meses.Meses AND YEAR(pagos.Fecha_Pago) = YEAR(CURDATE()) GROUP BY meses.Meses ORDER BY MAX(meses.ID) LIMIT 0, 5;";
+                cmd.CommandText = "SELECT meses.Meses, IFNULL(COUNT(clientes.ID), 0) AS Cantidad FROM meses LEFT JOIN clientes ON mes(clientes.Fecha_Ingreso,'es_ES') = meses.Meses AND YEAR(clientes.Fecha_Ingreso) = YEAR(CURDATE()) GROUP BY meses.Meses ORDER BY MAX(meses.ID) LIMIT 0, @now;";
+                cmd.Parameters.Add("@now", MySqlDbType.Int32).Value = month;
+                bool execute = cmd.ExecuteScalar() == null ? false : true;
+
+                if (execute)
+                {
+                    MySqlDataReader read = cmd.ExecuteReader();
+                    while (read.Read())
+                    {
+                        ChartsModel chart = new ChartsModel();
+                        chart.Meses = read.GetString(0);
+                        chart.Cantidad = read.GetInt32(1);
+
+                        charts.Add(chart);
+                    }
+                }
+                GetConnection.Close();
+            }
+            return charts;
+        }
+
+        public IEnumerable<PlanesModel> GetPlanes()
+        {
+            List<PlanesModel> charts = new List<PlanesModel>();
+
+            MySqlCommand cmd = new MySqlCommand();
+            {
+                GetConnection.Open();
+                cmd.Connection = GetConnection;
+                cmd.CommandText = "SELECT p.Plan, COUNT(*) FROM pagos p LEFT JOIN planes pl ON p.Plan = pl.Plan AND YEAR(p.Fecha_Pago) = YEAR(CURDATE()) GROUP BY p.Plan;";
                 MySqlDataReader read = cmd.ExecuteReader();
                 while (read.Read())
                 {
-                    ChartsModel chart = new ChartsModel();
-                    chart.Meses = read.GetString(0);
+                    PlanesModel chart = new PlanesModel();
+                    chart.Plan = read.GetString(0);
                     chart.Cantidad = read.GetInt32(1);
 
                     charts.Add(chart);

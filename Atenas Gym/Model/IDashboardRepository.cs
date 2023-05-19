@@ -15,5 +15,6 @@ namespace Atenas_Gym.Model
         int ShowTrainers();
         int ShowPlans();
         IEnumerable<ChartsModel> GetCharts();
+        IEnumerable<PlanesModel> GetPlanes();
     }
 }

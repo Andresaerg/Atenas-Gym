@@ -25,6 +25,9 @@ namespace Atenas_Gym.ViewModel
         private SeriesCollection _seriesCollection;
         private AxesCollection _labels;
 
+        private List<PlanesModel> _planCharts;
+        private SeriesCollection _pieSeriesCollection;
+
         private IDashboardRepository _boardRepository;
         private IClientRepository _clientRepository;
 
@@ -127,6 +130,26 @@ namespace Atenas_Gym.ViewModel
             }
         }
 
+        public SeriesCollection PieSeriesCollection 
+        {
+            get => _pieSeriesCollection; 
+            set
+            {
+                _pieSeriesCollection = value;
+                OnPropertyChanged(nameof(PieSeriesCollection));
+            }
+        }
+
+        public List<PlanesModel> PlanCharts 
+        {
+            get => _planCharts;
+            set
+            {
+                _planCharts = value;
+                OnPropertyChanged(nameof(PlanCharts));
+            } 
+        }
+
         public HomeViewModel()
         {
             _boardRepository = new DashboardRepository();
@@ -140,8 +163,26 @@ namespace Atenas_Gym.ViewModel
             GetPlans();
             GetLastClients();
             GetLineCharts();
+            GetPieCharts();
+        }
 
+        private void GetPieCharts()
+        {
+            PlanCharts = _boardRepository.GetPlanes().ToList();
+            List<double> data = new List<double>();
+            List<string> plan = new List<string>();
 
+            PieSeriesCollection = new SeriesCollection();
+            foreach (var plans in PlanCharts)
+            {
+                var series = new PieSeries
+                {
+                    Title = plans.Plan,
+                    Values = new ChartValues<double> { plans.Cantidad},
+                    DataLabels = true,
+                };
+                PieSeriesCollection.Add(series);
+            }
         }
 
         private void GetLineCharts()
@@ -165,18 +206,7 @@ namespace Atenas_Gym.ViewModel
                     Values = new ChartValues<double>(data),
                     DataLabels = true,
                     Foreground = new SolidColorBrush(Colors.White),
-                    FontSize = 16,
-
-                    //Title = "My Line Series",
-                    //Values = new ChartValues<double> { 3, 5, 7, 4 },
-                    //PointGeometry = DefaultGeometries.Circle,
-                    //PointGeometrySize = 10,
-                    //PointForeground = System.Windows.Media.Brushes.Red,
-                    //StrokeThickness = 4,
-                    //Fill = System.Windows.Media.Brushes.Transparent,
-                    //LineSmoothness = 0.5,
-                    //DataLabels = true,
-                    //LabelPoint = point => $"({point.X}, {point.Y})"
+                    FontSize = 14,
                 },
             };
 
@@ -184,8 +214,8 @@ namespace Atenas_Gym.ViewModel
             {
                 new Axis
                 {
-                    Title = "Meses",
-                    Labels = new List<string>(label)
+                    Title = "",
+                    Labels = new List<string>(label),
                 }
             };
         }

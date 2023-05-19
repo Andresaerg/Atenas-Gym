@@ -12,5 +12,6 @@ namespace Atenas_Gym.Model
         public string? Plan { get; set; }
         public string? Precio { get; set; }
         public string? Tiempo { get; set; }
+        public int Cantidad { get; set; }
     }
 }

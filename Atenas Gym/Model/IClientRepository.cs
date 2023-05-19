@@ -15,7 +15,7 @@ namespace Atenas_Gym.Model
         void DeleteClient(int id);
         bool AddClientPayment(string cedula, string opcion, string method, string reference);
         ClientModel GetClienById(int id);
-        IEnumerable<ClientModel> GetByAll();
+        IEnumerable<DataGridClientModel> GetByAll();
 
         IEnumerable<DataGridClientModel> GetLastClients();
         //...

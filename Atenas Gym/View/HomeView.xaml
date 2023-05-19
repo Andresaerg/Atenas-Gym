@@ -12,6 +12,24 @@
              Width="Auto"
              Height="Auto"
              d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <Style TargetType="wpf:Separator">
+            <Setter Property="StrokeThickness" Value="1"></Setter>
+            <Setter Property="Stroke" Value="#4BFFFFFF"></Setter>
+            <Style.Triggers>
+                <Trigger Property="AxisOrientation" Value="X">
+                    <Setter Property="IsEnabled" Value="False"></Setter>
+                    <Setter Property="Step" Value="1"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="wpf:DefaultTooltip">
+            <Setter Property="Background" Value="#343434"/>
+            <Setter Property="Opacity" Value=".95"/>
+        </Style>
+    </UserControl.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -257,11 +275,15 @@
 
         </Grid>
         <materialDesign:Card Height="Auto" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="Auto" Background="Transparent">
-            <wpf:CartesianChart LegendLocation="Bottom" Series="{Binding SeriesCollection}" AxisX="{Binding XAxisCollection}">
+            <wpf:CartesianChart LegendLocation="Bottom" 
+                                Series="{Binding SeriesCollection}"
+                                AxisX="{Binding XAxisCollection}"
+                                Foreground="{StaticResource secondaryForeground}">
 
                 <wpf:CartesianChart.AxisY>
                     <wpf:Axis Title="Clientes"/>
                 </wpf:CartesianChart.AxisY>
+                
             </wpf:CartesianChart>
         </materialDesign:Card>
         <Grid Grid.Row="2">
@@ -270,25 +292,29 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <materialDesign:Card HorizontalAlignment="Stretch" Height="Auto" Grid.Column="0" VerticalAlignment="Stretch" Width="Auto" Background="Transparent" Foreground="{StaticResource secondaryForeground}" Padding="0,0,50,0">
-                    <wpf:PieChart LegendLocation="Right">
-                        <wpf:PieChart.Series>
-                            <wpf:PieSeries Title="Matutino" Values="18" DataLabels="True" />
-                            <wpf:PieSeries Title="Vespertino" Values="24" DataLabels="True" />
-                            <wpf:PieSeries Title="Nocturno" Values="20" DataLabels="True" />
-                        </wpf:PieChart.Series>
+                <materialDesign:Card HorizontalAlignment="Stretch" Height="Auto" Grid.Column="0" VerticalAlignment="Stretch" Width="Auto" Background="Transparent"  Padding="0,0,50,0">
+                    <wpf:PieChart Series="{Binding PieSeriesCollection}" 
+                                  LegendLocation="Right"
+                                  FontSize="15"
+                                  Foreground="{StaticResource secondaryForeground}">
                     </wpf:PieChart>
                 </materialDesign:Card>
                 <materialDesign:Card Grid.Column="2" HorizontalAlignment="Stretch" Background="Transparent" Foreground="{StaticResource secondaryForeground}">
-                    <DataGrid ItemsSource="{Binding Clients}" Background="Transparent" Foreground="{StaticResource secondaryForeground}" IsReadOnly="True">
-                        <DataGrid.Resources>
-                            <Style TargetType="{x:Type DataGridColumnHeader}">
-                                <Setter Property="Foreground" Value="{StaticResource secondaryForeground}" />
-                                <Setter Property="Background" Value="Transparent" />
-                                <Setter Property="HorizontalAlignment" Value="Center" />
-                            </Style>
-                        </DataGrid.Resources>
-                    </DataGrid>
+                    <StackPanel>
+                        <TextBlock Text="Últimos clientes registrados"
+                                   HorizontalAlignment="Center"
+                                   FontSize="14"
+                                   Margin="0,0,0,10"/>
+                        <DataGrid ItemsSource="{Binding Clients}" Background="Transparent" Foreground="{StaticResource secondaryForeground}" IsReadOnly="True">
+                            <DataGrid.Resources>
+                                <Style TargetType="{x:Type DataGridColumnHeader}">
+                                    <Setter Property="Foreground" Value="{StaticResource secondaryForeground}" />
+                                    <Setter Property="Background" Value="Transparent" />
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                </Style>
+                            </DataGrid.Resources>
+                        </DataGrid>
+                    </StackPanel>
                 </materialDesign:Card>
             </Grid>
         </Grid>

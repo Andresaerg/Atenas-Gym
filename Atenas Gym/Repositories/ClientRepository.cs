@@ -155,9 +155,32 @@ namespace Atenas_Gym.Repositories
             throw new NotImplementedException();
         }
 
-        public IEnumerable<UserModel> GetByAll()
+        public IEnumerable<DataGridClientModel> GetByAll()
         {
-            throw new NotImplementedException();
+            List<DataGridClientModel> result = new List<DataGridClientModel>();
+
+            MySqlCommand cmd = new();
+            {
+                GetConnection.Open();
+                cmd.Connection = GetConnection;
+                cmd.CommandText = "SELECT * FROM clientes ORDER BY ID DESC;";
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    DataGridClientModel client = new DataGridClientModel();
+                    DateTime date1 = DateTime.Parse(reader.GetString(4));
+                    string formattedDate1 = date1.ToString("dd/MM/yyyy");
+
+                    client.ID = reader.GetString(0);
+                    client.Nombre = reader.GetString(1);
+                    client.Cédula = reader.GetString(2);
+                    client.Registro = formattedDate1;
+
+                    result.Add(client);
+                }
+                GetConnection.Close();
+            }
+            return result;
         }
 
         public ClientModel GetClienById(int id)
@@ -191,11 +214,6 @@ namespace Atenas_Gym.Repositories
                 GetConnection.Close();
             }
             return result;
-        }
-
-        IEnumerable<ClientModel> IClientRepository.GetByAll()
-        {
-            throw new NotImplementedException();
         }
     }
 }
