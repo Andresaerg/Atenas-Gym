@@ -26,7 +26,7 @@
         <materialDesign:DialogHost x:Name="Testing" 
                                    Grid.ColumnSpan="2" 
                                    Grid.RowSpan="2"
-                                   Panel.ZIndex="999">
+                                   Panel.ZIndex="0">
             <materialDesign:DialogHost.DialogContent>
                 <Grid Width="800" Height="400"
                       Background="#343434">
@@ -335,10 +335,7 @@
                     Padding="5" 
                     BorderBrush="{Binding ClientStatus}"
                     BorderThickness="5">
-                <Border.Background>
-                    <ImageBrush ImageSource="{Binding ClientImage, UpdateSourceTrigger=PropertyChanged}"/>
-                </Border.Background>
-                <Canvas />
+                <Image Name="myImage" Stretch="UniformToFill"/>
             </Border>
             <Grid Grid.Column="1"
                   Grid.RowSpan="2">
@@ -393,7 +390,7 @@
                                FontSize="16"
                                Foreground="{StaticResource secondaryForeground}"/>
                 </Viewbox>
-                
+
                 <Viewbox Grid.Row="3"
                          Grid.Column="1"
                          HorizontalAlignment="Left" 
@@ -462,7 +459,7 @@
                                FontSize="16"
                                Foreground="{StaticResource secondaryForeground}"/>
                 </Viewbox>
-                
+
                 <Viewbox Grid.Row="6"
                          Grid.Column="1"
                          HorizontalAlignment="Left">
@@ -503,7 +500,7 @@
                             Style="{StaticResource commonButton}"
                             Margin="0,0,0,5"
                             Click="Button_Click"/>
-                    
+
                     <Button Content="Nuevo usuario" 
                             Width="Auto"
                             FontFamily="Montserrat"
@@ -538,7 +535,13 @@
                     Grid.Row="1" 
                     VerticalAlignment="Top" 
                     Width="80"
-                    Visibility="{Binding ItemsVisibility1}"/>
+                    Visibility="{Binding ItemsVisibility1}"
+                    Command="{Binding OpenWebCam}"
+                    Click="ExecuteOpenWebCam"/>
+            <ComboBox VerticalAlignment="Center" 
+                      Grid.Row="1"
+                      Style="{x:Null}"
+                      Name="ComboTest"/>
         </Grid>
         <StackPanel Grid.Column="1"
                     Grid.Row="1" 

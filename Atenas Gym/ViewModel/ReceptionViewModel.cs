@@ -10,6 +10,10 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using AForge.Video.DirectShow;
+using AForge.Video;
+using System.Drawing;
+using System.Windows.Media.Imaging;
 
 namespace Atenas_Gym.ViewModel
 {
@@ -39,6 +43,13 @@ namespace Atenas_Gym.ViewModel
         private List<PlanesModel> _planes = new List<PlanesModel>();
         private int _selectedIndex = 0;
         private string? _referencia;
+
+        //Camera Fields
+        //private bool _hayDispositivos;
+        //private FilterInfoCollection misDispositivos;
+        //private VideoCaptureDevice miWebCam;
+        //private List<string> _comboTest = new List<string>();
+        //private Image _currentFrame;
 
 
         private IClientRepository clientRepository;
@@ -181,12 +192,17 @@ namespace Atenas_Gym.ViewModel
         public int SelectedIndex { get => _selectedIndex; set { _selectedIndex = value; OnPropertyChanged(nameof(SelectedIndex)); } }
         public string? Referencia_Pago { get => _referencia; set { _referencia = value; OnPropertyChanged(nameof(Referencia_Pago)); } }
         public string? ClientNameSend { get => _clientNameSend; set => _clientNameSend = value; }
+        //public bool HayDispositivos { get => _hayDispositivos; set { _hayDispositivos = value; OnPropertyChanged(nameof(HayDispositivos)); } }
+        //public FilterInfoCollection MisDispositivos { get => misDispositivos; set { misDispositivos = value; OnPropertyChanged(nameof(MisDispositivos)); } }
+        //public VideoCaptureDevice MiWebCam { get => miWebCam; set { miWebCam = value; OnPropertyChanged(nameof(MiWebCam)); } }
+        //public List<string> ComboTest { get => _comboTest; set { _comboTest = value; OnPropertyChanged(nameof(ComboTest)); } }
+        //public Image CurrentFrame { get => _currentFrame; set { _currentFrame = value; OnPropertyChanged(nameof(CurrentFrame)); } }
 
         //-> Commands
         public ICommand SearchClient { get; }
         public ICommand CreateClient { get; }
         public ICommand UpdateClient { get; }
-        public ICommand GetPlanes { get; }
+        public ICommand OpenWebCam { get; set; }
 
         public ReceptionViewModel()
         {
@@ -195,8 +211,55 @@ namespace Atenas_Gym.ViewModel
             SearchClient = new ViewModelCommand(ExecuteSearchClient, CanExecuteSearchClient);
             CreateClient = new ViewModelCommand(ExecuteCreateClient, CanExecuteCreateClient);
             UpdateClient = new ViewModelCommand(ExecuteUpdateClient, CanExecuteUpdateClient);
+            //OpenWebCam = new ViewModelCommand(ExecuteOpenWebCam);
             ExecuteGetPlanes();
+            //CargaDispositivos();
         }
+
+        //private void ExecuteOpenWebCam(object obj)
+        //{
+        //    CerrarWebCam();
+        //    int i = 0;
+        //    string NombreVideo = MisDispositivos[i].MonikerString;
+        //    MiWebCam = new VideoCaptureDevice(NombreVideo);
+        //    MiWebCam.NewFrame += new NewFrameEventHandler(Capturando);
+        //    MiWebCam.Start();
+        //}
+
+        //private void Capturando(object sender, NewFrameEventArgs eventArgs)
+        //{
+        //    Bitmap Imagen = (Bitmap)eventArgs.Frame.Clone();
+        //    CurrentFrame = Imagen;
+        //}
+
+        //private void CerrarWebCam()
+        //{
+        //    if(MiWebCam != null && MiWebCam.IsRunning)
+        //    {
+        //        MiWebCam.SignalToStop();
+        //        MiWebCam = null;
+        //    }
+        //}
+
+        //private void CargaDispositivos()
+        //{
+        //    MisDispositivos = new FilterInfoCollection(FilterCategory.VideoInputDevice);
+        //    List<string> testing = new List<string>();
+        //    if (MisDispositivos.Count > 0)
+        //    {
+        //        HayDispositivos = true;
+        //        for(int i = 0; i < MisDispositivos.Count; i++)
+        //        {
+        //            //testing[0] = MisDispositivos[0].ToString();
+        //            testing.Add(MisDispositivos[i].Name.ToString());
+        //        }
+        //        ComboTest = testing;
+        //    }
+        //    else
+        //    {
+        //        HayDispositivos = false;
+        //    }
+        //}
 
         private void ExecuteGetPlanes()
         {

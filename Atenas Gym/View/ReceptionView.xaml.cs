@@ -1,4 +1,6 @@
-﻿using Atenas_Gym.ViewModel;
+﻿using AForge.Video.DirectShow;
+using AForge.Video;
+using Atenas_Gym.ViewModel;
 using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
@@ -15,6 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Drawing;
 
 namespace Atenas_Gym.View
 {
@@ -23,11 +26,15 @@ namespace Atenas_Gym.View
     /// </summary>
     public partial class ReceptionView : UserControl
     {
+        private bool _hayDispositivos;
+        private FilterInfoCollection misDispositivos;
+        private VideoCaptureDevice miWebCam;
         public ReceptionView()
         {
             InitializeComponent();
             ReceptionViewModel vm = new ReceptionViewModel();
             DataContext = vm;
+            CargaDispositivos();
         }
 
         private void Cedula_change(object sender, RoutedEventArgs e)
@@ -88,6 +95,69 @@ namespace Atenas_Gym.View
         private void CreateBtn(object sender, RoutedEventArgs e)
         {
             Create.Visibility = Visibility.Collapsed;
+        }
+
+        private void CargaDispositivos()
+        {
+            misDispositivos = new FilterInfoCollection(FilterCategory.VideoInputDevice);
+            List<string> testing = new List<string>();
+            if (misDispositivos.Count > 0)
+            {
+                _hayDispositivos = true;
+                for (int i = 0; i < misDispositivos.Count; i++)
+                {
+                    ComboTest.Text = misDispositivos[0].ToString();
+                    ComboTest.Items.Add(misDispositivos[i].Name.ToString());
+                }
+            }
+            else
+            {
+                _hayDispositivos = false;
+            }
+        }
+
+        private void CerrarWebCam()
+        {
+            if (miWebCam != null && miWebCam.IsRunning)
+            {
+                miWebCam.SignalToStop();
+                miWebCam = null;
+            }
+        }
+
+        private void ExecuteOpenWebCam(object sender, EventArgs e)
+        {
+            CerrarWebCam();
+            int i = 0;
+            string NombreVideo = misDispositivos[i].MonikerString;
+            miWebCam = new VideoCaptureDevice(NombreVideo);
+            miWebCam.NewFrame += new NewFrameEventHandler(Capturando);
+            miWebCam.Start();
+        }
+
+        private void Capturando(object sender, NewFrameEventArgs eventArgs)
+        {
+            Bitmap Imagen = (Bitmap)eventArgs.Frame.Clone();
+            myImage.Dispatcher.Invoke(() =>
+            {
+                myImage.Source = BitmapToImageSource(Imagen);
+            });
+        }
+
+        public static BitmapImage BitmapToImageSource(Bitmap bitmap)
+        {
+            using (System.IO.MemoryStream memory = new System.IO.MemoryStream())
+            {
+                bitmap.Save(memory, System.Drawing.Imaging.ImageFormat.Bmp);
+                memory.Position = 0;
+                BitmapImage bitmapimage = new BitmapImage();
+                bitmapimage.BeginInit();
+                bitmapimage.StreamSource = memory;
+                bitmapimage.CacheOption = BitmapCacheOption.OnLoad;
+                bitmapimage.EndInit();
+
+                return bitmapimage;
+            }
         }
     }
 }
