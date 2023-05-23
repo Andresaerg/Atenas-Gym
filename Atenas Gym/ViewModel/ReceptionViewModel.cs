@@ -14,11 +14,15 @@ using AForge.Video.DirectShow;
 using AForge.Video;
 using System.Drawing;
 using System.Windows.Media.Imaging;
+using System.IO;
 
 namespace Atenas_Gym.ViewModel
 {
     internal class ReceptionViewModel : ViewModelBase
     {
+        private string currentDirectory = Environment.CurrentDirectory;
+        private string imagesDirectory = "D:\\Website\\Documents\\Atenas-Gym\\Atenas Gym\\Images";
+
         //Client Fields
         private string? _clientID;
         private string? _clientName;
@@ -26,9 +30,12 @@ namespace Atenas_Gym.ViewModel
         private string? _ClientRegisterDate;
         private string? _clientStatusText;
         private string? _clientStatus;
-        private string? _clientImage;
+        private ImageSource _clientImage;
+        private string? _clientImageRoute;
         private string? _clientPaymentDate;
         private string? _clientPaymentExpireDate;
+
+        private BitmapImage bitmap = new BitmapImage();
 
         private string? _clientNameSend;
 
@@ -114,7 +121,7 @@ namespace Atenas_Gym.ViewModel
                 OnPropertyChanged(nameof(ClientStatus));
             }
         }
-        public string? ClientImage
+        public ImageSource ClientImage
         {
             get => _clientImage;
             set
@@ -192,6 +199,7 @@ namespace Atenas_Gym.ViewModel
         public int SelectedIndex { get => _selectedIndex; set { _selectedIndex = value; OnPropertyChanged(nameof(SelectedIndex)); } }
         public string? Referencia_Pago { get => _referencia; set { _referencia = value; OnPropertyChanged(nameof(Referencia_Pago)); } }
         public string? ClientNameSend { get => _clientNameSend; set => _clientNameSend = value; }
+        public string? ClientImageRoute { get => _clientImageRoute; set { _clientImageRoute = value; OnPropertyChanged(nameof(ClientImageRoute)); } }
         //public bool HayDispositivos { get => _hayDispositivos; set { _hayDispositivos = value; OnPropertyChanged(nameof(HayDispositivos)); } }
         //public FilterInfoCollection MisDispositivos { get => misDispositivos; set { misDispositivos = value; OnPropertyChanged(nameof(MisDispositivos)); } }
         //public VideoCaptureDevice MiWebCam { get => miWebCam; set { miWebCam = value; OnPropertyChanged(nameof(MiWebCam)); } }
@@ -308,7 +316,7 @@ namespace Atenas_Gym.ViewModel
             clientModel.Cedula = ClientID;
             clientModel.PaymentStatus = "En deuda";
             clientModel.RegisterDate = DateTime.Now.ToString("yyyy-MM-dd");
-            clientModel.Image = ClientImage;
+            clientModel.Image = ClientImageRoute;
             clientModel.Weight = "0";
             clientModel.Height = "0";
             clientModel.Arms = "0";
@@ -339,13 +347,19 @@ namespace Atenas_Gym.ViewModel
             var user = clientRepository.AuthenticateClient(ClientID);
             ItemsVisibility1 = "Visible";
 
+            string relativePath = Path.GetRelativePath(currentDirectory, imagesDirectory);
+            string imagePath = System.IO.Path.Combine(Environment.CurrentDirectory, @"..\..\..\Images\clients\TestingImage.jpg");
+            string userPath = System.IO.Path.Combine(Environment.CurrentDirectory, @"..\..\.."+user.Image);
+
             if (user.Cedula != null)
             {
                 if (user.PaymentStatus == "Solvente")
                 {
+                    BitmapImage bitmap = new BitmapImage(new Uri(userPath));
+
                     ClientName = user.Name?.ToUpper();
                     ClientCI = user.Cedula;
-                    ClientImage = user.Image;
+                    ClientImage = bitmap;
                     ClientRegisterDate = user.RegisterDate;
                     ClientStatusText = user.PaymentStatus;
                     ClientPaymentDate = user.Payment;
@@ -354,9 +368,13 @@ namespace Atenas_Gym.ViewModel
                 }
                 else
                 {
+                    bitmap.BeginInit();
+                    bitmap.UriSource = new Uri(relativePath + "\\clients\\1679441910917.jpg");
+                    bitmap.EndInit();
+
                     ClientName = user.Name?.ToUpper();
                     ClientCI = user.Cedula;
-                    ClientImage = user.Image;
+                    ClientImage = bitmap;
                     ClientRegisterDate = user.RegisterDate;
                     ClientStatusText = user.PaymentStatus;
                     ClientPaymentDate = user.Payment;
@@ -370,9 +388,14 @@ namespace Atenas_Gym.ViewModel
             }
             else
             {
+                bitmap.BeginInit();
+                //bitmap.UriSource = new Uri(@"D:\Website\Documents\Atenas-Gym\Atenas Gym\Images\clients\TestingImage.jpg", UriKind.Absolute);
+                bitmap.UriSource = new Uri(imagePath);
+                bitmap.EndInit();
+
                 ClientName = "NO REGISTRADO";
                 ClientCI = "Sin datos";
-                ClientImage = "/Images/App-Logo.png";
+                ClientImage = bitmap;
                 ClientRegisterDate = "Sin datos";
                 ClientStatusText = "Sin datos";
                 ClientPaymentDate = "Sin datos";

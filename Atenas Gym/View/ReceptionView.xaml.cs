@@ -18,6 +18,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Drawing;
+using System.IO;
+using System.Drawing.Imaging;
 
 namespace Atenas_Gym.View
 {
@@ -29,6 +31,8 @@ namespace Atenas_Gym.View
         private bool _hayDispositivos;
         private FilterInfoCollection misDispositivos;
         private VideoCaptureDevice miWebCam;
+        private string Path = @"\Images\clients\";
+        private Random rand = new Random();
         public ReceptionView()
         {
             InitializeComponent();
@@ -128,7 +132,7 @@ namespace Atenas_Gym.View
         private void ExecuteOpenWebCam(object sender, EventArgs e)
         {
             CerrarWebCam();
-            int i = 0;
+            int i = 2;
             string NombreVideo = misDispositivos[i].MonikerString;
             miWebCam = new VideoCaptureDevice(NombreVideo);
             miWebCam.NewFrame += new NewFrameEventHandler(Capturando);
@@ -157,6 +161,28 @@ namespace Atenas_Gym.View
                 bitmapimage.EndInit();
 
                 return bitmapimage;
+            }
+        }
+
+        private void CaptureImage(object sender, EventArgs eventArgs)
+        {
+            if(miWebCam != null && miWebCam.IsRunning)
+            {
+                miWebCam.SignalToStop();
+                miWebCam = null;
+
+                DateTime now = DateTime.Now;
+                string date = now.ToString("ddMMyyyy");
+                string ruta = Path + "ClientImage_" + rand.Next(0,15000) + ".jpg";
+
+                //Save document
+                using (FileStream stream = new FileStream(ruta, FileMode.Create))
+                {
+                    PngBitmapEncoder encoder = new PngBitmapEncoder();
+                    encoder.Frames.Add(BitmapFrame.Create((BitmapSource)myImage.Source));
+                    encoder.Save(stream);
+                    Ruta.Text = ruta;
+                }
             }
         }
     }

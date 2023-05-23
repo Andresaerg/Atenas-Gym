@@ -335,8 +335,11 @@
                     Padding="5" 
                     BorderBrush="{Binding ClientStatus}"
                     BorderThickness="5">
-                <Image Name="myImage" Stretch="UniformToFill"/>
+                <Image Name="myImage" Source="{Binding ClientImage}" Stretch="UniformToFill"/>
             </Border>
+            <TextBlock Visibility="Collapsed"
+                       Text="{Binding ClientImageRoute, UpdateSourceTrigger=PropertyChanged}"
+                       Name="Ruta"/>
             <Grid Grid.Column="1"
                   Grid.RowSpan="2">
                 <Grid.RowDefinitions>
@@ -528,7 +531,8 @@
                     Grid.Row="1" 
                     VerticalAlignment="Top" 
                     Width="80"
-                    Visibility="{Binding ItemsVisibility1}"/>
+                    Visibility="{Binding ItemsVisibility1}"
+                    Click="CaptureImage"/>
             <Button Content="Camara" 
                     HorizontalAlignment="Left" 
                     Margin="0,10,0,0" 
