@@ -31,14 +31,14 @@ namespace Atenas_Gym.View
         private bool _hayDispositivos;
         private FilterInfoCollection misDispositivos;
         private VideoCaptureDevice miWebCam;
-        private string Path = @"\Images\clients\";
+        private string Path = @"..\..\..\Images\clients\";
         private Random rand = new Random();
         public ReceptionView()
         {
             InitializeComponent();
             ReceptionViewModel vm = new ReceptionViewModel();
             DataContext = vm;
-            CargaDispositivos();
+            //CargaDispositivos();
         }
 
         private void Cedula_change(object sender, RoutedEventArgs e)
@@ -68,6 +68,7 @@ namespace Atenas_Gym.View
         {
             Create.Visibility = Visibility.Visible;
             Renew.Visibility = Visibility.Collapsed;
+            OpenCam.Visibility = Visibility.Visible;
 
             ClientSendingName.Clear();
             PlanComboBox.SelectedIndex = 0;
@@ -99,91 +100,99 @@ namespace Atenas_Gym.View
         private void CreateBtn(object sender, RoutedEventArgs e)
         {
             Create.Visibility = Visibility.Collapsed;
+            OpenCam.Visibility = Visibility.Collapsed;
         }
 
-        private void CargaDispositivos()
-        {
-            misDispositivos = new FilterInfoCollection(FilterCategory.VideoInputDevice);
-            List<string> testing = new List<string>();
-            if (misDispositivos.Count > 0)
-            {
-                _hayDispositivos = true;
-                for (int i = 0; i < misDispositivos.Count; i++)
-                {
-                    ComboTest.Text = misDispositivos[0].ToString();
-                    ComboTest.Items.Add(misDispositivos[i].Name.ToString());
-                }
-            }
-            else
-            {
-                _hayDispositivos = false;
-            }
-        }
+        //private void CargaDispositivos()
+        //{
+        //    misDispositivos = new FilterInfoCollection(FilterCategory.VideoInputDevice);
+        //    if (misDispositivos.Count > 0)
+        //    {
+        //        _hayDispositivos = true;
+                //for (int i = 0; i < misDispositivos.Count; i++)
+                //{
+                //    ComboTest.Text = misDispositivos[0].ToString();
+                //    ComboTest.Items.Add(misDispositivos[i].Name.ToString());
+                //}
+        //    }
+        //    else
+        //    {
+        //        _hayDispositivos = false;
+        //    }
+        //}
 
-        private void CerrarWebCam()
-        {
-            if (miWebCam != null && miWebCam.IsRunning)
-            {
-                miWebCam.SignalToStop();
-                miWebCam = null;
-            }
-        }
+        //private void CerrarWebCam()
+        //{
+        //    if (miWebCam != null && miWebCam.IsRunning)
+        //    {
+        //        miWebCam.SignalToStop();
+        //        miWebCam = null;
+        //    }
+        //}
 
-        private void ExecuteOpenWebCam(object sender, EventArgs e)
-        {
-            CerrarWebCam();
-            int i = 2;
-            string NombreVideo = misDispositivos[i].MonikerString;
-            miWebCam = new VideoCaptureDevice(NombreVideo);
-            miWebCam.NewFrame += new NewFrameEventHandler(Capturando);
-            miWebCam.Start();
-        }
+        //private void ExecuteOpenWebCam(object sender, EventArgs e)
+        //{
+        //    CerrarWebCam();
+        //    int i = 2;
+        //    string NombreVideo = misDispositivos[i].MonikerString;
+        //    miWebCam = new VideoCaptureDevice(NombreVideo);
+        //    miWebCam.NewFrame += new NewFrameEventHandler(Capturando);
+        //    miWebCam.Start();
+        //    CapturarImg.Visibility = Visibility.Visible;
+        //}
 
-        private void Capturando(object sender, NewFrameEventArgs eventArgs)
-        {
-            Bitmap Imagen = (Bitmap)eventArgs.Frame.Clone();
-            myImage.Dispatcher.Invoke(() =>
-            {
-                myImage.Source = BitmapToImageSource(Imagen);
-            });
-        }
+        //private void Capturando(object sender, NewFrameEventArgs eventArgs)
+        //{
+        //    Bitmap Imagen = (Bitmap)eventArgs.Frame.Clone();
+        //    myImage.Dispatcher.Invoke(() =>
+        //    {
+        //        myImage.Source = BitmapToImageSource(Imagen);
+        //    });
+        //}
 
-        public static BitmapImage BitmapToImageSource(Bitmap bitmap)
-        {
-            using (System.IO.MemoryStream memory = new System.IO.MemoryStream())
-            {
-                bitmap.Save(memory, System.Drawing.Imaging.ImageFormat.Bmp);
-                memory.Position = 0;
-                BitmapImage bitmapimage = new BitmapImage();
-                bitmapimage.BeginInit();
-                bitmapimage.StreamSource = memory;
-                bitmapimage.CacheOption = BitmapCacheOption.OnLoad;
-                bitmapimage.EndInit();
+        //public static BitmapImage BitmapToImageSource(Bitmap bitmap)
+        //{
+        //    using (System.IO.MemoryStream memory = new System.IO.MemoryStream())
+        //    {
+        //        bitmap.Save(memory, System.Drawing.Imaging.ImageFormat.Bmp);
+        //        memory.Position = 0;
+        //        BitmapImage bitmapimage = new BitmapImage();
+        //        bitmapimage.BeginInit();
+        //        bitmapimage.StreamSource = memory;
+        //        bitmapimage.CacheOption = BitmapCacheOption.OnLoad;
+        //        bitmapimage.EndInit();
 
-                return bitmapimage;
-            }
-        }
+        //        return bitmapimage;
+        //    }
+        //}
 
-        private void CaptureImage(object sender, EventArgs eventArgs)
-        {
-            if(miWebCam != null && miWebCam.IsRunning)
-            {
-                miWebCam.SignalToStop();
-                miWebCam = null;
+        //private void CaptureImage(object sender, EventArgs eventArgs)
+        //{
+        //    if(miWebCam != null && miWebCam.IsRunning)
+        //    {
+        //        miWebCam.SignalToStop();
+        //        miWebCam = null;
 
-                DateTime now = DateTime.Now;
-                string date = now.ToString("ddMMyyyy");
-                string ruta = Path + "ClientImage_" + rand.Next(0,15000) + ".jpg";
+        //        DateTime now = DateTime.Now;
+        //        string date = now.ToString("ddMMyyyy");
+        //        int number = rand.Next(0,15000);
 
-                //Save document
-                using (FileStream stream = new FileStream(ruta, FileMode.Create))
-                {
-                    PngBitmapEncoder encoder = new PngBitmapEncoder();
-                    encoder.Frames.Add(BitmapFrame.Create((BitmapSource)myImage.Source));
-                    encoder.Save(stream);
-                    Ruta.Text = ruta;
-                }
-            }
-        }
+        //        string toDb = "ClientImage_" + date + "-" + number + ".jpg";
+        //        string ruta = Path + toDb;
+
+        //        //Save document
+        //        using (FileStream stream = new FileStream(ruta, FileMode.Create))
+        //        {
+        //            PngBitmapEncoder encoder = new PngBitmapEncoder();
+        //            encoder.Frames.Add(BitmapFrame.Create((BitmapSource)myImage.Source));
+        //            encoder.Save(stream);
+        //            //Ruta.Text = @"\Images\clients\"+toDb;
+
+        //            var testeo = (ReceptionViewModel)DataContext;
+        //            testeo.ClientImageRoute = @"\Images\clients\" + toDb;
+        //            CapturarImg.Visibility = Visibility.Collapsed;
+        //        }
+        //    }
+        //}
     }
 }

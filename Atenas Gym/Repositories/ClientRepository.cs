@@ -11,7 +11,7 @@ namespace Atenas_Gym.Repositories
 {
     public class ClientRepository : RepositoryBase, IClientRepository
     {
-        public bool AddClient(ClientModel clientModel, string opcion, string method, string reference)
+        public async Task<bool> AddClient(ClientModel clientModel)
         {
             bool client;
 
@@ -22,7 +22,7 @@ namespace Atenas_Gym.Repositories
                 command.CommandText = "INSERT INTO clientes(Nombre, Cedula, Estado, Fecha_Ingreso, Ruta_IMG, Peso, Estatura, Brazos, Cintura, Cadera, Muslos) VALUES (@name, @cedula, @estado, @ingreso, @imagen, @peso, @altura, @brazos, @cintura, @caderas, @muslos)";
 
                 bool ci_exists = false;
-                using (MySqlCommand cmd = new MySqlCommand("SELECT * FROM usuarios WHERE Cedula = @cedula", GetConnection))
+                using (MySqlCommand cmd = new MySqlCommand("SELECT * FROM clientes WHERE Cedula = @cedula", GetConnection))
                 {
                     cmd.Parameters.Add("@cedula", MySqlDbType.String).Value = clientModel.Cedula;
                     ci_exists = cmd.ExecuteScalar() == null ? false : true;
@@ -44,11 +44,7 @@ namespace Atenas_Gym.Repositories
 
                     client = command.ExecuteNonQuery() > 0 ? true : false;
 
-                    if (client)
-                    {
-                        GetConnection.Close();
-                        AddClientPayment(clientModel.Cedula, opcion, method, reference);
-                    }
+                    GetConnection.Close();
                 }
                 else
                 {
@@ -72,7 +68,7 @@ namespace Atenas_Gym.Repositories
                 //command.CommandText = "UPDATE pagos p INNER JOIN clientes c ON p.Cedula = c.Cedula SET p.Fecha_Pago = IF(c.Estado = 'En deuda', CURDATE(), IF(CURDATE() = p.Fecha_Vencimiento, CURDATE(), p.Fecha_Pago)), p.Fecha_Vencimiento = IF(c.Estado = 'En deuda', DATE_ADD(CURDATE(), INTERVAL " + opcion+"), DATE_ADD(p.Fecha_Vencimiento, INTERVAL "+opcion+")), c.Estado = IF(c.Estado = 'En deuda', 'Solvente', c.Estado) WHERE p.Cedula = @cedula";
                 //command.CommandText = "INSERT INTO pagos (Cedula, Fecha_Pago, Fecha_Vencimiento, Tipo_Pago, Referencia) SELECT c.Cedula, IF(c.Estado = 'En deuda', CURDATE(), IF(CURDATE() = p.Fecha_Vencimiento, CURDATE(), p.Fecha_Pago)), IF(c.Estado = 'En deuda', DATE_ADD(CURDATE(), INTERVAL " + opcion+"), DATE_ADD(p.Fecha_Vencimiento, INTERVAL "+opcion+")), @method, @reference FROM clientes c LEFT JOIN pagos p ON p.Cedula = c.Cedula WHERE c.Cedula = @cedula;";
 
-                command.CommandText = "INSERT INTO pagos (Cliente, Cedula, Fecha_Pago, Fecha_Vencimiento, Tipo_Pago, Referencia) SELECT c.Nombre, c.Cedula, CURDATE(), IF(c.Estado = 'En deuda', DATE_ADD(CURDATE(), INTERVAL " + opcion + "), DATE_ADD(p.Fecha_Vencimiento, INTERVAL " + opcion + ")), @method, @reference FROM clientes c LEFT JOIN pagos p ON p.Cedula = c.Cedula WHERE c.Cedula = @cedula;";
+                command.CommandText = "INSERT INTO pagos (Cliente, Cedula, Fecha_Pago, Fecha_Vencimiento, Tipo_Pago, Referencia) SELECT c.Nombre, c.Cedula, CURDATE(), IF(c.Estado = 'En deuda', DATE_ADD(CURDATE(), INTERVAL " + opcion + "), DATE_ADD(p.Fecha_Vencimiento, INTERVAL " + opcion + ")), @method, @reference FROM clientes c LEFT JOIN pagos p ON p.Cedula = c.Cedula WHERE c.Cedula = @cedula ORDER BY p.ID DESC LIMIT 1;";
 
                 command.Parameters.Add("@cedula", MySqlDbType.Int64).Value = cedula;
                 command.Parameters.Add("@method", MySqlDbType.String).Value = method;
@@ -104,7 +100,7 @@ namespace Atenas_Gym.Repositories
             {
                 GetConnection.Open();
                 command.Connection = GetConnection;
-                command.CommandText = "SELECT c.*, p.Fecha_Pago, p.Fecha_Vencimiento FROM clientes c INNER JOIN pagos p ON p.Cedula = c.Cedula WHERE c.Cedula = @username;";
+                command.CommandText = "SELECT c.*, p.Fecha_Pago, p.Fecha_Vencimiento FROM clientes c INNER JOIN pagos p ON p.Cedula = c.Cedula WHERE c.Cedula = @username ORDER BY p.ID DESC LIMIT 1;";
 
                 bool result = int.TryParse(cedula, out _);
                 if (result)
@@ -196,7 +192,7 @@ namespace Atenas_Gym.Repositories
             {
                 GetConnection.Open();
                 cmd.Connection = GetConnection;
-                cmd.CommandText = "SELECT * FROM clientes ORDER BY ID DESC LIMIT 0,4;";
+                cmd.CommandText = "SELECT * FROM clientes ORDER BY ID DESC LIMIT 0,5;";
                 MySqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {

@@ -17,6 +17,7 @@ using Atenas_Gym.Messages;
 using CommunityToolkit.Mvvm.Messaging;
 using System.Windows.Media.Animation;
 using Microsoft.VisualBasic.ApplicationServices;
+using Atenas_Gym.ViewModel;
 
 namespace Atenas_Gym.View
 {
@@ -67,6 +68,15 @@ namespace Atenas_Gym.View
 
         private void Close_click(object sender, RoutedEventArgs e)
         {
+            var activeUserControl = contentControl.Content as UserControl;
+            if (activeUserControl != null)
+            {
+                var viewModel = activeUserControl.DataContext as ReceptionViewModel;
+                if (viewModel != null)
+                {
+                    viewModel.CerrarWebCam();
+                }
+            }
             Application.Current.Shutdown();
         }
 
