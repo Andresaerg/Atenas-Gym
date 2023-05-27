@@ -18,6 +18,8 @@ using CommunityToolkit.Mvvm.Messaging;
 using System.Windows.Media.Animation;
 using Microsoft.VisualBasic.ApplicationServices;
 using Atenas_Gym.ViewModel;
+using AForge.Video.DirectShow;
+using AForge.Video;
 
 namespace Atenas_Gym.View
 {
@@ -77,7 +79,8 @@ namespace Atenas_Gym.View
                     viewModel.CerrarWebCam();
                 }
             }
-            Application.Current.Shutdown();
+            //Application.Current.Shutdown();
+            Environment.Exit(0);
         }
 
         private void Contract(object sender, RoutedEventArgs e)

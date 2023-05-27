@@ -199,3 +199,6 @@ D:\Website\Documents\Atenas-Gym\Atenas Gym\obj\Debug\net6.0-windows\Atenas Gym.p
 D:\Website\Documents\Atenas-Gym\Atenas Gym\obj\Debug\net6.0-windows\Atenas Gym.genruntimeconfig.cache
 D:\Website\Documents\Atenas-Gym\Atenas Gym\bin\Debug\net6.0-windows\Atenas Gym.pdb
 D:\Website\Documents\Atenas-Gym\Atenas Gym\obj\Debug\net6.0-windows\ref\Atenas Gym.dll
+C:\Users\USUARIO\source\repos\Atenas-Gym\Atenas Gym\bin\Debug\net6.0-windows\AForge.dll
+C:\Users\USUARIO\source\repos\Atenas-Gym\Atenas Gym\bin\Debug\net6.0-windows\AForge.Video.dll
+C:\Users\USUARIO\source\repos\Atenas-Gym\Atenas Gym\bin\Debug\net6.0-windows\AForge.Video.DirectShow.dll

@@ -130,16 +130,16 @@ namespace Atenas_Gym.View
         //    }
         //}
 
-        //private void ExecuteOpenWebCam(object sender, EventArgs e)
-        //{
+        private void ExecuteOpenWebCam(object sender, EventArgs e)
+        {
         //    CerrarWebCam();
         //    int i = 2;
         //    string NombreVideo = misDispositivos[i].MonikerString;
         //    miWebCam = new VideoCaptureDevice(NombreVideo);
         //    miWebCam.NewFrame += new NewFrameEventHandler(Capturando);
         //    miWebCam.Start();
-        //    CapturarImg.Visibility = Visibility.Visible;
-        //}
+            CapturarImg.Visibility = Visibility.Visible;
+        }
 
         //private void Capturando(object sender, NewFrameEventArgs eventArgs)
         //{
@@ -166,8 +166,8 @@ namespace Atenas_Gym.View
         //    }
         //}
 
-        //private void CaptureImage(object sender, EventArgs eventArgs)
-        //{
+        private void CaptureImage(object sender, EventArgs eventArgs)
+        {
         //    if(miWebCam != null && miWebCam.IsRunning)
         //    {
         //        miWebCam.SignalToStop();
@@ -190,9 +190,9 @@ namespace Atenas_Gym.View
 
         //            var testeo = (ReceptionViewModel)DataContext;
         //            testeo.ClientImageRoute = @"\Images\clients\" + toDb;
-        //            CapturarImg.Visibility = Visibility.Collapsed;
+                    CapturarImg.Visibility = Visibility.Collapsed;
         //        }
         //    }
-        //}
+        }
     }
 }

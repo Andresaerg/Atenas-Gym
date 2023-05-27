@@ -36,6 +36,7 @@ namespace Atenas_Gym.ViewModel
         private string? _clientPaymentExpireDate;
 
         private BitmapImage bitmap = new BitmapImage();
+        private string myPath = @"..\..\..\Images\clients\";
 
         private string? _clientNameSend;
 
@@ -208,6 +209,7 @@ namespace Atenas_Gym.ViewModel
         public ICommand CreateClient { get; }
         public ICommand UpdateClient { get; }
         public ICommand OpenWebCam { get; }
+        public ICommand CaptureImage { get; }
 
         public ReceptionViewModel()
         {
@@ -217,16 +219,25 @@ namespace Atenas_Gym.ViewModel
             CreateClient = new ViewModelCommand(ExecuteCreateClient, CanExecuteCreateClient);
             UpdateClient = new ViewModelCommand(ExecuteUpdateClient, CanExecuteUpdateClient);
 
-            OpenWebCam = new ViewModelCommand(ExecuteOpenWebCam);
             CargaDispositivos();
+            OpenWebCam = new ViewModelCommand(ExecuteOpenWebCam);
+            CaptureImage = new ViewModelCommand(ExecuteCaptureImage);
 
             ExecuteGetPlanes();
         }
 
+        private void ExecuteCaptureImage(object obj)
+        {
+            if (miWebCam != null && miWebCam.IsRunning)
+            {
+                miWebCam.SignalToStop();
+                miWebCam = null;
+            }
+        }
         private void ExecuteOpenWebCam(object obj)
         {
             CerrarWebCam();
-            int i = 2;
+            int i = 0;
             string NombreVideo = misDispositivos[i].MonikerString;
             miWebCam = new VideoCaptureDevice(NombreVideo);
             miWebCam.NewFrame += new NewFrameEventHandler(Capturando);
@@ -330,19 +341,38 @@ namespace Atenas_Gym.ViewModel
 
         async private void ExecuteCreateClient(object obj)
         {
+            DateTime now = DateTime.Now;
+            Random rand = new Random();
+            string date = now.ToString("ddMMyyyy");
+            int num = rand.Next(0, 15000);
+
+            string toDb = ClientNameSend + "_" + date + "-" + num + ".jpg";
+            string ruta = myPath + toDb;
+
+            //Save document COMMENT
+
+
+            using (FileStream stream = new FileStream(ruta, FileMode.Create))
+            {
+                PngBitmapEncoder encoder = new PngBitmapEncoder();
+                encoder.Frames.Add(BitmapFrame.Create((BitmapSource)ClientImage));
+                encoder.Save(stream);
+
+
+                //Ruta.Text = @"\Images\clients\"+toDb; COMMENT
+
+
+                //var testeo = (ReceptionViewModel)DataContext;
+                //testeo.ClientImageRoute = @"\Images\clients\" + toDb;
+                //CapturarImg.Visibility = Visibility.Collapsed;
+            }
+
             clientModel = new ClientModel();
             clientModel.Name = ClientNameSend;
             clientModel.Cedula = ClientID;
             clientModel.PaymentStatus = "En deuda";
             clientModel.RegisterDate = DateTime.Now.ToString("yyyy-MM-dd");
-            if (!string.IsNullOrWhiteSpace(ClientImageRoute))
-            {
-                clientModel.Image = ClientImageRoute;
-            }
-            else
-            {
-                clientModel.Image = @"\Images\App-Logo.png";
-            }
+            clientModel.Image = @"\Images\clients\" + toDb;
             clientModel.Weight = "0";
             clientModel.Height = "0";
             clientModel.Arms = "0";
