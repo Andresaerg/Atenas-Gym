@@ -99,7 +99,7 @@ namespace Atenas_Gym.Repositories
             {
                 GetConnection.Open();
                 command.Connection = GetConnection;
-                command.CommandText = "SELECT SUM(Cantidad) FROM pagos FORCE INDEX (idx_pagos_fecha_pago) WHERE MONTH(Fecha_Pago) = MONTH(CURDATE()) AND YEAR(Fecha_Pago) = YEAR(CURDATE());";
+                command.CommandText = "SELECT SUM(Precio) FROM pagos FORCE INDEX (idx_pagos_fecha_pago) WHERE MONTH(Fecha_Pago) = MONTH(CURDATE()) AND YEAR(Fecha_Pago) = YEAR(CURDATE());";
 
                 var execute = command.ExecuteScalar() == null ? false : true;
 
@@ -183,7 +183,7 @@ namespace Atenas_Gym.Repositories
             {
                 GetConnection.Open();
                 command.Connection = GetConnection;
-                command.CommandText = "SELECT SUM(Cantidad) FROM pagos FORCE INDEX (idx_pagos_fecha_pago) WHERE YEAR(Fecha_Pago) = YEAR(CURDATE());";
+                command.CommandText = "SELECT SUM(Precio) FROM pagos FORCE INDEX (idx_pagos_fecha_pago) WHERE YEAR(Fecha_Pago) = YEAR(CURDATE());";
 
                 var execute = command.ExecuteScalar() == null ? false : true;
 
