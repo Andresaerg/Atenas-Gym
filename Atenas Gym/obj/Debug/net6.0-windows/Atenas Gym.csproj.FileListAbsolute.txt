@@ -202,3 +202,4 @@ D:\Website\Documents\Atenas-Gym\Atenas Gym\obj\Debug\net6.0-windows\ref\Atenas G
 C:\Users\USUARIO\source\repos\Atenas-Gym\Atenas Gym\bin\Debug\net6.0-windows\AForge.dll
 C:\Users\USUARIO\source\repos\Atenas-Gym\Atenas Gym\bin\Debug\net6.0-windows\AForge.Video.dll
 C:\Users\USUARIO\source\repos\Atenas-Gym\Atenas Gym\bin\Debug\net6.0-windows\AForge.Video.DirectShow.dll
+C:\Users\USUARIO\source\repos\Atenas-Gym\Atenas Gym\obj\Debug\net6.0-windows\Atenas Gym_Content.g.cs

@@ -125,6 +125,10 @@ namespace Atenas_Gym.ViewModel
             {
                 ErrorMessageAcc = "La cédula ingresada ya existe";
             }
+            else
+            {
+                ErrorMessageAcc = "Nuevo guardia agregado!";
+            }
         }
     }
 }

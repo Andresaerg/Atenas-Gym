@@ -14,7 +14,8 @@
         WindowStartupLocation="CenterScreen"
         MouseDown="Window_MouseDown"
         Background="Transparent"
-        AllowsTransparency="True">
+        AllowsTransparency="True"
+        FocusManager.FocusedElement="{Binding ElementName=Cedula}">
 
     <Window.DataContext>
         <viewModel:LoginViewModel/>
@@ -159,20 +160,20 @@
                            FontWeight="Medium"/>
 
                         <TextBox x:Name="Cedula" 
-                             MaxLength="10"
-                             HorizontalAlignment="Stretch" 
-                             BorderBrush="DarkGray" 
-                             BorderThickness="0,0,0,2" 
-                             CaretBrush="LightGray" 
-                             FontWeight="Medium" 
-                             FontFamily="Montserrat" 
-                             Margin="0,5,0,0" 
-                             Padding="30,0,0,0"
-                             Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" 
-                             Foreground="Gray" 
-                             Height="20" 
-                             TextChanged="Cedula_change"
-                             PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" HorizontalScrollBarVisibility="Disabled">
+                                 MaxLength="10"
+                                 HorizontalAlignment="Stretch" 
+                                 BorderBrush="DarkGray" 
+                                 BorderThickness="0,0,0,2" 
+                                 CaretBrush="LightGray" 
+                                 FontWeight="Medium" 
+                                 FontFamily="Montserrat" 
+                                 Margin="0,5,0,0" 
+                                 Padding="30,0,0,0"
+                                 Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" 
+                                 Foreground="Gray" 
+                                 Height="20" 
+                                 TextChanged="Cedula_change"
+                                 PreviewTextInput="NumberValidationTextBox" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" HorizontalScrollBarVisibility="Disabled">
                             <TextBox.Style>
 
                             <Style TargetType="TextBox">
