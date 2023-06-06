@@ -37,6 +37,7 @@ namespace Atenas_Gym.ViewModel
 
         private BitmapImage bitmap = new BitmapImage();
         private string myPath = @"..\..\..\Images\clients\";
+        private bool _captured;
 
         private string? _clientNameSend;
 
@@ -232,6 +233,7 @@ namespace Atenas_Gym.ViewModel
             {
                 miWebCam.SignalToStop();
                 miWebCam = null;
+                _captured = true;
             }
         }
         private void ExecuteOpenWebCam(object obj)
@@ -242,6 +244,7 @@ namespace Atenas_Gym.ViewModel
             miWebCam = new VideoCaptureDevice(NombreVideo);
             miWebCam.NewFrame += new NewFrameEventHandler(Capturando);
             miWebCam.Start();
+            _captured = false;
         }
 
         private void Capturando(object sender, NewFrameEventArgs eventArgs)
@@ -372,7 +375,14 @@ namespace Atenas_Gym.ViewModel
             clientModel.Cedula = ClientID;
             clientModel.PaymentStatus = "En deuda";
             clientModel.RegisterDate = DateTime.Now.ToString("yyyy-MM-dd");
-            clientModel.Image = @"\Images\clients\" + toDb;
+            if(_captured == true)
+            {
+                clientModel.Image = @"\Images\clients\" + toDb;
+            }
+            else
+            {
+                clientModel.Image = @"\Images\App-Logo.png";
+            }
             clientModel.Weight = "0";
             clientModel.Height = "0";
             clientModel.Arms = "0";
@@ -406,6 +416,7 @@ namespace Atenas_Gym.ViewModel
 
         private void ExecuteSearchClient(object obj)
         {
+            CerrarWebCam();
             var user = clientRepository.AuthenticateClient(ClientID);
             ItemsVisibility1 = "Visible";
 

@@ -101,14 +101,11 @@ namespace Atenas_Gym.Repositories
                 command.Connection = GetConnection;
                 command.CommandText = "SELECT SUM(Precio) FROM pagos FORCE INDEX (idx_pagos_fecha_pago) WHERE MONTH(Fecha_Pago) = MONTH(CURDATE()) AND YEAR(Fecha_Pago) = YEAR(CURDATE());";
 
-                var execute = command.ExecuteScalar() == null ? false : true;
+                var execute = command.ExecuteScalar();
 
-                if (execute)
+                if (execute != DBNull.Value && execute != null)
                 {
-                    MySqlDataReader reader = command.ExecuteReader();
-                    reader.Read();
-
-                    monto = reader.GetDecimal(0);
+                    monto = (decimal)execute;
                 }
                 else
                 {
