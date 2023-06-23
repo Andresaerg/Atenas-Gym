@@ -138,7 +138,9 @@ namespace Atenas_Gym.View
         //    miWebCam = new VideoCaptureDevice(NombreVideo);
         //    miWebCam.NewFrame += new NewFrameEventHandler(Capturando);
         //    miWebCam.Start();
+            OpenCam.Visibility = Visibility.Collapsed;
             CapturarImg.Visibility = Visibility.Visible;
+            ComboTest.Visibility = Visibility.Visible;
         }
 
         //private void Capturando(object sender, NewFrameEventArgs eventArgs)
@@ -190,7 +192,9 @@ namespace Atenas_Gym.View
 
         //            var testeo = (ReceptionViewModel)DataContext;
         //            testeo.ClientImageRoute = @"\Images\clients\" + toDb;
+                    OpenCam.Visibility = Visibility.Visible;
                     CapturarImg.Visibility = Visibility.Collapsed;
+                    ComboTest.Visibility = Visibility.Collapsed;
         //        }
         //    }
         }

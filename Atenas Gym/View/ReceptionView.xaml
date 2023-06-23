@@ -542,10 +542,14 @@
                     Command="{Binding OpenWebCam}"
                     Click="ExecuteOpenWebCam"
                     Name="OpenCam"/>
-            <!--<ComboBox VerticalAlignment="Center" 
+            <ComboBox VerticalAlignment="Top" 
+                      Margin="0,50,0,0"
                       Grid.Row="1"
                       Style="{x:Null}"
-                      Name="ComboTest"/>-->
+                      Name="ComboTest"
+                      ItemsSource="{Binding Cams}"
+                      SelectedIndex="{Binding CamsIndex, UpdateSourceTrigger=PropertyChanged}"
+                      Visibility="Collapsed"/>
         </Grid>
         <StackPanel Grid.Column="1"
                     Grid.Row="1" 

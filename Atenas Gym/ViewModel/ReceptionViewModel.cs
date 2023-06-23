@@ -15,6 +15,7 @@ using AForge.Video;
 using System.Drawing;
 using System.Windows.Media.Imaging;
 using System.IO;
+using System.Collections.ObjectModel;
 
 namespace Atenas_Gym.ViewModel
 {
@@ -57,6 +58,8 @@ namespace Atenas_Gym.ViewModel
         private bool _hayDispositivos;
         private FilterInfoCollection misDispositivos;
         private VideoCaptureDevice miWebCam;
+        private List<string> _cams;
+        private int _camIndex = 0;
 
 
         private IClientRepository clientRepository;
@@ -203,6 +206,8 @@ namespace Atenas_Gym.ViewModel
 
         //public bool HayDispositivos { get => _hayDispositivos; set { _hayDispositivos = value; OnPropertyChanged(nameof(HayDispositivos)); } }
         //public FilterInfoCollection MisDispositivos { get => misDispositivos; set { misDispositivos = value; OnPropertyChanged(nameof(MisDispositivos)); } }
+        public List<string> Cams { get => _cams; set { _cams = value; OnPropertyChanged(nameof(Cams)); } }
+        public int CamsIndex { get => _camIndex; set { _camIndex = value; OnPropertyChanged(nameof(CamsIndex)); } }
         //public VideoCaptureDevice MiWebCam { get => miWebCam; set { miWebCam = value; OnPropertyChanged(nameof(MiWebCam)); } }
 
         //-> Commands
@@ -239,7 +244,7 @@ namespace Atenas_Gym.ViewModel
         private void ExecuteOpenWebCam(object obj)
         {
             CerrarWebCam();
-            int i = 0;
+            int i = CamsIndex;
             string NombreVideo = misDispositivos[i].MonikerString;
             miWebCam = new VideoCaptureDevice(NombreVideo);
             miWebCam.NewFrame += new NewFrameEventHandler(Capturando);
@@ -269,15 +274,16 @@ namespace Atenas_Gym.ViewModel
 
         private void CargaDispositivos()
         {
+            List<string> aux = new List<string>();
             misDispositivos = new FilterInfoCollection(FilterCategory.VideoInputDevice);
             if (misDispositivos.Count > 0)
             {
                 _hayDispositivos = true;
-                //for (int i = 0; i < MisDispositivos.Count; i++)
-                //{
-                //    //testing[0] = MisDispositivos[0].ToString();
-                //    testing.Add(MisDispositivos[i].Name.ToString());
-                //}
+                for (int i = 0; i < misDispositivos.Count; i++)
+                {
+                    aux.Add(misDispositivos[i].Name.ToString());
+                }
+                Cams = aux;
             }
             else
             {
